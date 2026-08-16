@@ -2,9 +2,9 @@
 
 **Fecha:** 16 de agosto de 2026
 
-**Alcance:** P12 hasta P12_T05 y preparación de P12_T06; especificación 2.0 de la evolución Codex-first P13–P23
+**Alcance:** P12 hasta la publicación propuesta de P12_T06; especificación 2.0 de la evolución Codex-first P13–P23
 
-**Veredicto:** P12_T06 continúa sin publicar; P13–P23 están especificados pero permanecen bloqueados y sin implementación
+**Veredicto:** P12_T06 tiene commit, rama remota y PR borrador, pero continúa sin publicar por un bloqueo de billing de GitHub Actions y falta de merge humano
 
 ## Resultado
 
@@ -35,8 +35,12 @@ La configuración Claude permanece preparada como compatibilidad opcional, pero
 no se ejecuta ni se usa como gate de aceptación. P12_T04 está `done`. La
 autoridad humana confirmó `skos:Concept`, la frontera de `ontology_core` y las
 relaciones, delegó al generador conservar nombre y definición, y asignó a Bruno
-Jaime como owner. P12_T05 está `done`; P12_T06 está `in_progress` y
-P12_T07–P12_T11 siguen `todo`.
+Jaime como owner. P12_T05 está `done`. El snapshot completo quedó en el commit
+`7515d64`, sincronizado con la rama remota
+`proposal/p12-governed-knowledge-pilot`, y el PR borrador #1 apunta a `main`.
+Sus seis jobs no recibieron runner: GitHub reportó pagos recientes fallidos o
+un spending limit insuficiente. No hay aprobación humana ni merge; P12_T06
+permanece `in_progress` y P12_T07–P12_T11 siguen `todo`.
 
 ## Especificación 2.0 Codex-first
 
@@ -80,8 +84,13 @@ atribuirle una revisión que no ocurrió.
 
 ## Publicación y trabajo no iniciado
 
-- P12_T06: `in_progress`. El RDF corregido valida, pero todavía no existe
-  commit, pull request ni merge a `main`; no se presenta como publicado.
+- P12_T06: `in_progress`. El RDF corregido valida y existe el commit
+  `7515d64`, la rama remota y el PR borrador
+  [#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
+  GitHub Actions no inició ningún paso por el bloqueo de billing de la cuenta;
+  tampoco existe aprobación humana ni merge a `main`, por lo que no se presenta
+  como publicado. El detalle queda en
+  `docs/pilot/p12-publication-handoff.json`.
 - P12_T07–P12_T11: `todo`. No hay publicación, medición final ni aceptación
   MVP. Existe una especificación futura autorizada, pero P12_T11 no se cierra
   fuera de orden ni antes de completar los gates precedentes.
@@ -141,11 +150,10 @@ aceptado.
   fuentes no confiables, web viewer-first y RDF/Git canónicos.
 - La verificación Codex de 496/61 se conserva como artifact `superseded`; la
   revisión vigente reejecutó los comandos sobre 497/61 y aprobó sin hallazgos.
-- En la iteración funcional anterior, `scripts/smoke_package.py` dejó API/web
-  saludables, UID 10001 y 497 quads
-  conformes, CLI y MCP aprobados, cinco módulos, métricas pobladas y logs
-  correlacionados; los recursos Docker fueron retirados. No se repitió el smoke
-  por esta ampliación exclusivamente documental.
+- `scripts/smoke_package.py` se repitió sobre el snapshot previo al commit y
+  dejó API/web saludables, UID 10001 y 497 quads conformes, CLI y MCP
+  aprobados, cinco módulos, métricas pobladas y logs correlacionados; los
+  contenedores y la red fueron retirados al terminar.
 - `uv lock --check`, `docker compose config --quiet`, integridad y DAG del
   backlog, hashes, enlaces locales y `git diff --check`: aprobados.
 - Provenance Codex: la salida superseded conserva SHA-256 `ce2cefec…`; el
@@ -172,8 +180,12 @@ aceptado.
   desconocido para esa versión. Dos servidores MCP auxiliares ajenos al
   Workbench no arrancaron en el sandbox de revisión; el revisor aplicó el fallback CLI
   determinista del contrato.
-- PowerShell, Podman, `actionlint`, `act`, GitHub Actions/ruleset remoto y hosts
-  macOS/Windows no estuvieron disponibles; no se atribuye evidencia dinámica.
+- PowerShell, Podman, `actionlint`, `act`, ruleset remoto y hosts macOS/Windows
+  no estuvieron disponibles; no se atribuye evidencia dinámica.
+- GitHub Actions creó seis check runs para el PR #1, pero todos terminaron sin
+  pasos ni runner. La annotation oficial indica pagos recientes fallidos o un
+  spending limit insuficiente. Es un bloqueo de cuenta externo al diff; después
+  de corregir Billing & plans deben reejecutarse ambos workflows.
 - No se repitió la matriz completa en otra copia limpia después de esta
   ampliación documental. El replay P12 sí se rehizo previamente desde la base
   RDF anterior en una copia Git aislada, y los casos `main`, cambio de
@@ -181,8 +193,8 @@ aceptado.
   independientes.
 - La base Git válida no contiene `knowledge/`; el diff la trata explícitamente
   como importación inicial vacía. Revisiones inexistentes siguen fallando.
-- El worktree heredado continúa mayormente sin trackear sobre un único commit;
-  se preservaron sus archivos, pero su historia anterior no puede reconstruirse.
+- El worktree heredado fue preservado y registrado en el commit de propuesta
+  `7515d64`; su historia previa al bootstrap no puede reconstruirse.
 - Persisten warnings conocidos de RDFLib y `fork` sin fallos funcionales.
 
 ## Estado del backlog y próxima iteración

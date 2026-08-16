@@ -49,10 +49,17 @@ schema cerrado; la salida y su provenance fijan todos los hashes revisados.
 P12_T04 está `done`. La revisión humana P12_T05 también quedó demostrada: se
 conservaron el nombre y la definición del módulo, se confirmó el modelado SKOS,
 `ontology_core` y la cadena transversal, y Bruno Jaime reemplazó al owner
-provisional. P12_T06 está `in_progress`: la propuesta sigue sin commit, PR ni
-merge verificables. P12_T07–P12_T11 no fueron iniciadas. La configuración
-Claude se conserva como compatibilidad opcional, pero no se prueba ni bloquea
-la aceptación en este entorno.
+provisional. P12_T06 está `in_progress`: el snapshot ejecutable fue registrado
+en el commit `7515d64`, publicado en la rama
+`proposal/p12-governed-knowledge-pilot` y abierto como PR borrador
+[#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
+GitHub no inició sus seis jobs porque la cuenta reporta pagos fallidos o un
+spending limit insuficiente; no existe todavía aprobación humana ni merge a
+`main`. El estado verificable está en el
+[handoff de publicación](docs/pilot/p12-publication-handoff.json).
+P12_T07–P12_T11 no fueron iniciadas. La configuración Claude se
+conserva como compatibilidad opcional, pero no se prueba ni bloquea la
+aceptación en este entorno.
 
 La especificación 2.0 agrega, sin adelantar implementación, la evolución
 Codex-first de incorporación de conocimiento. P13–P23 contienen 123 tasks en

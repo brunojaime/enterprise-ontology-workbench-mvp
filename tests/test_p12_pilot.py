@@ -356,6 +356,29 @@ def test_p12_handoff_separates_historical_and_current_codex_reviews() -> None:
     assert "no participa en el cierre de P12_T04" in handoff
 
 
+def test_p12_publication_handoff_records_pr_without_claiming_publication() -> None:
+    path = ROOT / "docs" / "pilot" / "p12-publication-handoff.json"
+    raw = path.read_text(encoding="utf-8")
+    handoff = json.loads(raw)
+
+    assert handoff["task"] == "P12_T06"
+    assert handoff["status"] == "in_progress"
+    assert handoff["implementation_commit"] == ("7515d6419e2b04f45156e8c51a8df4dd5c6741f3")
+    assert handoff["pull_request"] == {
+        "base": "main",
+        "draft": True,
+        "head": "proposal/p12-governed-knowledge-pilot",
+        "number": 1,
+        "state": "OPEN",
+        "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1",
+    }
+    assert handoff["github_actions"]["result"] == "blocked_before_runner"
+    assert handoff["github_actions"]["jobs"] == 6
+    assert handoff["publication"]["merged_to_main"] is False
+    assert handoff["publication"]["human_approval_recorded"] is False
+    assert raw == json.dumps(handoff, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
 def test_p12_superseded_codex_review_preserves_bytes_and_declares_provenance() -> None:
     provenance_path = ROOT / "docs" / "pilot" / "p12-codex-review-provenance.json"
     provenance_raw = provenance_path.read_text(encoding="utf-8")
