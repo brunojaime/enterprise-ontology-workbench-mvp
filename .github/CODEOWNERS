@@ -12,4 +12,5 @@
 # Framework-independent semantic core and publication policy require technical review.
 /packages/ontology_core/ @brunojaime
 /.github/CODEOWNERS @brunojaime
-/.github/workflows/ @brunojaime
+/scripts/run_local_gate.py @brunojaime
+/docs/local-governance.md @brunojaime

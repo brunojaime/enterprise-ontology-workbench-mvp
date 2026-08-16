@@ -5,14 +5,14 @@ import yaml
 
 REPOSITORY_ROOT = Path(__file__).parents[1]
 BACKLOG_PATH = REPOSITORY_ROOT / "enterprise_ontology_workbench_mvp_backlog.yaml"
-WORKFLOW_PATH = REPOSITORY_ROOT / ".github/workflows/ci.yaml"
-RDF_WORKFLOW_PATH = REPOSITORY_ROOT / ".github/workflows/rdf-governance.yaml"
 CODEOWNERS_PATH = REPOSITORY_ROOT / ".github/CODEOWNERS"
 PR_TEMPLATE_PATH = REPOSITORY_ROOT / ".github/pull_request_template.md"
 GITHUB_GOVERNANCE_PATH = REPOSITORY_ROOT / "docs/github-governance.md"
+LOCAL_GOVERNANCE_PATH = REPOSITORY_ROOT / "docs/local-governance.md"
+LOCAL_GATE_RUNNER = REPOSITORY_ROOT / "scripts/run_local_gate.py"
 INTERNAL_COMPOSE_PATH = REPOSITORY_ROOT / "compose.internal.yaml"
 OPERATIONS_PATH = REPOSITORY_ROOT / "docs/operations.md"
-SCRIPT_NAMES = ("bootstrap", "dev", "test", "build", "validate")
+SCRIPT_NAMES = ("bootstrap", "dev", "test", "build", "validate", "local_gate")
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -43,69 +43,30 @@ def test_backlog_has_consistent_ids_dependencies_and_states() -> None:
             )
 
 
-def test_ci_runs_quality_type_checks_and_tests_for_pull_requests() -> None:
-    workflow = load_yaml(WORKFLOW_PATH)
-    all_run_steps = [
-        step["run"] for job in workflow["jobs"].values() for step in job["steps"] if "run" in step
-    ]
-    commands = "\n".join(all_run_steps)
+def test_github_actions_are_not_an_active_governance_dependency() -> None:
+    workflows = REPOSITORY_ROOT / ".github" / "workflows"
+    assert not list(workflows.glob("*.yml"))
+    assert not list(workflows.glob("*.yaml"))
 
-    assert "pull_request" in workflow["on"]
-    assert "ruff check" in commands
-    assert "mypy" in commands
-    assert "pytest" in commands
-    assert "generate_agent_files.py --check" in commands
-    assert "evaluate_agent_tasks.py" in commands
-    assert "pnpm lint" in commands
-    assert "pnpm check" in commands
-    assert "pnpm test" in commands
-    assert workflow["jobs"]["python"]["name"] == "Python tests"
-    assert workflow["jobs"]["cli-mcp"]["name"] == "CLI and MCP tests"
-    assert workflow["jobs"]["frontend"]["name"] == "Frontend tests"
-    assert "pytest apps/api/tests packages/ontology_core/tests tests" in commands
-    assert "pytest packages/ontology_cli/tests packages/ontology_mcp/tests" in commands
+    historical = GITHUB_GOVERNANCE_PATH.read_text()
+    assert "referencia histórica" in historical
+    assert "no es un gate" in historical
 
 
-def test_rdf_governance_workflow_fails_on_the_canonical_validation_pipeline() -> None:
-    workflow = load_yaml(RDF_WORKFLOW_PATH)
-    job = workflow["jobs"]["rdf-validation"]
-    commands = [step["run"] for step in job["steps"] if "run" in step]
+def test_local_gate_orchestrates_every_required_repository_check() -> None:
+    runner = LOCAL_GATE_RUNNER.read_text()
+    documentation = LOCAL_GOVERNANCE_PATH.read_text()
 
-    assert "pull_request" in workflow["on"]
-    assert workflow["permissions"] == {"contents": "read"}
-    assert job["name"] == "RDF validation"
-    assert "uv sync --frozen" in commands
-    assert "uv run python scripts/validate_rdf.py" in commands
-
-
-def test_agent_contract_has_a_stable_required_check_on_every_pull_request() -> None:
-    workflow = load_yaml(RDF_WORKFLOW_PATH)
-    job = workflow["jobs"]["agent-contract"]
-    commands = [step["run"] for step in job["steps"] if "run" in step]
-
-    assert workflow["on"]["pull_request"] == {}
-    assert job["name"] == "Agent contract synchronization"
-    assert "uv sync --frozen" in commands
-    assert "uv run python scripts/generate_agent_files.py --check" in commands
-
-
-def test_semantic_governance_job_uploads_artifact_and_pr_summary() -> None:
-    workflow = load_yaml(RDF_WORKFLOW_PATH)
-    job = workflow["jobs"]["semantic-review"]
-    commands = "\n".join(step["run"] for step in job["steps"] if "run" in step)
-    checkout = next(step for step in job["steps"] if step.get("uses") == "actions/checkout@v4")
-    upload = next(step for step in job["steps"] if step.get("uses") == "actions/upload-artifact@v4")
-
-    assert job["name"] == "Semantic governance report"
-    assert checkout["with"]["fetch-depth"] == 0
-    assert checkout["with"]["ref"] == "${{ github.event.pull_request.head.sha }}"
-    assert "generate_pr_report.py" in commands
-    assert '"$BASE_SHA"' in commands
-    assert '"$HEAD_SHA"' in commands
-    assert 'pr-summary.md >> "$GITHUB_STEP_SUMMARY"' in commands
-    assert upload["if"] == "${{ always() }}"
-    assert upload["with"]["if-no-files-found"] == "error"
-    assert upload["with"]["retention-days"] == 30
+    for script in ("scripts/test", "scripts/validate", "scripts/build"):
+        assert script in runner
+    assert "scripts/smoke_package.py" in runner
+    assert "scripts/generate_pr_report.py" in runner
+    assert "proposal/" in runner
+    assert "clean worktree" in runner
+    assert "technical_gate_only_not_human_approval" in runner
+    assert "./scripts/local_gate.sh --include-smoke --record-git-note" in documentation
+    assert "./scripts/local_gate.ps1 --include-smoke --record-git-note" in documentation
+    assert "refs/notes/eow-local-gates" in documentation
 
 
 def test_codeowners_requires_review_for_governance_and_semantic_core() -> None:
@@ -119,7 +80,8 @@ def test_codeowners_requires_review_for_governance_and_semantic_core() -> None:
     assert rules["/config/"]
     assert rules["/agent_contract/"]
     assert rules["/packages/ontology_core/"]
-    assert rules["/.github/workflows/"]
+    assert rules["/scripts/run_local_gate.py"]
+    assert rules["/docs/local-governance.md"]
     assert all(owner.startswith("@") for owners in rules.values() for owner in owners)
 
 
@@ -140,91 +102,18 @@ def test_ontology_pull_request_template_requests_governance_evidence() -> None:
     assert "search_id" in template
 
 
-def test_main_ruleset_documentation_names_every_required_check_and_protection() -> None:
-    documentation = GITHUB_GOVERNANCE_PATH.read_text()
+def test_local_governance_keeps_human_approval_separate_from_checks() -> None:
+    documentation = " ".join(LOCAL_GOVERNANCE_PATH.read_text().lower().split())
 
-    for check in (
-        "RDF validation",
-        "Semantic governance report",
-        "Agent contract synchronization",
-        "Python tests",
-        "CLI and MCP tests",
-        "Frontend tests",
+    for requirement in (
+        "rama `proposal/*`",
+        "firma",
+        "especialista de dominio",
+        "aprobación de publicación",
+        "nunca fusiona `main`",
+        "pull request es opcional",
     ):
-        assert f"`{check}`" in documentation
-    for protection in ("pull requests", "CODEOWNERS", "force-push", "eliminación de `main`"):
-        assert protection in documentation
-    assert "al menos una aprobación" in documentation
-    assert "resolución de todas las conversaciones" in documentation
-
-
-def provisioned_tools_before_each_run(job: dict[str, Any]) -> list[tuple[str, set[str]]]:
-    provisioned: set[str] = set()
-    runs: list[tuple[str, set[str]]] = []
-    for step in job["steps"]:
-        action = step.get("uses", "")
-        if action.startswith("actions/setup-python@"):
-            provisioned.add("python")
-        elif action.startswith("astral-sh/setup-uv@"):
-            provisioned.add("uv")
-        elif action.startswith("pnpm/action-setup@"):
-            provisioned.add("pnpm")
-        elif action.startswith("actions/setup-node@"):
-            provisioned.add("node")
-        if "run" in step:
-            runs.append((step["run"], provisioned.copy()))
-    return runs
-
-
-def required_tools(command: str) -> set[str]:
-    requirements: set[str] = set()
-    if command.startswith("uv ") or " uv " in command:
-        requirements.update({"python", "uv"})
-    if command.startswith("pnpm ") or " pnpm " in command:
-        requirements.update({"node", "pnpm"})
-    if "./scripts/bootstrap.sh" in command:
-        requirements.update({"python", "uv", "node", "pnpm"})
-    return requirements
-
-
-def test_ci_provisions_every_tool_before_it_is_used() -> None:
-    workflow = load_yaml(WORKFLOW_PATH)
-
-    for job_name, job in workflow["jobs"].items():
-        for command, provisioned in provisioned_tools_before_each_run(job):
-            missing = required_tools(command) - provisioned
-            assert not missing, f"{job_name}: {command!r} lacks {sorted(missing)}"
-
-
-def test_ci_jobs_install_only_their_locked_workspace() -> None:
-    workflow = load_yaml(WORKFLOW_PATH)
-    python_commands = [step["run"] for step in workflow["jobs"]["python"]["steps"] if "run" in step]
-    frontend_commands = [
-        step["run"] for step in workflow["jobs"]["frontend"]["steps"] if "run" in step
-    ]
-    cli_mcp_commands = [
-        step["run"] for step in workflow["jobs"]["cli-mcp"]["steps"] if "run" in step
-    ]
-
-    assert "uv sync --frozen" in python_commands
-    assert "uv sync --frozen" in frontend_commands
-    assert "uv sync --frozen" in cli_mcp_commands
-    assert "pnpm install --frozen-lockfile" in frontend_commands
-    assert "uv run python scripts/generate_api_client.py --check" in frontend_commands
-    assert "./scripts/bootstrap.sh" not in frontend_commands
-
-
-def test_full_bootstrap_requires_both_toolchains() -> None:
-    frontend_only_job = {
-        "steps": [
-            {"uses": "pnpm/action-setup@v4"},
-            {"uses": "actions/setup-node@v4"},
-            {"run": "./scripts/bootstrap.sh"},
-        ]
-    }
-    command, provisioned = provisioned_tools_before_each_run(frontend_only_job)[0]
-
-    assert required_tools(command) - provisioned == {"python", "uv"}
+        assert requirement in documentation
 
 
 def test_bash_and_powershell_entry_points_have_matching_names() -> None:

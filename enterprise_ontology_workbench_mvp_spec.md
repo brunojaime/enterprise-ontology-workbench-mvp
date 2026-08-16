@@ -30,6 +30,14 @@ continúan siendo la representación canónica del conocimiento aprobado. Esta
 extensión no cambia los estados ni los criterios pendientes de P12 y comienza
 recién en P13.
 
+**Enmienda de gobierno local (16 de agosto de 2026):** por decisión explícita
+del responsable del producto, GitHub Actions deja de ser un gate de aceptación.
+Las propuestas continúan en `proposal/*`, pero tests, builds, RDF/SHACL, diff e
+impacto se ejecutan mediante un gate local reproducible ligado a branch, HEAD,
+base y fingerprint RDF. La revisión de dominio y la aprobación de publicación
+requieren evidencia humana firmada y separada; sólo una persona integra `main`.
+GitHub y los pull requests quedan como colaboración o backup opcionales.
+
 ---
 
 # 1. Resumen ejecutivo
@@ -369,8 +377,11 @@ El linter cubrirá reglas organizacionales como duplicados, propiedad del módul
 1. Una rama representa una propuesta.
 2. El diff textual se complementa con un diff semántico de triples.
 3. La rama principal representa conocimiento publicado.
-4. GitHub Actions valida cada pull request.
-5. La app no fusiona directamente a la rama principal durante el MVP.
+4. Un gate local fija el snapshot y ejecuta todos los checks reproducibles.
+5. La revisión de dominio y la aprobación de publicación son actos humanos
+   firmados distintos del gate técnico.
+6. La app y los agentes no fusionan directamente a la rama principal.
+7. Un remoto Git o pull request es opcional y no sustituye el gate local.
 
 ## 9.7 Integración con agentes
 
@@ -831,7 +842,9 @@ La app muestra:
 
 ## 18.6 Publicación
 
-El agente prepara el commit y el pull request. Una persona revisa y GitHub integra el cambio.
+El agente prepara el commit y el bundle local de revisión. Una persona revisa,
+firma la decisión correspondiente e integra el cambio mediante Git. Un pull
+request puede usarse opcionalmente, pero no es condición de aceptación.
 
 ---
 
@@ -1495,10 +1508,11 @@ Los cambios de etiquetas, definiciones, jerarquías, dominio, rango y estado ten
 ## 30.3 Git
 
 1. Los agentes trabajan en ramas.
-2. La rama principal estará protegida.
-3. Los checks serán obligatorios.
-4. Los archivos de gobernanza tendrán CODEOWNERS.
+2. La rama principal sólo será integrada por una persona.
+3. El gate local y sus receipts ligados al snapshot serán obligatorios.
+4. Las autoridades de revisión y sus firmas serán verificables localmente.
 5. Los write tools MCP no podrán fusionar cambios.
+6. GitHub, CODEOWNERS y pull requests son compatibilidad opcional.
 
 ## 30.4 MCP
 
@@ -1653,7 +1667,8 @@ El MVP se considera terminado cuando:
     sobre la propuesta del piloto.
 13. Un agente puede agregar correctamente un término reutilizando el contexto existente.
 14. Un segundo agente puede revisar la propuesta y detectar un duplicado sembrado para la prueba.
-15. GitHub Actions bloquea una propuesta inválida.
+15. El gate local reproducible bloquea una propuesta inválida y conserva un
+    receipt ligado al snapshot exacto.
 16. El piloto conecta al menos un concepto de dominio con proceso, aplicación, componente y repositorio.
 17. No se utiliza RAG ni embeddings como fuente canónica.
 18. La aplicación y el conocimiento pueden separarse mediante configuración, sin cambiar la lógica de dominio.
@@ -1674,6 +1689,7 @@ El MVP se considera terminado cuando:
 | ADR 008 | Skills, AGENTS.md, CLAUDE.md y MCP desde un contrato canónico |
 | ADR 009 | Contexto estructurado desde el grafo, sin RAG como verdad |
 | ADR 010 | Publicación mediante ramas, checks y pull requests |
+| ADR 010A | Gates locales y revisión humana firmada; reemplaza ADR 010 |
 | ADR 011 | Un archivo por término de ontología |
 | ADR 012 | Subconjunto editable de OWL y preservación de triples desconocidas |
 
@@ -1855,6 +1871,10 @@ Los planes se ejecutan en orden. Cada task debe terminar con tests, documentaci�
 
 **Objetivo:** hacer que las reglas sean obligatorias en todo pull request.
 
+**Estado histórico:** P10 implementó la capacidad remota original. La enmienda
+de gobierno local y ADR 010A la reemplazan como gate vigente durante P12; las
+workflows dejan de estar activas y su historia permanece en Git.
+
 | Task | Trabajo | Aceptación |
 |---|---|---|
 | P10 T01 | Crear workflow de validación RDF | Falla por parseo, SHACL o lint error |
@@ -1893,8 +1913,8 @@ Los planes se ejecutan en orden. Cada task debe terminar con tests, documentaci�
 | P12 T02 | Relevar solo el contexto mínimo | Las fuentes y dudas quedan registradas |
 | P12 T03 | Hacer que Codex proponga el modelo | Usa search, context, skills y MCP |
 | P12 T04 | Hacer que un segundo Codex revise la propuesta | Ejecuta una revisión independiente ligada al diff vigente y detecta al menos un problema sembrado o justifica aprobación |
-| P12 T05 | Revisar con especialista de dominio | Confirma o corrige definiciones y relaciones |
-| P12 T06 | Publicar el primer módulo de dominio | Pasa todos los checks y queda visible en la app |
+| P12 T05 | Revisar con especialista de dominio | Confirma o corrige definiciones y relaciones en un artifact firmado, ligado al snapshot y con rol/autoridad explícitos |
+| P12 T06 | Publicar el primer módulo de dominio | Pasa el gate local completo, recibe aprobación humana de publicación separada, una persona integra `main` y queda visible en la app |
 | P12 T07 | Ejecutar preguntas de competencia | La consulta transversal devuelve resultados correctos |
 | P12 T08 | Conectar aplicación, componente y repo | El recorrido se visualiza de extremo a extremo |
 | P12 T09 | Medir fricción del flujo | Se registran correcciones humanas y fallas de skills |
@@ -2068,8 +2088,8 @@ Codex deberá extraer evidencia verificable, consultar el grafo vigente,
 detectar conocimiento reutilizable, duplicado o conflictivo, proponer una
 estructura modular y pedir únicamente las decisiones de dominio que no pueda
 justificar. Después de la confirmación humana, Codex preparará RDF, validación,
-diff, impacto, commit y pull request. Nunca publicará o fusionará directamente
-en `main`.
+diff, impacto, commit y un bundle local revisable; un pull request será
+opcional. Nunca publicará o fusionará directamente en `main`.
 
 La experiencia objetivo es:
 
@@ -2113,7 +2133,7 @@ Codex será la interfaz primaria para:
 7. Registrar decisiones humanas estructuradas.
 8. Proponer términos, relaciones, facts y preguntas de competencia.
 9. Ejecutar validación, diff e impacto.
-10. Preparar commits y pull requests revisables.
+10. Preparar commits y bundles locales revisables; opcionalmente pull requests.
 11. Consultar posteriormente el conocimiento publicado y citar su evidencia.
 
 ## 44.2 Responsabilidades humanas
@@ -2443,8 +2463,9 @@ Antes del commit, Codex mostrará en lenguaje empresarial:
 7. Duplicados, conflictos y riesgos.
 8. Resultado de validación, diff, impacto y preguntas de competencia.
 
-La aprobación será explícita y quedará registrada. No autorizará por sí sola un
-merge; Git y sus checks seguirán siendo el gate de publicación.
+La aprobación será explícita, firmada y quedará registrada. No autorizará por sí
+sola un merge; Git, el gate local y la aprobación humana de publicación
+separada seguirán gobernando la integración.
 
 ## 50.4 Consulta futura
 
@@ -2722,7 +2743,7 @@ implementación anticipada.
 | P20 T08 | Preservar ownership y proposal graphs | Archivos y named graphs reflejan módulo y rama real |
 | P20 T09 | Ejecutar gates completos | Search receipts, parser, SHACL, lint, diff, impacto y CQ son obligatorios |
 | P20 T10 | Generar aprobación plain-language | Resume exactamente el diff y decisiones; no oculta quads o warnings |
-| P20 T11 | Preparar commit y PR | Mensaje y artifacts enlazan project, run y decisiones; nunca mergea `main` |
+| P20 T11 | Preparar commit y handoff local | Mensaje y artifacts enlazan project, run y decisiones; el PR es opcional y nunca mergea `main` |
 | P20 T12 | Crear regresiones transaccionales | Cubre fallo intermedio, concurrencia, retry, duplicate write y audit failure |
 
 ## Plan 21. Incrementalidad, privacidad y resiliencia
@@ -2772,7 +2793,7 @@ implementación anticipada.
 | P23 T04 | Crear y alinear candidatos | Reutiliza conocimiento existente y detecta duplicados/conflictos sembrados |
 | P23 T05 | Resolver decisiones con especialista | Identidad, definiciones, ownership, reglas y sensibilidad quedan firmadas |
 | P23 T06 | Hacer que Codex prepare la propuesta | Usa skills, CLI/MCP, receipts, evidencia y staging por lote |
-| P23 T07 | Revisar y publicar mediante Git | Validación, diff, impacto, CQ, checks, PR y aprobación humana son verificables |
+| P23 T07 | Revisar y publicar mediante Git | Validación, diff, impacto, CQ, gate local, firmas y aprobación humana son verificables; el PR es opcional |
 | P23 T08 | Visualizar el conocimiento | Web muestra grafo, evidencia, decisiones, source status y commit publicado |
 | P23 T09 | Responder una consulta futura | Un Codex nuevo recupera RDF publicado y evidencia sin depender de memoria previa |
 | P23 T10 | Reprocesar una fuente modificada | Delta invalida lo necesario, evita duplicados y produce propuesta incremental |

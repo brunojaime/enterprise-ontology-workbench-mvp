@@ -1,7 +1,12 @@
-# GitHub, CI y gobierno de pull requests
+# GitHub y workflows — referencia histórica
 
-Git y RDF continúan siendo las fuentes canónicas. GitHub aplica revisión y
-checks sobre propuestas, pero no reemplaza el historial ni la validación local.
+Este documento describe la implementación histórica de P10. Desde la decisión
+de producto registrada en ADR 010A, GitHub Actions no es un gate operativo ni
+una condición de aceptación. Las workflows activas fueron retiradas y el flujo
+vigente está en [gobierno local](local-governance.md).
+
+Git y RDF continúan siendo las fuentes canónicas. GitHub puede alojar un remoto
+o una revisión opcional, pero no reemplaza el historial ni la validación local.
 La aplicación, el CLI y MCP no pueden fusionar cambios.
 
 ## Ruleset requerido para `main`

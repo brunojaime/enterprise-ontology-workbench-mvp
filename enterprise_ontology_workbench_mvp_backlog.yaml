@@ -16,6 +16,9 @@ principles:
   external_content_is_untrusted: true
   human_decisions_gate_semantics: true
   source_systems_are_read_only: true
+  local_governance_gate_is_required: true
+  github_actions_are_required: false
+  pull_requests_are_optional: true
 plans:
 - id: P00
   name: Alineación y decisiones

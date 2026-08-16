@@ -8,16 +8,17 @@
     "authority_traceable": false,
     "conclusion": "insufficient_for_task_completion",
     "reasons": [
-      "The recorded reviewer identity is not_disclosed.",
-      "The record does not identify a reviewed commit or fingerprint attributable to the reviewer.",
-      "Pull request #1 had no reviews or comments at the observed head.",
-      "The proposal commits at the observed head were unsigned."
+      "The latest interactive record names Bruno Jaime but does not declare a domain role or authority scope.",
+      "The Workbench relationship chain was questioned and remains unresolved rather than approved.",
+      "The interactive record has no stable external reference or verifiable signature.",
+      "The historical domain record still declares reviewer_identity as not_disclosed.",
+      "The observed proposal commits were unsigned."
     ],
     "requirements_to_complete": [
-      "Identify an authorized domain specialist and the authority being exercised.",
-      "Record the specialist's decisions and timestamp.",
-      "Bind the review to the exact commit or knowledge/config fingerprint reviewed.",
-      "Attach a verifiable review, comment, or signed artifact reference.",
+      "Declare Bruno Jaime's domain role and the authority being exercised, or identify another authorized specialist.",
+      "Resolve whether the metatechnical Workbench chain is accepted for P12 or must be corrected.",
+      "Bind the final decision to the exact commit and knowledge/config fingerprint reviewed.",
+      "Attach a verifiable signed Git tag or equivalent signed artifact.",
       "Keep domain approval distinct from publication approval and merge authorization."
     ]
   },
@@ -32,6 +33,11 @@
         "oid": "8d614e17d14844630b528974f1c3c722d4c7c2f2",
         "signature_verified": false,
         "verification_reason": "unsigned"
+      },
+      {
+        "oid": "dd09c509bf2d2bfd2100a5879ce4d1abe3cebd4a",
+        "signature_verified": false,
+        "verification_reason": "unsigned"
       }
     ],
     "observed_at": "2026-08-16T15:11:01Z",
@@ -42,6 +48,15 @@
       "reviews": 0,
       "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1"
     }
+  },
+  "latest_interactive_decision": {
+    "actor": "Bruno Jaime",
+    "authority_scope": "not_declared",
+    "path": "docs/pilot/p12-local-governance-decision.json",
+    "role": "not_declared",
+    "sha256": "8d12ffb7be653994bacee06f8d7c13e73fbbcd11035672897e183c49f28e84b4",
+    "signature_verified": false,
+    "status": "awaiting_role_authority_chain_resolution_and_signature"
   },
   "status": "in_progress",
   "task": "P12_T05"

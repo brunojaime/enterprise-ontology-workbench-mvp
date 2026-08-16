@@ -294,6 +294,9 @@ def test_p12_domain_review_claim_is_applied_but_not_traceably_approved() -> None
     verification_path = ROOT / "docs/pilot/p12-domain-review-verification.json"
     verification_raw = verification_path.read_text(encoding="utf-8")
     verification = json.loads(verification_raw)
+    latest_path = ROOT / "docs/pilot/p12-local-governance-decision.json"
+    latest_raw = latest_path.read_text(encoding="utf-8")
+    latest = json.loads(latest_raw)
     dataset = _store().load()
     module = URIRef(f"{BASE}ontology/knowledge_governance")
     concept = URIRef(f"{BASE}ontology/knowledge_governance#EnterpriseKnowledgeGovernance")
@@ -314,6 +317,31 @@ def test_p12_domain_review_claim_is_applied_but_not_traceably_approved() -> None
     assert verification["git_evidence"]["pull_request"]["reviews"] == 0
     assert all(
         commit["signature_verified"] is False for commit in verification["git_evidence"]["commits"]
+    )
+    assert verification["latest_interactive_decision"] == {
+        "actor": "Bruno Jaime",
+        "authority_scope": "not_declared",
+        "path": "docs/pilot/p12-local-governance-decision.json",
+        "role": "not_declared",
+        "sha256": hashlib.sha256(latest_path.read_bytes()).hexdigest(),
+        "signature_verified": False,
+        "status": "awaiting_role_authority_chain_resolution_and_signature",
+    }
+    assert latest["actor"] == {
+        "authority_scope": "not_declared",
+        "name": "Bruno Jaime",
+        "role": "not_declared",
+    }
+    latest_decisions = {item["id"]: item for item in latest["decisions"]}
+    assert latest_decisions["transversal_relationship_chain"]["decision"] == (
+        "requires_clarification"
+    )
+    assert latest_decisions["publication_gate"]["value"] == (
+        "local_reproducible_gate_without_github_actions"
+    )
+    assert latest["evidence"]["signature"] is None
+    assert latest["reviewed_snapshot"]["knowledge_config_fingerprint"] == content_fingerprint(
+        ROOT / "knowledge", ROOT / "config"
     )
     assert review["application"]["knowledge_config_fingerprint"] == content_fingerprint(
         ROOT / "knowledge", ROOT / "config"
@@ -350,6 +378,7 @@ def test_p12_domain_review_claim_is_applied_but_not_traceably_approved() -> None
         verification_raw
         == json.dumps(verification, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     )
+    assert latest_raw == json.dumps(latest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
 
 
 def test_p12_handoff_separates_historical_and_current_codex_reviews() -> None:
@@ -378,7 +407,7 @@ def test_p12_handoff_separates_historical_and_current_codex_reviews() -> None:
     assert "no participa en el cierre de P12_T04" in handoff
 
 
-def test_p12_publication_handoff_records_pr_without_claiming_publication() -> None:
+def test_p12_publication_handoff_uses_local_gate_without_claiming_publication() -> None:
     path = ROOT / "docs" / "pilot" / "p12-publication-handoff.json"
     raw = path.read_text(encoding="utf-8")
     handoff = json.loads(raw)
@@ -386,7 +415,7 @@ def test_p12_publication_handoff_records_pr_without_claiming_publication() -> No
     assert handoff["task"] == "P12_T06"
     assert handoff["status"] == "in_progress"
     assert handoff["implementation_commit"] == ("7515d6419e2b04f45156e8c51a8df4dd5c6741f3")
-    assert handoff["pull_request"] == {
+    assert handoff["github_history"]["pull_request"] == {
         "base": "main",
         "draft": True,
         "head": "proposal/p12-governed-knowledge-pilot",
@@ -395,15 +424,25 @@ def test_p12_publication_handoff_records_pr_without_claiming_publication() -> No
         "state": "OPEN",
         "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1",
     }
-    assert handoff["github_actions"]["result"] == "blocked_before_runner"
-    assert handoff["github_actions"]["jobs"] == 6
-    assert handoff["github_actions"]["observed_head"] == (
+    assert handoff["github_history"]["actions_result"] == (
+        "blocked_before_runner_and_superseded_as_gate"
+    )
+    assert handoff["github_history"]["observed_head"] == (
         "8d614e17d14844630b528974f1c3c722d4c7c2f2"
     )
-    assert handoff["github_actions"]["runs"] == [
+    assert handoff["github_history"]["runs"] == [
         "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206287",
         "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206293",
     ]
+    assert handoff["local_governance"] == {
+        "adr": "docs/adr/010a-gates-locales-y-revision-firmada.md",
+        "command": "./scripts/local_gate.sh --include-smoke --record-git-note",
+        "git_note_ref": "refs/notes/eow-local-gates",
+        "human_domain_review_verified": False,
+        "human_publication_approval_verified": False,
+        "receipt_locator": "git notes --ref=eow-local-gates show HEAD",
+        "status": "technical_gate_passed_awaiting_human_signatures",
+    }
     assert handoff["publication"]["merged_to_main"] is False
     assert handoff["publication"]["human_approval_recorded"] is False
     assert raw == json.dumps(handoff, ensure_ascii=False, indent=2, sort_keys=True) + "\n"

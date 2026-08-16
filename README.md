@@ -20,7 +20,8 @@ la aplicación SvelteKit y los paquetes Python compartidos.
 - [Edición, propuestas y Git](docs/authoring.md)
 - [Contrato, skills y CLI para agentes](docs/agents.md)
 - [Servidor MCP local](docs/mcp.md)
-- [GitHub, CI y gobierno de pull requests](docs/github-governance.md)
+- [Gobierno local de propuestas](docs/local-governance.md)
+- [GitHub y workflows — referencia histórica](docs/github-governance.md)
 - [Operación, backup y actualización interna](docs/operations.md)
 - [Piloto empresarial P12](docs/pilot/p12-pilot.md)
 - [Registro inicial de riesgos](docs/risk-register.md)
@@ -48,18 +49,22 @@ contexto, búsqueda, validación, diff e impacto y emitió `approve` mediante un
 schema cerrado; la salida y su provenance fijan todos los hashes revisados.
 P12_T04 está `done`. El registro de dominio conserva decisiones aplicadas sobre
 nombre, definición, modelado SKOS, `ontology_core`, cadena transversal y owner,
-pero no identifica una autoridad humana trazable ni la liga a un commit,
-fingerprint o referencia verificable. El PR no tiene reviews y los commits
-observados están sin firma; por eso P12_T05 volvió a `in_progress` y su
+pero la interacción más reciente sólo identifica a Bruno Jaime: no declara su
+rol o autoridad de dominio, no está firmada y cuestiona —en lugar de aprobar—
+la cadena que mezcla el Workbench con un dominio empresarial. Por eso P12_T05
+continúa `in_progress`; su
 [assessment](docs/pilot/p12-domain-review-verification.json) enumera la evidencia
 necesaria para cerrarla sin confundir revisión de dominio con aprobación de
 publicación. P12_T06 también está `in_progress`: el snapshot ejecutable fue registrado
 en el commit `7515d64`, publicado en la rama
 `proposal/p12-governed-knowledge-pilot` y abierto como PR borrador
 [#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
-GitHub no inició sus seis jobs porque la cuenta reporta pagos fallidos o un
-spending limit insuficiente; no existe todavía aprobación humana ni merge a
-`main`. El estado verificable está en el
+Por decisión de producto, ADR 010A reemplazó GitHub Actions por un gate local
+reproducible. Las workflows activas fueron retiradas; el PR se conserva sólo
+como historia/colaboración opcional. Todavía faltan la firma de dominio, un
+rol/autoridad verificable, resolución de la cadena, aprobación humana de
+publicación y merge humano a `main`. El gate técnico conforme se liga al HEAD
+mediante `refs/notes/eow-local-gates`. El estado verificable está en el
 [handoff de publicación](docs/pilot/p12-publication-handoff.json).
 P12_T07–P12_T11 no fueron iniciadas. La configuración Claude se
 conserva como compatibilidad opcional, pero no se prueba ni bloquea la
@@ -214,10 +219,10 @@ configuración contiene secretos. El SDK MCP oficial implementa únicamente el
 protocolo y transporte: toda semántica continúa en `ontology_core`.
 P10 separa checks obligatorios de RDF, API/núcleo,
 CLI/MCP, frontend y contrato
-de agentes. Cada pull request recibe un artifact determinista con validación,
+de agentes. El gate local recibe un artifact determinista con validación,
 diff semántico, módulos y recursos afectados, reformatos semánticamente vacíos
 y referencias a términos deprecados. CODEOWNERS, el template ontológico y el
-ruleset documentado mantienen la aprobación humana fuera de los agentes. Si la
+historial documentado mantienen la aprobación humana fuera de los agentes. Si la
 base Git válida precede a la incorporación inicial de `knowledge/`, el reporte
 compara contra un Dataset vacío y produce los mismos cinco artifacts. Una
 revisión inexistente o una base RDF parcial con `knowledge/` pero sin `config/`
@@ -254,6 +259,7 @@ principales son:
 ./scripts/test.sh
 ./scripts/validate.sh
 ./scripts/build.sh
+./scripts/local_gate.sh --include-smoke --record-git-note
 ./scripts/dev.sh
 ```
 
@@ -270,8 +276,8 @@ pero real de conocimiento empresarial:
 2. Visualizar, buscar y describir módulos, términos, individuos y relaciones.
 3. Proponer creación, edición o deprecación de términos dentro de una rama.
 4. Validar RDF con parser, SHACL Core y reglas de lint deterministas.
-5. Revisar un diff semántico, evidencia e impacto antes de publicar mediante un
-   pull request.
+5. Revisar un diff semántico, evidencia e impacto antes de pasar el gate local
+   y una integración humana; el pull request es opcional.
 6. Ejecutar SPARQL de lectura y preguntas de competencia.
 7. Ofrecer el mismo núcleo a la aplicación, el CLI y un servidor MCP local para
    Codex y Claude Code.

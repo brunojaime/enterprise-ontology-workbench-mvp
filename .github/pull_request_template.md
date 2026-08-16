@@ -27,11 +27,12 @@
 - [ ] Trabajé en una rama `proposal/*`; no modifiqué `main` directamente.
 - [ ] Adjunté evidencia y confirmé el módulo responsable.
 - [ ] Ejecuté parseo RDF, SHACL y lint sin ocultar resultados.
-- [ ] Revisé el diff semántico y el artifact de gobernanza del PR.
+- [ ] Revisé el diff semántico y el receipt del gate local ligado al HEAD.
 - [ ] Revisé impacto y preguntas de competencia relacionadas.
 - [ ] Expliqué cualquier uso nuevo o persistente de términos deprecados.
 - [ ] Los adaptadores de agentes siguen sincronizados con `agent_contract/`.
 - [ ] No incluí secretos, credenciales ni conocimiento generado fuera de RDF/Git.
+- [ ] Separé revisión de dominio, aprobación de publicación e integración humana.
 
 ## Excepciones o limitaciones
 

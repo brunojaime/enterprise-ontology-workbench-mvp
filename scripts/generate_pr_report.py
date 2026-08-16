@@ -1,4 +1,4 @@
-"""Generate deterministic semantic artifacts and GitHub job-summary Markdown."""
+"""Generate deterministic semantic artifacts and a human-reviewable summary."""
 
 from __future__ import annotations
 

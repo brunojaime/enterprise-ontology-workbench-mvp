@@ -25,11 +25,12 @@ reemplaza el ADR afectado con otro ADR en lugar de reescribir su decisión.
 | [ADR 007](007-named-graphs-y-prov-o.md) | Named graphs y PROV O para procedencia | Aceptado |
 | [ADR 008](008-contrato-canonico-de-agentes.md) | Contrato canónico para skills, agentes y MCP | Aceptado |
 | [ADR 009](009-contexto-estructurado-sin-rag.md) | Contexto estructurado desde el grafo, sin RAG como verdad | Aceptado |
-| [ADR 010](010-publicacion-mediante-ramas-y-pr.md) | Publicación mediante ramas, checks y pull requests | Aceptado |
+| [ADR 010](010-publicacion-mediante-ramas-y-pr.md) | Publicación mediante ramas, checks y pull requests | Reemplazado por ADR 010A |
+| [ADR 010A](010a-gates-locales-y-revision-firmada.md) | Gates locales y revisión humana firmada | Aceptado |
 | [ADR 011](011-un-archivo-por-termino.md) | Un archivo por término de ontología | Aceptado |
 | [ADR 012](012-subconjunto-editable-y-preservacion.md) | Subconjunto editable de OWL y preservación de triples desconocidas | Aceptado |
 | [ADR 013](013-revision-independiente-codex-en-piloto.md) | Revisión automática independiente del piloto mediante Codex | Aceptado |
 
-Los doce ADR requeridos por el baseline del MVP están aceptados. ADR 013
-registra una enmienda posterior y explícita del criterio de aceptación del
-piloto, sin reescribir el historial de las decisiones anteriores.
+Los doce ADR requeridos por el baseline fueron resueltos. ADR 010A reemplaza el
+gate remoto sin borrar su historial. ADR 013 registra otra enmienda explícita
+del piloto.

@@ -1,8 +1,11 @@
 # ADR 010: Publicación mediante ramas, checks y pull requests
 
-- Estado: Aceptado
+- Estado: Reemplazado por ADR 010A
 - Fecha: 2026-08-11
 - Alcance: MVP
+
+Esta decisión se conserva como historial. El gate vigente está definido por
+[ADR 010A](010a-gates-locales-y-revision-firmada.md).
 
 ## Contexto
 

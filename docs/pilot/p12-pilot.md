@@ -8,7 +8,9 @@
 
 La pregunta es real para este proyecto: describe el ciclo operativo que el
 Workbench debe soportar según las secciones 1–4, 8 y 34 de la especificación.
-No pretende describir toda la organización. El recorrido mínimo propuesto es:
+Es un piloto metatécnico sobre el gobierno del propio Workbench, no una
+ontología de Puerto Almirante Storni ni de otro dominio operacional. No pretende
+describir toda la organización. El recorrido mínimo candidato es:
 
 ```text
 Gobernanza del conocimiento empresarial
@@ -136,28 +138,33 @@ estas decisiones, que fueron aplicadas al candidato RDF:
    reemplazado en el RDF responsable.
 3. `EnterpriseKnowledgeGovernance` permanece como `skos:Concept`.
 4. `ontology_core` se confirma como instancia de `software:SoftwareComponent`.
-5. Se registra la cadena gobernanza → proceso → Workbench →
-   `ontology_core` → repositorio.
+5. La cadena gobernanza → proceso → Workbench → `ontology_core` → repositorio
+   fue cuestionada por mezclar el producto con un dominio empresarial. Se
+   conserva como candidato metatécnico de P12, no como una decisión aprobada ni
+   como modelo reusable para un dominio real.
 
-Ese registro no demuestra todavía P12_T05. Declara
-`reviewer_identity: not_disclosed`, no liga las decisiones a un actor autorizado
-identificable, commit o fingerprint revisado, y no aporta una referencia externa
-verificable. El [assessment de autoridad](p12-domain-review-verification.json)
-registra además que el PR #1 no tenía reviews ni comentarios y que sus dos
-commits observados estaban sin firma. P12_T05 queda `in_progress`; para cerrarla
-se necesita especialista autorizado, decisiones y timestamp, snapshot exacto y
-una review/comentario o artifact firmado verificable. Esa revisión de dominio es
-distinta de la aprobación posterior de publicación y del merge.
+Ese registro no demuestra todavía P12_T05. La
+[decisión interactiva más reciente](p12-local-governance-decision.json) identifica
+a Bruno Jaime y confirma los primeros cuatro puntos, pero no declara su rol o
+autoridad de dominio, no aporta firma o referencia durable y deja la cadena en
+`requires_clarification`. El
+[assessment de autoridad](p12-domain-review-verification.json) conserva también
+el déficit histórico. P12_T05 queda `in_progress`; para cerrarla se necesita
+resolver la cadena, declarar autoridad, ligar la decisión final al snapshot y
+firmarla de forma verificable. Esa revisión de dominio es distinta de la
+aprobación posterior de publicación y del merge.
 
 Permanecen abiertos los gates de dominio, publicación y aceptación:
 
 1. Existe el commit de implementación `7515d64`, la rama remota y el PR borrador
-   #1; no existe review humana trazable ni merge a `main`.
+   #1; no existe review humana firmada ni merge a `main`.
 2. Una primera revisión Codex detectó cinco consultas históricas insuficientes;
    P12_T03 se regeneró con consultas sustantivas y verificación posterior
    reproducible para cada target.
-3. Los seis checks observados sobre el HEAD `8d614e1` no iniciaron pasos por el
-   bloqueo de billing de GitHub; deben reejecutarse sobre el HEAD a revisar.
+3. Los seis checks remotos observados sobre `8d614e1` no iniciaron pasos por
+   billing. ADR 010A los retiró como gate: el HEAD candidato debe pasar
+   `./scripts/local_gate.sh --include-smoke --record-git-note`; su digest se
+   conserva en `refs/notes/eow-local-gates` sin modificar el tree validado.
 
 ## Revisión histórica sustituida
 
@@ -233,7 +240,8 @@ y no se presenta como vigente. La revisión actual reejecutó directamente los
 comandos y cerró sin hallazgos sobre 497/61.
 
 El contenido permanece `proposed`. P12_T01–P12_T04 están `done`; P12_T05 y
-P12_T06 están `in_progress`. El commit de implementación y el PR borrador ya
-existen, pero faltan autoridad humana de dominio trazable, checks ejecutados,
+P12_T06 están `in_progress`. El commit de implementación y el PR borrador
+histórico existen. El gate técnico queda ligado al HEAD limpio mediante la Git
+note local; faltan autoridad humana de dominio firmada, resolución de la cadena,
 aprobación de publicación y merge verificable. P12_T07–P12_T11 siguen `todo` y
 no se iniciaron.

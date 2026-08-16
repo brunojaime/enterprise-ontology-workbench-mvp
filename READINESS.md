@@ -2,9 +2,9 @@
 
 **Fecha:** 16 de agosto de 2026
 
-**Alcance:** P12_T05–P12_T06 en corrección; especificación 2.0 de la evolución Codex-first P13–P23
+**Alcance:** P12_T05–P12_T06; migración del gate operativo a ejecución local
 
-**Veredicto:** P12_T05 carece de autoridad humana trazable y P12_T06 continúa sin publicar por checks no ejecutados, falta de aprobación y falta de merge
+**Veredicto:** el gate local está implementado y validado, pero P12_T05 carece de rol/autoridad y firma; P12_T06 sigue sin aprobación humana ni merge
 
 ## Resultado
 
@@ -34,16 +34,19 @@ ejecutó los comandos obligatorios y emitió `approve` mediante el schema cerrad
 La configuración Claude permanece preparada como compatibilidad opcional, pero
 no se ejecuta ni se usa como gate de aceptación. P12_T04 está `done`. El
 artifact de dominio registra cambios sobre `skos:Concept`, la frontera de
-`ontology_core`, las relaciones, nombre, definición y owner, pero declara la
-identidad del revisor como `not_disclosed` y no aporta actor autorizado, commit
-o fingerprint revisado ni referencia verificable. El PR no tenía reviews ni
-comentarios y sus commits observados estaban sin firma. P12_T05 está
-`in_progress`. El snapshot completo quedó en el commit
+`ontology_core`, las relaciones, nombre, definición y owner. La interacción más
+reciente identifica a Bruno Jaime y confirma los primeros cuatro puntos, pero
+no declara su rol o autoridad de dominio, no tiene firma o referencia durable y
+deja la cadena Workbench en `requires_clarification`. P12_T05 está
+`in_progress`. El snapshot completo quedó inicialmente en el commit
 `7515d64`, sincronizado con la rama remota
 `proposal/p12-governed-knowledge-pilot`, y el PR borrador #1 apunta a `main`.
-Sus seis jobs no recibieron runner: GitHub reportó pagos recientes fallidos o
-un spending limit insuficiente. No hay aprobación humana ni merge; P12_T06
-permanece `in_progress` y P12_T07–P12_T11 siguen `todo`.
+Sus seis jobs no recibieron runner por billing. ADR 010A reemplazó esa
+dependencia por `scripts/run_local_gate.py`: exige rama `proposal/*`, HEAD y
+worktree estables, ejecuta la matriz local y conserva hashes bajo `.eow/`.
+GitHub y el PR quedan como historia o colaboración opcional. No hay aprobación
+humana firmada ni merge; P12_T06 permanece `in_progress` y P12_T07–P12_T11
+siguen `todo`.
 
 ## Especificación 2.0 Codex-first
 
@@ -82,19 +85,22 @@ atribuirle una revisión que no ocurrió.
   contexto, búsquedas, validación, diff e impacto y aprobó el snapshot vigente
   497/0/61. El artifact y su manifest fijan los hashes de todos los inputs.
 - P12_T05: `in_progress`. `docs/pilot/p12-domain-review.json` conserva
-  decisiones declaradas y aplicadas al candidato, pero no demuestra autoridad
-  humana trazable. `docs/pilot/p12-domain-review-verification.json` fija el
-  déficit y exige actor autorizado, decisiones/timestamp, commit o fingerprint
-  revisado y referencia verificable, separada de la aprobación de publicación.
+  decisiones declaradas y aplicadas al candidato. El nuevo
+  `p12-local-governance-decision.json` identifica a Bruno Jaime, confirma
+  identidad, owner, SKOS y frontera de componente, y registra el gate local;
+  no inventa rol/autoridad, firma ni aprobación de la cadena cuestionada. El
+  assessment exige resolver y firmar esos puntos, separado de publicación.
 
 ## Publicación y trabajo no iniciado
 
 - P12_T06: `in_progress`. El RDF corregido valida y existe el commit
   `7515d64`, la rama remota y el PR borrador
   [#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
-  GitHub Actions no inició ningún paso por el bloqueo de billing de la cuenta;
-  tampoco existe aprobación humana ni merge a `main`, por lo que no se presenta
-  como publicado. El detalle queda en
+  GitHub Actions queda superseded como gate. El runner local, wrappers Bash y
+  PowerShell, ADR 010A, tests adversariales y documentación están implementados;
+  el gate final registra su receipt post-commit en `refs/notes/eow-local-gates`
+  sin cambiar el tree; faltan firma de dominio, aprobación
+  humana de publicación y merge a `main`. El detalle queda en
   `docs/pilot/p12-publication-handoff.json`.
 - P12_T07–P12_T11: `todo`. No hay publicación, medición final ni aceptación
   MVP. Existe una especificación futura autorizada, pero P12_T11 no se cierra
@@ -111,8 +117,10 @@ atribuirle una revisión que no ocurrió.
 
 ## Auditoría de los criterios de la sección 34
 
-- Los criterios 1–11 y 15 corresponden a P00–P11 y conservan la evidencia de
-  sus revisiones aprobadas.
+- Los criterios 1–11 conservan la evidencia de P00–P11. El criterio 15 fue
+  enmendado a un gate local: las regresiones rechazan `main`, dirty state y un
+  check inválido con receipt fallido. El resultado del gate completo sobre el
+  HEAD final limpio se consulta mediante `git notes --ref=eow-local-gates show HEAD`.
 - El criterio 12 está demostrado por la segunda ejecución independiente de
   Codex definida por la enmienda y ADR 013.
 - El criterio 13 tiene evidencia de autoría Codex/MCP, receipts sustantivos,
@@ -148,8 +156,8 @@ aceptado.
   snapshot inmediatamente anterior a esta corrección de autorización MCP: 404
   pytest, 34 Vitest, `validate.sh` y `build.sh` aprobaron. No se atribuye esa
   copia al snapshot actual.
-- Checkout actual: `test.sh` aprobó 416 pytest y 34 Vitest con 4.832 warnings
-  conocidos. `validate.sh` aprobó RDF/SHACL, Ruff, formato, mypy estricto,
+- Checkout actual: el gate local completo aprobó 415 pytest y 34 Vitest con
+  4.832 warnings conocidos. `validate.sh` aprobó RDF/SHACL, Ruff, formato, mypy estricto,
   contrato/adaptadores, evaluator, clientes MCP, OpenAPI/cliente, ESLint,
   Prettier y Svelte Check. `build.sh` construyó cuatro paquetes Python y SvelteKit.
 - La suite focalizada de planificación aprobó 37 tests de spec/backlog, DAG,
@@ -158,10 +166,13 @@ aceptado.
   fuentes no confiables, web viewer-first y RDF/Git canónicos.
 - La verificación Codex de 496/61 se conserva como artifact `superseded`; la
   revisión vigente reejecutó los comandos sobre 497/61 y aprobó sin hallazgos.
-- `scripts/smoke_package.py` se repitió sobre el checkout actual antes del
-  commit de esta corrección y dejó API/web saludables, UID 10001 y 497 quads
-  conformes, CLI y MCP aprobados, cinco módulos, métricas pobladas y logs
-  correlacionados; los contenedores y la red fueron retirados al terminar.
+- `scripts/smoke_package.py` forma parte del gate sobre el HEAD limpio y dejó
+  API/web saludables, UID 10001 y 497 quads conformes, CLI y MCP aprobados,
+  cinco módulos, métricas pobladas y logs correlacionados; los contenedores y la
+  red fueron retirados al terminar.
+- La suite focalizada del gate local aprobó 36 tests de gobierno, P12,
+  spec/backlog y evolución Codex-first. Incluye receipts ligados a Git,
+  separación explícita de aprobación humana y rechazo de un check inválido.
 - `uv lock --check`, `docker compose config --quiet`, integridad y DAG del
   backlog, hashes, enlaces locales y `git diff --check`: aprobados.
 - Provenance Codex: la salida superseded conserva SHA-256 `ce2cefec…`; el
@@ -177,9 +188,10 @@ aceptado.
 
 ## Riesgos y checks no disponibles
 
-- La identidad del supuesto revisor de dominio no está disponible. El rol
-  autodeclarado y el owner RDF no prueban autoridad humana; P12_T05 no se cerrará
-  sin una referencia trazable ligada al snapshot exacto.
+- Bruno Jaime quedó identificado, pero su rol y autoridad de dominio no fueron
+  declarados. El owner RDF y la identidad Git no prueban autoridad; además la
+  cadena metatécnica sigue cuestionada. P12_T05 no se cerrará sin resolución y
+  firma verificable ligada al snapshot exacto.
 - La compatibilidad Claude permanece generada, pero por decisión de producto no
   se ejecutó ni se usa como aceptación. Su artifact previo sólo documenta una
   prueba histórica no autenticada y no se atribuye a esta iteración.
@@ -188,12 +200,11 @@ aceptado.
   desconocido para esa versión. Dos servidores MCP auxiliares ajenos al
   Workbench no arrancaron en el sandbox de revisión; el revisor aplicó el fallback CLI
   determinista del contrato.
-- PowerShell, Podman, `actionlint`, `act`, ruleset remoto y hosts macOS/Windows
-  no estuvieron disponibles; no se atribuye evidencia dinámica.
-- GitHub Actions creó seis check runs para el PR #1, pero todos terminaron sin
-  pasos ni runner. La annotation oficial indica pagos recientes fallidos o un
-  spending limit insuficiente. Es un bloqueo de cuenta externo al diff; después
-  de corregir Billing & plans deben reejecutarse ambos workflows.
+- PowerShell, Podman y hosts macOS/Windows no estuvieron disponibles; los
+  wrappers existen, pero no se atribuye evidencia dinámica multiplataforma.
+- GitHub Actions creó históricamente seis check runs sin pasos ni runner por
+  billing. ADR 010A los retira del gate vigente; no deben reejecutarse para
+  aceptar P12.
 - No se repitió la matriz completa en otra copia limpia después de esta
   ampliación documental. El replay P12 sí se rehizo previamente desde la base
   RDF anterior en una copia Git aislada, y los casos `main`, cambio de
@@ -217,5 +228,5 @@ publicada hasta completar el flujo Git gobernado.
 
 - ZIP original: `8f036835a2e334fdccfc5ca4530e991934074b1cc3ccb7db724b29d0b3014649`
 - Especificación baseline dentro del ZIP: `c40fbf3a1efa557ed505d496270a73637b74e53a7cfc3cc86d41b3e1e015212c`
-- Especificación vigente 2.0: `dfd44d1b7d6d51442f7f3923495b051281f75e9e3deec689d2e6ade3d6bc2d0e`
-- Backlog actualizado: `6e4acd9a3e21536619d0723201a54fc91cbacb07d8f61f2524726173c816d385`
+- Especificación vigente 2.0: `3b7ce554a01d3f837e652565f375c9a2a68d6f649ffc242fa583bfee7a6ad0bc`
+- Backlog actualizado: `5f056c8f5821839d16af4c1042213ff311e4ad64261e936093112c7ee94604e4`

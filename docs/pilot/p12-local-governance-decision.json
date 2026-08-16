@@ -1,0 +1,52 @@
+{
+  "actor": {
+    "authority_scope": "not_declared",
+    "name": "Bruno Jaime",
+    "role": "not_declared"
+  },
+  "decisions": [
+    {
+      "decision": "confirmed",
+      "id": "module_identity",
+      "value": "knowledge_governance"
+    },
+    {
+      "decision": "confirmed",
+      "id": "module_owner",
+      "value": "Bruno Jaime"
+    },
+    {
+      "decision": "confirmed",
+      "id": "enterprise_knowledge_governance_type",
+      "value": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "decision": "confirmed",
+      "id": "ontology_core_component_boundary",
+      "value": "https://knowledge.example.com/ontology/software#SoftwareComponent"
+    },
+    {
+      "decision": "requires_clarification",
+      "id": "transversal_relationship_chain",
+      "rationale": "The actor questioned why the Workbench is mixed with a business domain. The current chain is retained only as a metatechnical pilot candidate and is not presented as approval of a real port domain."
+    },
+    {
+      "decision": "approved_product_direction",
+      "id": "publication_gate",
+      "value": "local_reproducible_gate_without_github_actions"
+    }
+  ],
+  "evidence": {
+    "channel": "interactive_project_session",
+    "external_reference": null,
+    "recorded_at": "2026-08-16",
+    "signature": null
+  },
+  "reviewed_snapshot": {
+    "branch": "proposal/p12-governed-knowledge-pilot",
+    "head": "dd09c509bf2d2bfd2100a5879ce4d1abe3cebd4a",
+    "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17"
+  },
+  "status": "awaiting_role_authority_chain_resolution_and_signature",
+  "task": "P12_T05"
+}
