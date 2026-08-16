@@ -242,7 +242,33 @@ def test_search_describe_and_filters(client: TestClient) -> None:
     assert expected_fields <= detail.keys()
     assert detail["domains"] and detail["ranges"] and detail["shapes"]
     assert detail["provenance"] and detail["predicate_uses"]
-    assert detail["git_history"] == []
+    latest_history = (
+        subprocess.run(
+            (
+                "git",
+                "log",
+                "-1",
+                "--format=%H%x00%an%x00%aI%x00%s",
+                "--",
+                "knowledge/ontology/software/terms/supportsOrganizationUnit.ttl",
+            ),
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        .stdout.strip()
+        .split("\0")
+    )
+    assert detail["git_history"] == [
+        {
+            "commit": latest_history[0],
+            "author": latest_history[1],
+            "date": latest_history[2],
+            "subject": latest_history[3],
+            "path": "knowledge/ontology/software/terms/supportsOrganizationUnit.ttl",
+        }
+    ]
     assert detail["usage"]["predicate_uses"] >= 1
     assert_error(
         client.get("/api/resources/describe", params={"iri": f"{BASE}id/missing"}),

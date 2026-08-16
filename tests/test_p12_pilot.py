@@ -161,7 +161,7 @@ def test_p12_has_no_proposed_relation_materialized_in_a_published_graph() -> Non
         assert all(triple not in dataset.graph(graph_iri) for graph_iri in published_graphs)
 
 
-def _receipt_payload(token: str) -> dict[str, object]:
+def _unverified_receipt_claims(token: str) -> dict[str, object]:
     encoded = token.removeprefix("eow-search-v2:").split(".", 1)[0]
     return json.loads(base64.urlsafe_b64decode(encoded + "=" * (-len(encoded) % 4)))
 
@@ -174,7 +174,7 @@ def _normalized_query(value: str) -> str:
     return " ".join(unaccented.split())
 
 
-def test_p12_codex_authoring_evidence_proves_search_before_every_mcp_creation() -> None:
+def test_p12_codex_authoring_evidence_records_search_before_every_mcp_creation() -> None:
     evidence = json.loads(
         (ROOT / "docs/pilot/p12-authoring-evidence.json").read_text(encoding="utf-8")
     )
@@ -190,7 +190,7 @@ def test_p12_codex_authoring_evidence_proves_search_before_every_mcp_creation() 
     prior_snapshot = evidence["initial_snapshot"]
     for entry in resources:
         search = entry["search"]
-        receipt = _receipt_payload(search["search_id"])
+        receipt = _unverified_receipt_claims(search["search_id"])
         assert entry["query"] == P12_SEARCH_QUERIES[entry["iri"]]
         assert entry["tool"] == "ontology_propose_term"
         assert entry["write"]["operation"] == "created"
@@ -236,6 +236,9 @@ def test_p12_codex_authoring_evidence_proves_search_before_every_mcp_creation() 
         for entry in evidence["relations"]
     )
     assert evidence["validation"]["conforms"] is True
+    handoff = (ROOT / "docs/pilot/p12-pilot.md").read_text(encoding="utf-8")
+    assert "no constituyen firmas verificables fuera de la sesión" in handoff
+    assert "altera la firma de un receipt auténtico" in handoff
 
 
 def test_p12_initial_import_diff_artifact_covers_every_current_quad() -> None:
@@ -284,10 +287,13 @@ def test_p12_competency_question_is_executable_but_remains_proposed() -> None:
     }
 
 
-def test_p12_domain_review_is_applied_and_bound_to_the_current_rdf() -> None:
+def test_p12_domain_review_claim_is_applied_but_not_traceably_approved() -> None:
     path = ROOT / "docs/pilot/p12-domain-review.json"
     raw = path.read_text(encoding="utf-8")
     review = json.loads(raw)
+    verification_path = ROOT / "docs/pilot/p12-domain-review-verification.json"
+    verification_raw = verification_path.read_text(encoding="utf-8")
+    verification = json.loads(verification_raw)
     dataset = _store().load()
     module = URIRef(f"{BASE}ontology/knowledge_governance")
     concept = URIRef(f"{BASE}ontology/knowledge_governance#EnterpriseKnowledgeGovernance")
@@ -298,6 +304,17 @@ def test_p12_domain_review_is_applied_and_bound_to_the_current_rdf() -> None:
     assert review["required_application"] == []
     assert review["evidence"]["reviewer_role"] == "human_domain_authority"
     assert review["evidence"]["reviewer_identity"] == "not_disclosed"
+    assert verification["task"] == "P12_T05"
+    assert verification["status"] == "in_progress"
+    assert verification["assessment"]["authority_traceable"] is False
+    assert verification["assessment"]["conclusion"] == "insufficient_for_task_completion"
+    assert (
+        verification["artifact_assessed"]["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
+    )
+    assert verification["git_evidence"]["pull_request"]["reviews"] == 0
+    assert all(
+        commit["signature_verified"] is False for commit in verification["git_evidence"]["commits"]
+    )
     assert review["application"]["knowledge_config_fingerprint"] == content_fingerprint(
         ROOT / "knowledge", ROOT / "config"
     )
@@ -329,6 +346,10 @@ def test_p12_domain_review_is_applied_and_bound_to_the_current_rdf() -> None:
         )
     )
     assert raw == json.dumps(review, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    assert (
+        verification_raw
+        == json.dumps(verification, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
 
 
 def test_p12_handoff_separates_historical_and_current_codex_reviews() -> None:
@@ -342,15 +363,16 @@ def test_p12_handoff_separates_historical_and_current_codex_reviews() -> None:
     assert "`superseded`" in handoff
     assert "no está disponible" in handoff
     assert "copia temporal aislada" in handoff
-    assert "revisión humana de dominio" in handoff
+    assert "registro histórico de revisión de dominio" in handoff
     assert "contenido permanece `proposed`" in handoff
     assert "p12-codex-review-current.json" in handoff
     assert "p12-codex-review-current-provenance.json" in handoff
     assert "p12-codex-review-resolution-496.superseded.json" in handoff
     assert "Codex CLI 0.114.0" in handoff
     assert "emitió `approve`" in handoff
-    assert "P12_T01–P12_T05 están `done`" in handoff
-    assert "P12_T06 queda" in handoff
+    assert "P12_T01–P12_T04 están `done`" in handoff
+    assert "P12_T05 y" in handoff
+    assert "P12_T06 están `in_progress`" in handoff
     assert "P12_T07–P12_T11" in handoff
     assert "p12-claude-review-gate.json" in handoff
     assert "no participa en el cierre de P12_T04" in handoff
@@ -369,11 +391,19 @@ def test_p12_publication_handoff_records_pr_without_claiming_publication() -> No
         "draft": True,
         "head": "proposal/p12-governed-knowledge-pilot",
         "number": 1,
+        "reviews": 0,
         "state": "OPEN",
         "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1",
     }
     assert handoff["github_actions"]["result"] == "blocked_before_runner"
     assert handoff["github_actions"]["jobs"] == 6
+    assert handoff["github_actions"]["observed_head"] == (
+        "8d614e17d14844630b528974f1c3c722d4c7c2f2"
+    )
+    assert handoff["github_actions"]["runs"] == [
+        "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206287",
+        "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206293",
+    ]
     assert handoff["publication"]["merged_to_main"] is False
     assert handoff["publication"]["human_approval_recorded"] is False
     assert raw == json.dumps(handoff, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
@@ -499,7 +529,7 @@ def test_p12_codex_review_contract_uses_reproducible_read_only_inputs() -> None:
     assert (
         "title: Segundo Codex revisa la propuesta\n    priority: must\n    status: done" in backlog
     )
-    assert "title: Revisión de dominio\n    priority: must\n    status: done" in backlog
+    assert "title: Revisión de dominio\n    priority: must\n    status: in_progress" in backlog
     assert (
         "title: Publicar primer módulo de dominio\n    priority: must\n    status: in_progress"
     ) in backlog
@@ -540,10 +570,18 @@ def test_p12_current_codex_review_is_bound_to_the_current_snapshot() -> None:
             "beb590dd94b6b5bf6f312f4066477901e8c8941b55f1dbffc0e4ae89f9fb7e28"
         ),
     }
+    reviewed_follow_up_inputs = {
+        "docs/pilot/p12-pilot.md": (
+            "b9fea7ddcce81dcfbd76e88ea28f207894bbd58c258cae183fcb3cfe57e5efc1"
+        )
+    }
     for artifact in provenance["artifacts"]:
         path = ROOT / artifact["path"]
         if artifact["path"] in reviewed_planning_inputs:
             assert artifact["sha256"] == reviewed_planning_inputs[artifact["path"]]
+            assert hashlib.sha256(path.read_bytes()).hexdigest() != artifact["sha256"]
+        elif artifact["path"] in reviewed_follow_up_inputs:
+            assert artifact["sha256"] == reviewed_follow_up_inputs[artifact["path"]]
             assert hashlib.sha256(path.read_bytes()).hexdigest() != artifact["sha256"]
         else:
             assert hashlib.sha256(path.read_bytes()).hexdigest() == artifact["sha256"]
@@ -560,6 +598,9 @@ def test_p12_current_codex_review_is_bound_to_the_current_snapshot() -> None:
     assert provenance["execution"]["canonical_checkout_modified"] is False
     assert all(command["exit_code"] == 0 for command in provenance["execution"]["commands"])
     assert provenance["claude_compatibility"]["executed_for_acceptance"] is False
+    assert provenance["post_review_follow_up"]["p12_t04_status"] == "done"
+    assert provenance["post_review_follow_up"]["p12_t05_status"] == "in_progress"
+    assert provenance["post_review_follow_up"]["status"] == ("not_part_of_this_automatic_review")
 
     assert not (ROOT / "docs/pilot/p12-codex-review-resolution.json").exists()
     assert (ROOT / "docs/pilot/archive/p12-codex-review-resolution-496.superseded.json").exists()

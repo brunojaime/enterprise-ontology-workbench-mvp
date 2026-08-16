@@ -46,10 +46,14 @@ segunda ejecución independiente de Codex es el gate automático vigente de
 P12_T04. Codex 0.114.0 revisó el checkout actual en sandbox de sólo lectura, ejecutó
 contexto, búsqueda, validación, diff e impacto y emitió `approve` mediante un
 schema cerrado; la salida y su provenance fijan todos los hashes revisados.
-P12_T04 está `done`. La revisión humana P12_T05 también quedó demostrada: se
-conservaron el nombre y la definición del módulo, se confirmó el modelado SKOS,
-`ontology_core` y la cadena transversal, y Bruno Jaime reemplazó al owner
-provisional. P12_T06 está `in_progress`: el snapshot ejecutable fue registrado
+P12_T04 está `done`. El registro de dominio conserva decisiones aplicadas sobre
+nombre, definición, modelado SKOS, `ontology_core`, cadena transversal y owner,
+pero no identifica una autoridad humana trazable ni la liga a un commit,
+fingerprint o referencia verificable. El PR no tiene reviews y los commits
+observados están sin firma; por eso P12_T05 volvió a `in_progress` y su
+[assessment](docs/pilot/p12-domain-review-verification.json) enumera la evidencia
+necesaria para cerrarla sin confundir revisión de dominio con aprobación de
+publicación. P12_T06 también está `in_progress`: el snapshot ejecutable fue registrado
 en el commit `7515d64`, publicado en la rama
 `proposal/p12-governed-knowledge-pilot` y abierto como PR borrador
 [#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
@@ -170,7 +174,11 @@ resultados efectivamente emitida, incluidos filtros, offset y límite. Toda
 propuesta automática debe presentar el receipt de una primera página global sin
 filtros; el núcleo, la API y la UI rechazan receipts ausentes, alterados,
 fabricados, filtrados, desplazados, de otra modalidad/consulta o vencidos tras
-un cambio de snapshot. El evaluador deriva cada decisión desde hechos
+un cambio de snapshot. La firma se valida dentro de la autoridad MCP viva; como
+la clave privada efímera no se conserva, los ledgers históricos permiten auditar
+claims y secuencia pero no revalidar criptográficamente sus tokens. Una prueba
+MCP adversarial en la misma sesión rechaza la firma alterada y acepta el token
+auténtico. El evaluador deriva cada decisión desde hechos
 independientes, contrasta señales de tarea y consulta y ejecuta el conjunto
 cerrado de aserciones contra búsqueda, contexto, RDF y validación reales; no
 copia el resultado esperado. P09 agrega un servidor MCP local `stdio` con seis

@@ -421,6 +421,72 @@ def test_real_stdio_client_executes_every_tool_resource_and_prompt(tmp_path: Pat
     assert all(entry["files"] and entry["files"][0].startswith("knowledge/") for entry in entries)
 
 
+def test_stdio_session_rejects_tampered_search_receipt_and_accepts_original(
+    tmp_path: Path,
+) -> None:
+    repository = _repository(tmp_path)
+    audit = repository / ".eow/audit/receipt-adversarial.jsonl"
+
+    async def exercise() -> None:
+        parameters = StdioServerParameters(
+            command=sys.executable,
+            args=[
+                "-m",
+                "ontology_mcp.server",
+                "--repository",
+                repository.as_posix(),
+                "--audit-log",
+                audit.relative_to(repository).as_posix(),
+                "--write-enabled",
+            ],
+            cwd=repository,
+        )
+        async with stdio_client(parameters) as (read, write):  # noqa: SIM117
+            async with ClientSession(read, write) as session:
+                await session.initialize()
+                query = "capacidad MCP con receipt verificable"
+                search = await session.call_tool(
+                    "ontology_search",
+                    {"request": {"text": query, "limit": 50, "offset": 0}},
+                )
+                authentic = str(_structured(search)["search_id"])
+                tampered = authentic[:-1] + ("0" if authentic[-1] != "0" else "1")
+                request = {
+                    "agent": "receipt-adversarial",
+                    "iri": f"{BASE}ontology/software#ReceiptVerifiedCapability",
+                    "module_id": "software",
+                    "kind": "class",
+                    "preferred_label_es": "Capacidad MCP con receipt verificable",
+                    "definition_es": "Clase temporal para verificar la firma del receipt en MCP.",
+                    "evidence": "Prueba adversarial confinada a un repositorio temporal",
+                    "author": "receipt-adversarial",
+                    "search_query": query,
+                    "search_confirmed": True,
+                }
+                rejected = await session.call_tool(
+                    "ontology_propose_term",
+                    {"request": {**request, "search_id": tampered}},
+                )
+                accepted = await session.call_tool(
+                    "ontology_propose_term",
+                    {"request": {**request, "search_id": authentic}},
+                )
+
+                assert rejected.is_error
+                assert not accepted.is_error
+                assert str(_structured(accepted)["path"]).endswith(
+                    "knowledge/ontology/software/terms/ReceiptVerifiedCapability.ttl"
+                )
+
+    asyncio.run(exercise())
+    entries = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
+    assert entries[0]["result"] == "rejected"
+    assert entries[0]["code"] == "authoring.invalid_search_id"
+    assert entries[-1]["result"] == "success"
+    assert "code" not in entries[-1]
+    assert all(entry["tool"] == "ontology_propose_term" for entry in entries)
+
+
 def test_mcp_published_subject_relation_is_confined_to_a_proposal_graph(
     tmp_path: Path,
 ) -> None:

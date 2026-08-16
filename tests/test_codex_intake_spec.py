@@ -41,7 +41,7 @@ def test_codex_first_extension_has_complete_ordered_backlog() -> None:
         "P12_T02": "done",
         "P12_T03": "done",
         "P12_T04": "done",
-        "P12_T05": "done",
+        "P12_T05": "in_progress",
         "P12_T06": "in_progress",
         "P12_T07": "todo",
         "P12_T08": "todo",

@@ -1,0 +1,48 @@
+{
+  "artifact_assessed": {
+    "path": "docs/pilot/p12-domain-review.json",
+    "recorded_status": "approved_and_applied",
+    "sha256": "d0fd1061618af6a7cc519818fadaeab916f271aac50db80f9e2e6725fe10bd74"
+  },
+  "assessment": {
+    "authority_traceable": false,
+    "conclusion": "insufficient_for_task_completion",
+    "reasons": [
+      "The recorded reviewer identity is not_disclosed.",
+      "The record does not identify a reviewed commit or fingerprint attributable to the reviewer.",
+      "Pull request #1 had no reviews or comments at the observed head.",
+      "The proposal commits at the observed head were unsigned."
+    ],
+    "requirements_to_complete": [
+      "Identify an authorized domain specialist and the authority being exercised.",
+      "Record the specialist's decisions and timestamp.",
+      "Bind the review to the exact commit or knowledge/config fingerprint reviewed.",
+      "Attach a verifiable review, comment, or signed artifact reference.",
+      "Keep domain approval distinct from publication approval and merge authorization."
+    ]
+  },
+  "git_evidence": {
+    "commits": [
+      {
+        "oid": "7515d6419e2b04f45156e8c51a8df4dd5c6741f3",
+        "signature_verified": false,
+        "verification_reason": "unsigned"
+      },
+      {
+        "oid": "8d614e17d14844630b528974f1c3c722d4c7c2f2",
+        "signature_verified": false,
+        "verification_reason": "unsigned"
+      }
+    ],
+    "observed_at": "2026-08-16T15:11:01Z",
+    "pull_request": {
+      "comments": 0,
+      "head": "8d614e17d14844630b528974f1c3c722d4c7c2f2",
+      "number": 1,
+      "reviews": 0,
+      "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1"
+    }
+  },
+  "status": "in_progress",
+  "task": "P12_T05"
+}

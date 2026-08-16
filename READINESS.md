@@ -2,9 +2,9 @@
 
 **Fecha:** 16 de agosto de 2026
 
-**Alcance:** P12 hasta la publicación propuesta de P12_T06; especificación 2.0 de la evolución Codex-first P13–P23
+**Alcance:** P12_T05–P12_T06 en corrección; especificación 2.0 de la evolución Codex-first P13–P23
 
-**Veredicto:** P12_T06 tiene commit, rama remota y PR borrador, pero continúa sin publicar por un bloqueo de billing de GitHub Actions y falta de merge humano
+**Veredicto:** P12_T05 carece de autoridad humana trazable y P12_T06 continúa sin publicar por checks no ejecutados, falta de aprobación y falta de merge
 
 ## Resultado
 
@@ -32,10 +32,13 @@ revisión independiente con Codex. Codex CLI 0.114.0, autenticado mediante
 ChatGPT, revisó el checkout actual en sandbox de sólo lectura,
 ejecutó los comandos obligatorios y emitió `approve` mediante el schema cerrado.
 La configuración Claude permanece preparada como compatibilidad opcional, pero
-no se ejecuta ni se usa como gate de aceptación. P12_T04 está `done`. La
-autoridad humana confirmó `skos:Concept`, la frontera de `ontology_core` y las
-relaciones, delegó al generador conservar nombre y definición, y asignó a Bruno
-Jaime como owner. P12_T05 está `done`. El snapshot completo quedó en el commit
+no se ejecuta ni se usa como gate de aceptación. P12_T04 está `done`. El
+artifact de dominio registra cambios sobre `skos:Concept`, la frontera de
+`ontology_core`, las relaciones, nombre, definición y owner, pero declara la
+identidad del revisor como `not_disclosed` y no aporta actor autorizado, commit
+o fingerprint revisado ni referencia verificable. El PR no tenía reviews ni
+comentarios y sus commits observados estaban sin firma. P12_T05 está
+`in_progress`. El snapshot completo quedó en el commit
 `7515d64`, sincronizado con la rama remota
 `proposal/p12-governed-knowledge-pilot`, y el PR borrador #1 apunta a `main`.
 Sus seis jobs no recibieron runner: GitHub reportó pagos recientes fallidos o
@@ -78,9 +81,11 @@ atribuirle una revisión que no ocurrió.
 - P12_T04: un segundo Codex cargó el contrato y la skill de revisión, reprodujo
   contexto, búsquedas, validación, diff e impacto y aprobó el snapshot vigente
   497/0/61. El artifact y su manifest fijan los hashes de todos los inputs.
-- P12_T05: la revisión humana registrada en
-  `docs/pilot/p12-domain-review.json` aprobó las definiciones, el modelado SKOS,
-  `ontology_core` y la cadena transversal, y corrigió el owner a Bruno Jaime.
+- P12_T05: `in_progress`. `docs/pilot/p12-domain-review.json` conserva
+  decisiones declaradas y aplicadas al candidato, pero no demuestra autoridad
+  humana trazable. `docs/pilot/p12-domain-review-verification.json` fija el
+  déficit y exige actor autorizado, decisiones/timestamp, commit o fingerprint
+  revisado y referencia verificable, separada de la aprobación de publicación.
 
 ## Publicación y trabajo no iniciado
 
@@ -127,6 +132,9 @@ aceptado.
 
 - Replay MCP aislado: 13 búsquedas/receipts, 13 creaciones, 10 relaciones y 23
   eventos terminales `success`; las 13 búsquedas finales recuperan sus targets.
+- Los receipts retenidos exponen claims auditables, no firmas históricas
+  revalidables: la clave HMAC efímera no se conserva. Una prueba adversarial en
+  una misma sesión MCP rechaza el token alterado y acepta el auténtico.
 - Autorización MCP focalizada: term, relation y deprecate se rechazan desde
   `main` sin cambiar bytes, metadata ni dirty state; cambios concurrentes de
   rama/HEAD abortan; dos ramas `proposal/*` sobre el mismo TriG producen graph
@@ -140,25 +148,25 @@ aceptado.
   snapshot inmediatamente anterior a esta corrección de autorización MCP: 404
   pytest, 34 Vitest, `validate.sh` y `build.sh` aprobaron. No se atribuye esa
   copia al snapshot actual.
-- Checkout actual: `test.sh` aprobó 414 pytest y 34 Vitest con 4.832 warnings
+- Checkout actual: `test.sh` aprobó 416 pytest y 34 Vitest con 4.832 warnings
   conocidos. `validate.sh` aprobó RDF/SHACL, Ruff, formato, mypy estricto,
   contrato/adaptadores, evaluator, clientes MCP, OpenAPI/cliente, ESLint,
   Prettier y Svelte Check. `build.sh` construyó cuatro paquetes Python y SvelteKit.
-- La suite focalizada de planificación aprobó 36 tests de spec/backlog, DAG,
+- La suite focalizada de planificación aprobó 37 tests de spec/backlog, DAG,
   metadata y preservación del scope histórico de P12. Cuatro regresiones nuevas
   exigen 24 planes, 250 task IDs idénticos entre spec/YAML, P13–P23 en `todo`,
   fuentes no confiables, web viewer-first y RDF/Git canónicos.
 - La verificación Codex de 496/61 se conserva como artifact `superseded`; la
   revisión vigente reejecutó los comandos sobre 497/61 y aprobó sin hallazgos.
-- `scripts/smoke_package.py` se repitió sobre el snapshot previo al commit y
-  dejó API/web saludables, UID 10001 y 497 quads conformes, CLI y MCP
-  aprobados, cinco módulos, métricas pobladas y logs correlacionados; los
-  contenedores y la red fueron retirados al terminar.
+- `scripts/smoke_package.py` se repitió sobre el checkout actual antes del
+  commit de esta corrección y dejó API/web saludables, UID 10001 y 497 quads
+  conformes, CLI y MCP aprobados, cinco módulos, métricas pobladas y logs
+  correlacionados; los contenedores y la red fueron retirados al terminar.
 - `uv lock --check`, `docker compose config --quiet`, integridad y DAG del
   backlog, hashes, enlaces locales y `git diff --check`: aprobados.
 - Provenance Codex: la salida superseded conserva SHA-256 `ce2cefec…`; el
-  manifest comprueba por separado los SHA-256 del diff vigente `2fe529b4…` y del
-  ledger vigente `067d2c37…`, sin presentar el input histórico perdido como
+  manifest comprueba por separado los SHA-256 del diff vigente `e1ea3ce1…` y del
+  ledger vigente `37284ab5…`, sin presentar el input histórico perdido como
   reproducible.
 - Revisión Codex vigente: Codex CLI 0.114.0 autenticado con ChatGPT ejecutó la
   revisión en sandbox de sólo lectura, sin modificar el checkout canónico. Los
@@ -169,9 +177,9 @@ aceptado.
 
 ## Riesgos y checks no disponibles
 
-- La identidad personal del revisor no se almacenó; el artifact registra la
-  autoridad humana de dominio de la sesión y separa esa identidad del owner
-  aprobado, Bruno Jaime.
+- La identidad del supuesto revisor de dominio no está disponible. El rol
+  autodeclarado y el owner RDF no prueban autoridad humana; P12_T05 no se cerrará
+  sin una referencia trazable ligada al snapshot exacto.
 - La compatibilidad Claude permanece generada, pero por decisión de producto no
   se ejecutó ni se usa como aceptación. Su artifact previo sólo documenta una
   prueba histórica no autenticada y no se atribuye a esta iteración.
@@ -199,7 +207,7 @@ aceptado.
 
 ## Estado del backlog y próxima iteración
 
-P12_T01–P12_T05 están `done`; P12_T06 y P12 están `in_progress`;
+P12_T01–P12_T04 están `done`; P12_T05, P12_T06 y P12 están `in_progress`;
 P12_T07–P12_T11 siguen `todo`. P13–P23 y sus 123 tasks están `todo`. El backlog
 contiene 24 planes y 250 tasks con IDs únicos y una cadena acíclica. No existe
 otro plan desbloqueado: P13 depende de P12. La propuesta no puede declararse
@@ -210,4 +218,4 @@ publicada hasta completar el flujo Git gobernado.
 - ZIP original: `8f036835a2e334fdccfc5ca4530e991934074b1cc3ccb7db724b29d0b3014649`
 - Especificación baseline dentro del ZIP: `c40fbf3a1efa557ed505d496270a73637b74e53a7cfc3cc86d41b3e1e015212c`
 - Especificación vigente 2.0: `dfd44d1b7d6d51442f7f3923495b051281f75e9e3deec689d2e6ade3d6bc2d0e`
-- Backlog actualizado: `e39534f1e50a04b23cdcfe2e8e94710adc5665e9fc4444bcee0a425974885736`
+- Backlog actualizado: `6e4acd9a3e21536619d0723201a54fc91cbacb07d8f61f2524726173c816d385`

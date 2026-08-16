@@ -2,10 +2,11 @@
   "github_actions": {
     "annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
     "jobs": 6,
+    "observed_head": "8d614e17d14844630b528974f1c3c722d4c7c2f2",
     "result": "blocked_before_runner",
     "runs": [
-      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31952942420",
-      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31952942424"
+      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206287",
+      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206293"
     ],
     "steps_started": 0
   },
@@ -20,10 +21,11 @@
     "draft": true,
     "head": "proposal/p12-governed-knowledge-pilot",
     "number": 1,
+    "reviews": 0,
     "state": "OPEN",
     "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1"
   },
-  "recorded_at": "2026-08-16T14:33:00Z",
+  "recorded_at": "2026-08-16T15:11:01Z",
   "status": "in_progress",
   "task": "P12_T06"
 }

@@ -115,6 +115,20 @@
     "review_scope": "The review remains evidence for the P12 RDF snapshot and the specification/backlog digests captured on 2026-08-15.",
     "status": "not_part_of_this_p12_review"
   },
+  "post_review_follow_up": {
+    "p12_t04_status": "done",
+    "p12_t05_status": "in_progress",
+    "reason": "A later reviewer found that the recorded domain authority was not traceable and that publication evidence had become stale; this follow-up changes documentation, tests and backlog state without changing the reviewed RDF snapshot.",
+    "status": "not_part_of_this_automatic_review",
+    "updated_paths": [
+      "README.md",
+      "READINESS.md",
+      "docs/pilot/p12-domain-review-verification.json",
+      "docs/pilot/p12-pilot.md",
+      "docs/pilot/p12-publication-handoff.json",
+      "enterprise_ontology_workbench_mvp_backlog.yaml"
+    ]
+  },
   "reviewed_revision": {
     "branch": "proposal/p12-governed-knowledge-pilot",
     "head": "30e85558acfc32ae8487a71a5f0628291e6d5b8f",

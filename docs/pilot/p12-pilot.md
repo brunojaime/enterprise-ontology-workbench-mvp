@@ -26,7 +26,7 @@ Gobernanza del conocimiento empresarial
 | `enterprise_ontology_workbench_mvp_spec.md` §8 y §27 | `ontology_core` concentra la lógica semántica | No prueba una instalación productiva |
 | `README.md` | Identidad y alcance del Workbench | Describe el checkout actual |
 | `packages/ontology_core/pyproject.toml` | Componente Python instalado y probado | Evidencia técnica local |
-| Git `30e85558acfc32ae8487a71a5f0628291e6d5b8f` y `origin` en GitHub | Existencia del repositorio y trazabilidad base | Gran parte del worktree aún no está versionada ni publicada |
+| Git `7515d6419e2b04f45156e8c51a8df4dd5c6741f3`, rama remota y PR #1 | Snapshot ejecutable y propuesta revisable | El módulo sigue `proposed`, sin checks ejecutados, aprobación ni merge |
 
 No se usaron documentos externos, RAG, embeddings ni inferencias como fuente
 canónica.
@@ -60,6 +60,14 @@ completos, resultados, snapshot anterior, respuesta del write y orden. Cada
 receipt declara `offset=0`, `limit=50`, filtros vacíos y fue consumido por el
 write inmediatamente siguiente; el siguiente receipt enlaza con el snapshot
 devuelto por ese write. Ningún target estaba en sus candidatos previos.
+
+Los payloads históricos permiten auditar esas declaraciones estructurales, pero
+no constituyen firmas verificables fuera de la sesión que los emitió: la clave
+HMAC es una capacidad efímera y privada del proceso MCP y no se conservó. Por
+eso los tests del ledger sólo inspeccionan sus claims. Una regresión adversarial
+independiente abre una única sesión MCP, altera la firma de un receipt auténtico,
+comprueba su rechazo y luego comprueba la aceptación del token original; no
+publica la clave ni reinterpreta el artifact histórico como prueba criptográfica.
 
 El ledger se conserva como evidencia histórica de la secuencia MCP anterior a
 P12_T05: sus requests, snapshots, resumen 496/61 y owner provisional son hechos
@@ -117,10 +125,10 @@ La validación MCP y CLI resultó conforme.
 - Registrar una pregunta de competencia ejecutable, pero no declararla
   publicada antes de revisión humana.
 
-## Decisiones humanas y gates abiertos
+## Decisiones registradas y gates abiertos
 
-La [revisión humana de dominio](p12-domain-review.json) cerró P12_T05 con estas
-decisiones explícitas:
+El [registro histórico de revisión de dominio](p12-domain-review.json) declara
+estas decisiones, que fueron aplicadas al candidato RDF:
 
 1. Se conserva el identificador `knowledge_governance`, la etiqueta
    “Gobernanza del conocimiento” y la definición vigente del módulo.
@@ -128,17 +136,28 @@ decisiones explícitas:
    reemplazado en el RDF responsable.
 3. `EnterpriseKnowledgeGovernance` permanece como `skos:Concept`.
 4. `ontology_core` se confirma como instancia de `software:SoftwareComponent`.
-5. Se aprueba la cadena gobernanza → proceso → Workbench →
+5. Se registra la cadena gobernanza → proceso → Workbench →
    `ontology_core` → repositorio.
 
-Permanecen abiertos solamente los gates de publicación y aceptación:
+Ese registro no demuestra todavía P12_T05. Declara
+`reviewer_identity: not_disclosed`, no liga las decisiones a un actor autorizado
+identificable, commit o fingerprint revisado, y no aporta una referencia externa
+verificable. El [assessment de autoridad](p12-domain-review-verification.json)
+registra además que el PR #1 no tenía reviews ni comentarios y que sus dos
+commits observados estaban sin firma. P12_T05 queda `in_progress`; para cerrarla
+se necesita especialista autorizado, decisiones y timestamp, snapshot exacto y
+una review/comentario o artifact firmado verificable. Esa revisión de dominio es
+distinta de la aprobación posterior de publicación y del merge.
 
-1. Existe un `origin` en GitHub, pero la propuesta todavía no tiene commit,
-   push, PR ni merge a `main`.
+Permanecen abiertos los gates de dominio, publicación y aceptación:
+
+1. Existe el commit de implementación `7515d64`, la rama remota y el PR borrador
+   #1; no existe review humana trazable ni merge a `main`.
 2. Una primera revisión Codex detectó cinco consultas históricas insuficientes;
    P12_T03 se regeneró con consultas sustantivas y verificación posterior
    reproducible para cada target.
-3. No existe todavía commit aprobado, PR ni merge a `main`.
+3. Los seis checks observados sobre el HEAD `8d614e1` no iniciaron pasos por el
+   bloqueo de billing de GitHub; deben reejecutarse sobre el HEAD a revisar.
 
 ## Revisión histórica sustituida
 
@@ -172,7 +191,8 @@ El artifact vigente [p12-semantic-diff.json](p12-semantic-diff.json) tiene
 SHA-256 `e1ea3ce1f9f141238e9875e0b47c5bee3ab74cb5aedfca12aeca0a430af126f3`
 y cubre 497 quads agregadas, cero eliminadas y 61 grupos. El hallazgo histórico
 de separación `published`/`proposed` está `resolved` y tiene regresión contra el
-RDF actual. La clasificación SKOS y el ownership quedaron resueltos por
+RDF actual. La clasificación SKOS y el ownership están materializados en el
+candidato, pero la autoridad humana que los confirme continúa pendiente en
 P12_T05. La salida superseded conserva el
 veredicto histórico `requires_changes`; no describe el estado actual ni
 constituye una aprobación.
@@ -202,7 +222,7 @@ produjo una salida contra el
 
 La [revisión vigente](p12-codex-review-current.json) emitió `approve`: confirmó
 497 quads agregadas, cero eliminadas, 61 grupos, 13 receipts globales, 23 writes
-MCP auditados y la corrección humana de ownership registrada por separado, sin
+MCP auditados y el cambio de ownership registrado por separado, sin
 hallazgos verificables contra las reglas canónicas. Su
 [manifest de provenance](p12-codex-review-current-provenance.json) fija hashes
 del diff, ledger, prompt, schema, spec enmendado, backlog, contrato y RDF
@@ -212,6 +232,8 @@ La verificación anterior del snapshot 496/61 se conserva en
 y no se presenta como vigente. La revisión actual reejecutó directamente los
 comandos y cerró sin hallazgos sobre 497/61.
 
-El contenido permanece `proposed`. P12_T01–P12_T05 están `done`; P12_T06 queda
-pendiente de un commit, PR y merge verificables. P12_T07–P12_T11 siguen `todo`
-y no se iniciaron.
+El contenido permanece `proposed`. P12_T01–P12_T04 están `done`; P12_T05 y
+P12_T06 están `in_progress`. El commit de implementación y el PR borrador ya
+existen, pero faltan autoridad humana de dominio trazable, checks ejecutados,
+aprobación de publicación y merge verificable. P12_T07–P12_T11 siguen `todo` y
+no se iniciaron.

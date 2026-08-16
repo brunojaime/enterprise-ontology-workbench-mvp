@@ -577,7 +577,7 @@ plans:
   - id: P12_T05
     title: Revisión de dominio
     priority: must
-    status: done
+    status: in_progress
   - id: P12_T06
     title: Publicar primer módulo de dominio
     priority: must
