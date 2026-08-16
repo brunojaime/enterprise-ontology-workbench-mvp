@@ -1,0 +1,49 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:eow:proposal-statement:62e4217875fb510d038332d7b2fae9acf434b9696dfdbbe3a26e88aad49b50a2> a rdf:Statement ;
+    dcterms:source "Dependencia de las categorías de aplicación y software reutilizadas"@es ;
+    rdf:object <https://knowledge.example.com/ontology/software> ;
+    rdf:predicate owl:imports ;
+    rdf:subject <https://knowledge.example.com/ontology/knowledge_governance> ;
+    eow:status "proposed" .
+
+<urn:eow:proposal-statement:74524b90bce283059c948438986324ee214d73e986dd06a8132c99175c2da464> a rdf:Statement ;
+    dcterms:source "Identificador del módulo declarado en knowledge/manifest.ttl"@es ;
+    rdf:object "knowledge_governance" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <https://knowledge.example.com/ontology/knowledge_governance> ;
+    eow:status "proposed" .
+
+<urn:eow:proposal-statement:6885d240b3f61d32136f8da800fc404bf76fdbc33bff778ff0a7a23f1a74f865> a rdf:Statement ;
+    dcterms:source "Decisión humana de dominio registrada en P12_T05"@es ;
+    rdf:object "Bruno Jaime"@es ;
+    rdf:predicate dcterms:rightsHolder ;
+    rdf:subject <https://knowledge.example.com/ontology/knowledge_governance> ;
+    eow:status "proposed" .
+
+<urn:eow:proposal-statement:cd19860a372d4afc1c7bac25ef47d5e78c7ce31d97969a1b84f0b485c6621dbc> a rdf:Statement ;
+    dcterms:source "Dependencia del contrato de gobernanza común"@es ;
+    rdf:object <https://knowledge.example.com/ontology/core> ;
+    rdf:predicate owl:imports ;
+    rdf:subject <https://knowledge.example.com/ontology/knowledge_governance> ;
+    eow:status "proposed" .
+
+<https://knowledge.example.com/ontology/knowledge_governance> a owl:Ontology ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:identifier "knowledge_governance" ;
+    dcterms:isPartOf module:knowledge_governance ;
+    dcterms:modified "2026-08-15"^^xsd:date ;
+    dcterms:rightsHolder "Bruno Jaime"@es ;
+    dcterms:source "enterprise_ontology_workbench_mvp_spec.md, secciones 1 a 4, 8 y 34"@es ;
+    owl:imports <https://knowledge.example.com/ontology/core>,
+        <https://knowledge.example.com/ontology/software> ;
+    skos:definition "Módulo piloto mínimo para describir cómo una necesidad empresarial llega a conocimiento RDF gobernado y qué software soporta ese proceso."@es ;
+    skos:prefLabel "Gobernanza del conocimiento"@es ;
+    eow:status "proposed" .

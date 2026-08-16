@@ -1,0 +1,35 @@
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix manifest: <https://knowledge.example.com/id/manifest/> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+manifest:workbench a eow:KnowledgeManifest ;
+    eow:manifestVersion "1.0" ;
+    eow:namespaceBase "https://knowledge.example.com/"^^xsd:anyURI ;
+    eow:module module:competency, module:core, module:knowledge_governance,
+        module:organization, module:software .
+
+module:competency a eow:OntologyModule ;
+    eow:moduleId "competency" ;
+    eow:sourcePath "ontology/competency" ;
+    eow:graph <https://knowledge.example.com/graph/ontology/competency> .
+
+module:core a eow:OntologyModule ;
+    eow:moduleId "core" ;
+    eow:sourcePath "ontology/core" ;
+    eow:graph <https://knowledge.example.com/graph/ontology/core> .
+
+module:knowledge_governance a eow:OntologyModule ;
+    eow:moduleId "knowledge_governance" ;
+    eow:sourcePath "ontology/knowledge_governance" ;
+    eow:graph <https://knowledge.example.com/graph/ontology/knowledge_governance> .
+
+module:organization a eow:OntologyModule ;
+    eow:moduleId "organization" ;
+    eow:sourcePath "ontology/organization" ;
+    eow:graph <https://knowledge.example.com/graph/ontology/organization> .
+
+module:software a eow:OntologyModule ;
+    eow:moduleId "software" ;
+    eow:sourcePath "ontology/software" ;
+    eow:graph <https://knowledge.example.com/graph/ontology/software> .

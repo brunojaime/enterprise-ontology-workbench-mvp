@@ -1,0 +1,11 @@
+id: validate_before_finish
+task: Concluir una propuesta solo después de validar el repositorio.
+facts:
+  existing_match_iri: https://knowledge.example.com/ontology/software#Application
+  requires_validation: true
+  task_signals: [validar el repositorio]
+  query_signals: [aplicación]
+query: aplicación
+expected_decision: reuse
+repository_conforms: true
+assertions: [parser_executed, shacl_executed, linter_executed]

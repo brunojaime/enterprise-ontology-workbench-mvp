@@ -1,0 +1,1875 @@
+{
+  "agent": "Codex P12 governed pilot",
+  "artifact_scope": {
+    "current_state_artifacts": [
+      "docs/pilot/p12-domain-review.json",
+      "docs/pilot/p12-semantic-diff.json"
+    ],
+    "note": "This retained ledger proves the governed MCP authoring sequence before P12_T05. Its receipts, requests, snapshots, 496-quad summary and provisional owner are historical facts and do not describe the post-domain-review RDF state.",
+    "status": "retained_pre_domain_review_ledger"
+  },
+  "audit": [
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/module.ttl"
+      ],
+      "invocation_id": "171427e54ef24b2c960caff9cf9355af",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:12.703443+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/terms/EnterpriseKnowledgeGovernance.ttl"
+      ],
+      "invocation_id": "c5b89fbdde2a4ff1aa96e9e30f149b62",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:13.960868+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/terms/KnowledgePublicationProcess.ttl"
+      ],
+      "invocation_id": "9ffc5ff19c5a40e5a2ea17680461ead5",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:15.192744+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/software/terms/SoftwareComponent.ttl"
+      ],
+      "invocation_id": "fa3fcdf9f8e8437a8465eacb148ab33c",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:16.489505+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/software/terms/SourceCodeRepository.ttl"
+      ],
+      "invocation_id": "762cdfa716734aaba37e930a14010b1c",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:18.175354+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/terms/governedThrough.ttl"
+      ],
+      "invocation_id": "8057c9751dd84a679e56117cf1b2b763",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:19.663367+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/terms/supportedByApplication.ttl"
+      ],
+      "invocation_id": "e9296b5f67684907bba04e26714fa48e",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:21.199835+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/software/terms/isComposedOf.ttl"
+      ],
+      "invocation_id": "c4f4443963214db681696efc2d420fcb",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:22.721433+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/software/terms/implementedByRepository.ttl"
+      ],
+      "invocation_id": "6ab95ec2035c4395b6643631afda0b17",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:24.485138+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/proposals/p12_ontology_change_publication.ttl"
+      ],
+      "invocation_id": "3ace3a6720d14f9994e2bdd28cf01420",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:26.157623+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/proposals/p12_ontology_core_component.ttl"
+      ],
+      "invocation_id": "4cdde7cac7f14605be3ef2a0544adab8",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:27.750105+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/proposals/p12_enterprise_ontology_workbench_repository.ttl"
+      ],
+      "invocation_id": "87d4b69af0c34b8d88fc75ebbf3bb885",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:29.496012+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/competency_questions/questions.ttl"
+      ],
+      "invocation_id": "5d13830c6d924103b63aa0e862708121",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:30.796217+00:00",
+      "tool": "ontology_propose_term"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/module.ttl"
+      ],
+      "invocation_id": "aa46de8900a34ef587c82e5d5e506be8",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:33.228462+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/module.ttl"
+      ],
+      "invocation_id": "b0751f3f408342f6bb9e63d10a0e67e6",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:35.907474+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/module.ttl"
+      ],
+      "invocation_id": "daa458be3b844c32a7aa3557ab27d93a",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:38.152918+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/module.ttl"
+      ],
+      "invocation_id": "a37f58369cf94226b30100116f08fc55",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:40.409181+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/ontology/knowledge_governance/terms/EnterpriseKnowledgeGovernance.ttl"
+      ],
+      "invocation_id": "41b17726bf6c4839a7ec519e2eeb8899",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:44.870303+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/proposals/p12_ontology_change_publication.ttl"
+      ],
+      "invocation_id": "4db58aeb3b5843329b49f348368eb34b",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:49.901269+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/fixture_inventory.trig"
+      ],
+      "invocation_id": "35756e0ebe184eddb675fbd80b838e1a",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:52.787162+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/data/sources/proposals/p12_ontology_core_component.ttl"
+      ],
+      "invocation_id": "e3c90e9f50cb4d24ab8e849a47298b5f",
+      "result": "success",
+      "timestamp": "2026-08-15T02:14:57.051635+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/competency_questions/questions.ttl"
+      ],
+      "invocation_id": "6f0b9b6f6112446a89fbb76700f0e1ff",
+      "result": "success",
+      "timestamp": "2026-08-15T02:15:00.133638+00:00",
+      "tool": "ontology_propose_relation"
+    },
+    {
+      "agent": "Codex P12 governed pilot",
+      "files": [
+        "knowledge/competency_questions/questions.ttl"
+      ],
+      "invocation_id": "6b6d2364b24847929c56f65645463576",
+      "result": "success",
+      "timestamp": "2026-08-15T02:15:02.475239+00:00",
+      "tool": "ontology_propose_relation"
+    }
+  ],
+  "base": "main",
+  "context": {
+    "bytes": 4127,
+    "reused_resource": "https://knowledge.example.com/id/software/application/workbench",
+    "task": "Proponer el recorrido transversal real del piloto P12"
+  },
+  "current_snapshot": {
+    "domain_review": {
+      "path": "docs/pilot/p12-domain-review.json",
+      "sha256": "d0fd1061618af6a7cc519818fadaeab916f271aac50db80f9e2e6725fe10bd74"
+    },
+    "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17",
+    "semantic_diff": {
+      "added_quads": 497,
+      "change_groups": 61,
+      "path": "docs/pilot/p12-semantic-diff.json",
+      "removed_quads": 0,
+      "sha256": "e1ea3ce1f9f141238e9875e0b47c5bee3ab74cb5aedfca12aeca0a430af126f3"
+    }
+  },
+  "diff": {
+    "added_quads": 496,
+    "base": "main",
+    "changes": 61,
+    "head": "proposal/p12-governed-knowledge-pilot",
+    "removed_quads": 0
+  },
+  "impact_review": {
+    "affected_importers": [],
+    "ancestors": [],
+    "competency_questions": [
+      {
+        "compact": "cq:governed_knowledge_traceability",
+        "kind": "iri",
+        "value": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability"
+      }
+    ],
+    "descendants": [],
+    "import_dependencies": [
+      {
+        "compact": "https://knowledge.example.com/ontology/core",
+        "kind": "iri",
+        "value": "https://knowledge.example.com/ontology/core"
+      },
+      {
+        "compact": "https://knowledge.example.com/ontology/organization",
+        "kind": "iri",
+        "value": "https://knowledge.example.com/ontology/organization"
+      },
+      {
+        "compact": "https://knowledge.example.com/ontology/software",
+        "kind": "iri",
+        "value": "https://knowledge.example.com/ontology/software"
+      }
+    ],
+    "incoming": [
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        },
+        "predicate": {
+          "compact": "rdf:subject",
+          "kind": "iri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "urn:eow:proposal-statement:20fa573ab7831fced012c7a9b81c094d78798045684c21e33aac46c74b669eb1",
+          "kind": "iri",
+          "value": "urn:eow:proposal-statement:20fa573ab7831fced012c7a9b81c094d78798045684c21e33aac46c74b669eb1"
+        }
+      }
+    ],
+    "outgoing": [
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "kind": "literal",
+          "value": "2026-08-14"
+        },
+        "predicate": {
+          "compact": "dcterms:created",
+          "kind": "iri",
+          "value": "http://purl.org/dc/terms/created"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "kind": "literal",
+          "value": "Codex"
+        },
+        "predicate": {
+          "compact": "dcterms:creator",
+          "kind": "iri",
+          "value": "http://purl.org/dc/terms/creator"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "compact": "module:knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/id/module/knowledge_governance"
+        },
+        "predicate": {
+          "compact": "dcterms:isPartOf",
+          "kind": "iri",
+          "value": "http://purl.org/dc/terms/isPartOf"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "kind": "literal",
+          "language": "es",
+          "value": "enterprise_ontology_workbench_mvp_spec.md, secciones 1 a 4 y 34"
+        },
+        "predicate": {
+          "compact": "dcterms:source",
+          "kind": "iri",
+          "value": "http://purl.org/dc/terms/source"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "compact": "skos:Concept",
+          "kind": "iri",
+          "value": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "predicate": {
+          "compact": "rdf:type",
+          "kind": "iri",
+          "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "kind": "literal",
+          "language": "es",
+          "value": "Disciplina que controla cómo el conocimiento empresarial se propone, valida, revisa y publica como información canónica trazable."
+        },
+        "predicate": {
+          "compact": "skos:definition",
+          "kind": "iri",
+          "value": "http://www.w3.org/2004/02/skos/core#definition"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "kind": "literal",
+          "language": "es",
+          "value": "Gobernanza del conocimiento empresarial"
+        },
+        "predicate": {
+          "compact": "skos:prefLabel",
+          "kind": "iri",
+          "value": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "kind": "literal",
+          "value": "proposed"
+        },
+        "predicate": {
+          "compact": "eow:status",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/core#status"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      },
+      {
+        "graph": {
+          "compact": "https://knowledge.example.com/graph/ontology/knowledge_governance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/graph/ontology/knowledge_governance"
+        },
+        "object": {
+          "compact": "kgid:ontology_change_publication",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication"
+        },
+        "predicate": {
+          "compact": "kg:governedThrough",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough"
+        },
+        "priority": 7,
+        "relationship_kind": "other",
+        "status": null,
+        "subject": {
+          "compact": "kg:EnterpriseKnowledgeGovernance",
+          "kind": "iri",
+          "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+        }
+      }
+    ],
+    "predicate_uses": [],
+    "resource": {
+      "compact": "kg:EnterpriseKnowledgeGovernance",
+      "kind": "iri",
+      "value": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+    },
+    "shapes": [
+      {
+        "compact": "https://knowledge.example.com/shape/governance/TermShape",
+        "kind": "iri",
+        "value": "https://knowledge.example.com/shape/governance/TermShape"
+      }
+    ]
+  },
+  "initial_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|076a830688866d7bbdbec139005e5bdf952dd8c07ddaeb0d598a9698ec612496",
+  "post_write_verification": [
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance",
+      "query": "gobernanza del conocimiento",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "https://knowledge.example.com/ontology/knowledge_governance",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance",
+            "label": "Gobernanza del conocimiento",
+            "local_name": "knowledge_governance",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Ontology"
+            ]
+          },
+          {
+            "compact_iri": "kg:EnterpriseKnowledgeGovernance",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+            "label": "Gobernanza del conocimiento empresarial",
+            "local_name": "EnterpriseKnowledgeGovernance",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 25,
+            "types": [
+              "http://www.w3.org/2004/02/skos/core#Concept"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjIsIm8iOjAsInEiOiJnb2Jlcm5hbnphIGRlbCBjb25vY2ltaWVudG8iLCJyIjoiYWU4OGYzODA1MjUyMGQ0NzRiMGI0NjliNmQyODRhMjY5MjYxZWZjODU2MDcwNTBkY2Y0M2FhYTM0NjY4YjYyYSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NzhkNWNkY2ViNzg2M2ZkMmQ5M2M5MmI4ZGQxM2UxYjU2NjQ0MDE4ZmVjMTVmMGE2ZTQ1MzI3Y2Y5MzFjMGVkOSIsInQiOjIsInkiOltdfQ.7081a024d8cf035b01de0f6834650b33b77617a5e3f0f664c11875039a6c4360",
+        "total": 2
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+      "query": "gobernanza del conocimiento empresarial",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "kg:EnterpriseKnowledgeGovernance",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+            "label": "Gobernanza del conocimiento empresarial",
+            "local_name": "EnterpriseKnowledgeGovernance",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2004/02/skos/core#Concept"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJnb2Jlcm5hbnphIGRlbCBjb25vY2ltaWVudG8gZW1wcmVzYXJpYWwiLCJyIjoiNWE5MWQxNjg4Yzk0ZWU1YzM2NjA0NDg1ZmUxNzNmYzZlMDliNzgxZDA4MDU5MDRhNzRiYjkwZjdkYzU4MWIxYyIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NzhkNWNkY2ViNzg2M2ZkMmQ5M2M5MmI4ZGQxM2UxYjU2NjQ0MDE4ZmVjMTVmMGE2ZTQ1MzI3Y2Y5MzFjMGVkOSIsInQiOjEsInkiOltdfQ.7d86949a0514d39f798629afe9e8f3449d70ab4b7ffd0f20afbe29fd21fb6eaa",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#KnowledgePublicationProcess",
+      "query": "proceso de publicación de conocimiento",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "kg:KnowledgePublicationProcess",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#KnowledgePublicationProcess",
+            "label": "Proceso de publicación de conocimiento",
+            "local_name": "KnowledgePublicationProcess",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "kg:supportedByApplication",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+            "label": "es soportado por aplicación",
+            "local_name": "supportedByApplication",
+            "matched_fields": [
+              "definition"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 45,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjIsIm8iOjAsInEiOiJwcm9jZXNvIGRlIHB1YmxpY2FjaW9uIGRlIGNvbm9jaW1pZW50byIsInIiOiI3MjZmMjkwZTJiNjExNDJkZTkzNTViYTc5OWVlODFkYjE4NTE2YjkzNjY1Y2E0ODdkY2NlMjM0NGY5YjAxNGY1IiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4Znw3OGQ1Y2RjZWI3ODYzZmQyZDkzYzkyYjhkZDEzZTFiNTY2NDQwMThmZWMxNWYwYTZlNDUzMjdjZjkzMWMwZWQ5IiwidCI6MiwieSI6W119.d709a9b6188eeae2df555a68d24a460a69c234fe1f3ff090c4a41385c23ffc6c",
+        "total": 2
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#SoftwareComponent",
+      "query": "componente de software",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "software:SoftwareComponent",
+            "iri": "https://knowledge.example.com/ontology/software#SoftwareComponent",
+            "label": "Componente de software",
+            "local_name": "SoftwareComponent",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "software:implementedByRepository",
+            "iri": "https://knowledge.example.com/ontology/software#implementedByRepository",
+            "label": "es implementado por repositorio",
+            "local_name": "implementedByRepository",
+            "matched_fields": [
+              "definition"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 45,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          },
+          {
+            "compact_iri": "software:isComposedOf",
+            "iri": "https://knowledge.example.com/ontology/software#isComposedOf",
+            "label": "se compone de",
+            "local_name": "isComposedOf",
+            "matched_fields": [
+              "definition"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 45,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjMsIm8iOjAsInEiOiJjb21wb25lbnRlIGRlIHNvZnR3YXJlIiwiciI6ImNlZTUzZWEzMzA0NWIzMGIzMjUyMjY2MWQ3NTU0YmFiOGFmZWRlYTcyMDE5ODhiMmJiMDQ5YmViYzNjNTEyYzkiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDc4ZDVjZGNlYjc4NjNmZDJkOTNjOTJiOGRkMTNlMWI1NjY0NDAxOGZlYzE1ZjBhNmU0NTMyN2NmOTMxYzBlZDkiLCJ0IjozLCJ5IjpbXX0.e384b7e64020ea800215af86988deb519f9b6d67648b5b769c6e91348d347070",
+        "total": 3
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#SourceCodeRepository",
+      "query": "repositorio de código fuente",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "software:SourceCodeRepository",
+            "iri": "https://knowledge.example.com/ontology/software#SourceCodeRepository",
+            "label": "Repositorio de código fuente",
+            "local_name": "SourceCodeRepository",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "software:implementedByRepository",
+            "iri": "https://knowledge.example.com/ontology/software#implementedByRepository",
+            "label": "es implementado por repositorio",
+            "local_name": "implementedByRepository",
+            "matched_fields": [
+              "definition"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 45,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjIsIm8iOjAsInEiOiJyZXBvc2l0b3JpbyBkZSBjb2RpZ28gZnVlbnRlIiwiciI6ImUzNGVjMzcyNmI0NzA3MzFjYTBkNjBmMGU0ZmM3NmIyOGJlNDJjY2ExYjJhNDZiODViN2NkYmE0YjU4YzM1MTYiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDc4ZDVjZGNlYjc4NjNmZDJkOTNjOTJiOGRkMTNlMWI1NjY0NDAxOGZlYzE1ZjBhNmU0NTMyN2NmOTMxYzBlZDkiLCJ0IjoyLCJ5IjpbXX0.68be51a78554208b5f46b0c3e2b89fec10c29ad433a2af397f3363ace211d87d",
+        "total": 2
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough",
+      "query": "se gobierna mediante",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "kg:governedThrough",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough",
+            "label": "se gobierna mediante",
+            "local_name": "governedThrough",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJzZSBnb2JpZXJuYSBtZWRpYW50ZSIsInIiOiI4ZjVjZDFhMjQ0YTZhNzBkODFkMjFiYTdmMmU2OTc5MzAwOWE2MzJhNjBmNTU0M2VlM2YwYTY2YjBmMmJlNzAyIiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4Znw3OGQ1Y2RjZWI3ODYzZmQyZDkzYzkyYjhkZDEzZTFiNTY2NDQwMThmZWMxNWYwYTZlNDUzMjdjZjkzMWMwZWQ5IiwidCI6MSwieSI6W119.c1e622a0b873a6ff4d73548aa506636de259013662f59a15c5bdb7ba9bbf1c0f",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+      "query": "es soportado por aplicación",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "kg:supportedByApplication",
+            "iri": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+            "label": "es soportado por aplicación",
+            "local_name": "supportedByApplication",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJlcyBzb3BvcnRhZG8gcG9yIGFwbGljYWNpb24iLCJyIjoiMWM2ODQxMmM0YmZlZGQ5N2ZiM2FiYzc2Y2FkYjQ4M2M1NTU1N2Y4MjE1MWZhYTg2YTNkYTNmZGIwNWIyOTJjZiIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NzhkNWNkY2ViNzg2M2ZkMmQ5M2M5MmI4ZGQxM2UxYjU2NjQ0MDE4ZmVjMTVmMGE2ZTQ1MzI3Y2Y5MzFjMGVkOSIsInQiOjEsInkiOltdfQ.0d0a42da7375833c294d0a174e39b19afb6041bacf2d09c2f2707d9fa025bc83",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#isComposedOf",
+      "query": "se compone de",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "software:isComposedOf",
+            "iri": "https://knowledge.example.com/ontology/software#isComposedOf",
+            "label": "se compone de",
+            "local_name": "isComposedOf",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJzZSBjb21wb25lIGRlIiwiciI6IjhmYjhmMWQ3ZDE3MTkzZjAxNmFmMWE0ZTJlZDNlZDAwZGZjM2MxZGIwNzY4ODdiNzYwNjZjMDUzNDE3Nzc0MjEiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDc4ZDVjZGNlYjc4NjNmZDJkOTNjOTJiOGRkMTNlMWI1NjY0NDAxOGZlYzE1ZjBhNmU0NTMyN2NmOTMxYzBlZDkiLCJ0IjoxLCJ5IjpbXX0.0e504f44b910ff4e50558102980a50add233c5f5891fc579a90b2f8249213d0c",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#implementedByRepository",
+      "query": "es implementado por repositorio",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "software:implementedByRepository",
+            "iri": "https://knowledge.example.com/ontology/software#implementedByRepository",
+            "label": "es implementado por repositorio",
+            "local_name": "implementedByRepository",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJlcyBpbXBsZW1lbnRhZG8gcG9yIHJlcG9zaXRvcmlvIiwiciI6ImUwMzU0YTI5OGVjOTE1YmYzMmQ2NzdjNzRlMDY0NzNkY2I5NDFiNjA5YzUxYjExZTYxZTQ0Y2NhNzhmN2JhNWYiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDc4ZDVjZGNlYjc4NjNmZDJkOTNjOTJiOGRkMTNlMWI1NjY0NDAxOGZlYzE1ZjBhNmU0NTMyN2NmOTMxYzBlZDkiLCJ0IjoxLCJ5IjpbXX0.ed29ddf40be5e3a586b2d5dc9a996c601114e741479ffd8617e2bedb6e42acde",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+      "query": "publicación de cambios ontológicos",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "kgid:ontology_change_publication",
+            "iri": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+            "label": "Publicación de cambios ontológicos",
+            "local_name": "ontology_change_publication",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "http://www.w3.org/2002/07/owl#NamedIndividual",
+              "https://knowledge.example.com/ontology/knowledge_governance#KnowledgePublicationProcess"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJwdWJsaWNhY2lvbiBkZSBjYW1iaW9zIG9udG9sb2dpY29zIiwiciI6IjYzMTQwZjIyMGFlMjAxZWNiZjg0ZjFiZDJmNTRiNDFkYzc5ZTIxZTVmY2ZmYWU3MDZmMmYwNzk3OTM5NTBjZGIiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDc4ZDVjZGNlYjc4NjNmZDJkOTNjOTJiOGRkMTNlMWI1NjY0NDAxOGZlYzE1ZjBhNmU0NTMyN2NmOTMxYzBlZDkiLCJ0IjoxLCJ5IjpbXX0.d3591df22bf1adfbe53cccbf43f64415936af314a7d216e7f327ba86bde0b3c2",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/id/software/component/ontology_core",
+      "query": "ontology core",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "https://knowledge.example.com/id/software/component/ontology_core",
+            "iri": "https://knowledge.example.com/id/software/component/ontology_core",
+            "label": "ontology_core",
+            "local_name": "ontology_core",
+            "matched_fields": [
+              "iri",
+              "local_name",
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 0,
+            "types": [
+              "http://www.w3.org/2002/07/owl#NamedIndividual",
+              "https://knowledge.example.com/ontology/software#SoftwareComponent"
+            ]
+          },
+          {
+            "compact_iri": "https://knowledge.example.com/graph/ontology/core",
+            "iri": "https://knowledge.example.com/graph/ontology/core",
+            "label": null,
+            "local_name": "core",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [],
+            "score": 5,
+            "types": []
+          },
+          {
+            "compact_iri": "https://knowledge.example.com/ontology/core",
+            "iri": "https://knowledge.example.com/ontology/core",
+            "label": "Módulo núcleo de gobernanza",
+            "local_name": "core",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Ontology"
+            ]
+          },
+          {
+            "compact_iri": "eow:KnowledgeManifest",
+            "iri": "https://knowledge.example.com/ontology/core#KnowledgeManifest",
+            "label": "Manifiesto de conocimiento",
+            "local_name": "KnowledgeManifest",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "eow:OntologyModule",
+            "iri": "https://knowledge.example.com/ontology/core#OntologyModule",
+            "label": "Módulo de ontología",
+            "local_name": "OntologyModule",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "eow:graph",
+            "iri": "https://knowledge.example.com/ontology/core#graph",
+            "label": "grafo responsable",
+            "local_name": "graph",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:manifestVersion",
+            "iri": "https://knowledge.example.com/ontology/core#manifestVersion",
+            "label": "versión del manifiesto",
+            "local_name": "manifestVersion",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:module",
+            "iri": "https://knowledge.example.com/ontology/core#module",
+            "label": "incluye módulo",
+            "local_name": "module",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:moduleId",
+            "iri": "https://knowledge.example.com/ontology/core#moduleId",
+            "label": "identificador de módulo",
+            "local_name": "moduleId",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:namespaceBase",
+            "iri": "https://knowledge.example.com/ontology/core#namespaceBase",
+            "label": "namespace base",
+            "local_name": "namespaceBase",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:sourcePath",
+            "iri": "https://knowledge.example.com/ontology/core#sourcePath",
+            "label": "ruta fuente",
+            "local_name": "sourcePath",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:status",
+            "iri": "https://knowledge.example.com/ontology/core#status",
+            "label": "estado de gobierno",
+            "local_name": "status",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#AnnotationProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEyLCJvIjowLCJxIjoib250b2xvZ3kgY29yZSIsInIiOiI2NzIxM2IyNmU2YmI1OGUwYzUzNmY2NDkzODhmYjZjYmE0YWRmZTQ4MGZjODUzN2U1MGY1ZTg4OWQ1NjhkY2UyIiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4Znw3OGQ1Y2RjZWI3ODYzZmQyZDkzYzkyYjhkZDEzZTFiNTY2NDQwMThmZWMxNWYwYTZlNDUzMjdjZjkzMWMwZWQ5IiwidCI6MTIsInkiOltdfQ.c5a2a829deb4bf69cab2d0acbcc09135384e16c779b8db899c9832d9717ffca1",
+        "total": 12
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+      "query": "enterprise ontology workbench mvp",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+            "iri": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+            "label": "enterprise-ontology-workbench-mvp",
+            "local_name": "enterprise_ontology_workbench_mvp",
+            "matched_fields": [
+              "iri",
+              "local_name",
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/software"
+            ],
+            "score": 0,
+            "types": [
+              "http://www.w3.org/2002/07/owl#NamedIndividual",
+              "https://knowledge.example.com/ontology/software#SourceCodeRepository"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJlbnRlcnByaXNlIG9udG9sb2d5IHdvcmtiZW5jaCBtdnAiLCJyIjoiZDgzNzdhNGVmODNlNjgxMTE3NjE0ZWI5MzczZjY2ODAxYzVkZmI2NjVmODIwODljYzI4NDRhODNiMWUwN2Y5NyIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NzhkNWNkY2ViNzg2M2ZkMmQ5M2M5MmI4ZGQxM2UxYjU2NjQ0MDE4ZmVjMTVmMGE2ZTQ1MzI3Y2Y5MzFjMGVkOSIsInQiOjEsInkiOltdfQ.9da0b480d3fdfa0f60d77cc5fdb2a3fee2fa716077a5ec7bc94139f3f26360f4",
+        "total": 1
+      },
+      "target_found": true
+    },
+    {
+      "iri": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+      "query": "trazabilidad del conocimiento gobernado",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "cq:governed_knowledge_traceability",
+            "iri": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+            "label": "Trazabilidad del conocimiento gobernado",
+            "local_name": "governed_knowledge_traceability",
+            "matched_fields": [
+              "prefLabel"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/knowledge_governance"
+            ],
+            "score": 20,
+            "types": [
+              "https://knowledge.example.com/ontology/competency#CompetencyQuestion"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjEsIm8iOjAsInEiOiJ0cmF6YWJpbGlkYWQgZGVsIGNvbm9jaW1pZW50byBnb2Jlcm5hZG8iLCJyIjoiYTNlZWFmYTdiNmI5NDkxMTk3NTdmZmFhNWI0ZWIxYWM4NmJhYjAwYmIxMDk0YmJiNmM4NTcwY2I3YmU1MWYwOCIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NzhkNWNkY2ViNzg2M2ZkMmQ5M2M5MmI4ZGQxM2UxYjU2NjQ0MDE4ZmVjMTVmMGE2ZTQ1MzI3Y2Y5MzFjMGVkOSIsInQiOjEsInkiOltdfQ.f434adb1cf4e1c6b885f769e281298ed33bc4e334a7cbea34821be62c3f36308",
+        "total": 1
+      },
+      "target_found": true
+    }
+  ],
+  "relations": [
+    {
+      "ordinal": 1,
+      "request": {
+        "evidence": "Identificador del módulo declarado en knowledge/manifest.ttl",
+        "literal": "knowledge_governance",
+        "predicate": "http://purl.org/dc/terms/identifier",
+        "subject": "https://knowledge.example.com/ontology/knowledge_governance"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/ontology/knowledge_governance/module.ttl",
+        "preserved_unknown_triples": 8,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|fe7df45e6234f2baf20120779de34b0ab8702f1a02d76951692b6ff6294deb49"
+      }
+    },
+    {
+      "ordinal": 2,
+      "request": {
+        "evidence": "Owner provisional; requiere el gate humano P12_T05",
+        "language": "es",
+        "literal": "Equipo de gobernanza ontológica (pendiente de confirmación de dominio)",
+        "predicate": "http://purl.org/dc/terms/rightsHolder",
+        "subject": "https://knowledge.example.com/ontology/knowledge_governance"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/ontology/knowledge_governance/module.ttl",
+        "preserved_unknown_triples": 15,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|3c8452939da59d1d418dd961721349a3f1782d79c791406f9b9c1d6e75a8460f"
+      }
+    },
+    {
+      "ordinal": 3,
+      "request": {
+        "evidence": "Dependencia del contrato de gobernanza común",
+        "object_iri": "https://knowledge.example.com/ontology/core",
+        "predicate": "http://www.w3.org/2002/07/owl#imports",
+        "subject": "https://knowledge.example.com/ontology/knowledge_governance"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/ontology/knowledge_governance/module.ttl",
+        "preserved_unknown_triples": 22,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|01ea77bdc9d8cd358adea2bd949f3a821c1e711ecbc8f05a98f8baf0d95f4fab"
+      }
+    },
+    {
+      "ordinal": 4,
+      "request": {
+        "evidence": "Dependencia de las categorías de aplicación y software reutilizadas",
+        "object_iri": "https://knowledge.example.com/ontology/software",
+        "predicate": "http://www.w3.org/2002/07/owl#imports",
+        "subject": "https://knowledge.example.com/ontology/knowledge_governance"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/ontology/knowledge_governance/module.ttl",
+        "preserved_unknown_triples": 29,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|aa437615ebef2f28ce9698fc6753007f1cd55bc40add1db08876a923837b3c14"
+      }
+    },
+    {
+      "ordinal": 5,
+      "request": {
+        "evidence": "Recorrido transversal definido en la pregunta real del piloto P12",
+        "object_iri": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+        "predicate": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough",
+        "subject": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/ontology/knowledge_governance/terms/EnterpriseKnowledgeGovernance.ttl",
+        "preserved_unknown_triples": 8,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|2a0b5f02802cdd1991143296a41cbcb984a26c174198f737e8dddd48f5604251"
+      }
+    },
+    {
+      "ordinal": 6,
+      "request": {
+        "evidence": "El Workbench ejecuta el protocolo gobernado descrito por la especificación",
+        "object_iri": "https://knowledge.example.com/id/software/application/workbench",
+        "predicate": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+        "subject": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/data/sources/proposals/p12_ontology_change_publication.ttl",
+        "preserved_unknown_triples": 7,
+        "resource": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|cdde077f7591bac4268e8275713c7945ba5372daaefa829da801b1de57f44427"
+      }
+    },
+    {
+      "ordinal": 7,
+      "request": {
+        "evidence": "packages/ontology_core/ y arquitectura de la especificación, sección 8",
+        "object_iri": "https://knowledge.example.com/id/software/component/ontology_core",
+        "predicate": "https://knowledge.example.com/ontology/software#isComposedOf",
+        "subject": "https://knowledge.example.com/id/software/application/workbench"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/data/sources/fixture_inventory.trig",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/id/software/application/workbench",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|a2c57f4451df05e204c745c94f2d9ef01c3bd8bc89bf26639be87b73ea078317"
+      }
+    },
+    {
+      "ordinal": 8,
+      "request": {
+        "evidence": "packages/ontology_core/pyproject.toml y Git del checkout",
+        "object_iri": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+        "predicate": "https://knowledge.example.com/ontology/software#implementedByRepository",
+        "subject": "https://knowledge.example.com/id/software/component/ontology_core"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/data/sources/proposals/p12_ontology_core_component.ttl",
+        "preserved_unknown_triples": 7,
+        "resource": "https://knowledge.example.com/id/software/component/ontology_core",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|2dcef02ecc8a49e69de5b76201c198686387a4a84c4e1dd7a3b7bea63436680d"
+      }
+    },
+    {
+      "ordinal": 9,
+      "request": {
+        "evidence": "Consulta SPARQL local confinada del piloto",
+        "literal": "governed_knowledge_traceability.rq",
+        "predicate": "https://knowledge.example.com/ontology/competency#queryFile",
+        "subject": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/competency_questions/questions.ttl",
+        "preserved_unknown_triples": 27,
+        "resource": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|908e2f367e792dbb3452b0fb6499e964244b682bde4b2a25b1f42ef57c2c5130"
+      }
+    },
+    {
+      "ordinal": 10,
+      "request": {
+        "datatype": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "evidence": "La pregunta transversal requiere al menos un recorrido completo",
+        "literal": "1",
+        "predicate": "https://knowledge.example.com/ontology/competency#minimumResultCount",
+        "subject": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability"
+      },
+      "tool": "ontology_propose_relation",
+      "write": {
+        "operation": "relation_added",
+        "path": "knowledge/competency_questions/questions.ttl",
+        "preserved_unknown_triples": 34,
+        "resource": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|78d5cdceb7863fd2d93c92b8dd13e1b56644018fec15f0a6e45327cf931c0ed9"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance",
+      "kind": "ontology",
+      "ordinal": 1,
+      "query": "gobernanza del conocimiento",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJnb2Jlcm5hbnphIGRlbCBjb25vY2ltaWVudG8iLCJyIjoiNGY1M2NkYTE4YzJiYWEwYzAzNTRiYjVmOWEzZWNiZTVlZDEyYWI0ZDhlMTFiYTg3M2MyZjExMTYxMjAyYjk0NSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8MDc2YTgzMDY4ODg2NmQ3YmJkYmVjMTM5MDA1ZTViZGY5NTJkZDhjMDdkZGFlYjBkNTk4YTk2OThlYzYxMjQ5NiIsInQiOjAsInkiOltdfQ.3e4cfd40ab8e75747b7e4598f6eebafb7eeafff1eb1af603153aba7d1a993994",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|076a830688866d7bbdbec139005e5bdf952dd8c07ddaeb0d598a9698ec612496",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/knowledge_governance/module.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|307898da3fa0e22ce0d14db8754d5248300f0f8cfe26d98e795408f2ccca8781"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+      "kind": "concept",
+      "ordinal": 2,
+      "query": "gobernanza del conocimiento empresarial",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJnb2Jlcm5hbnphIGRlbCBjb25vY2ltaWVudG8gZW1wcmVzYXJpYWwiLCJyIjoiNGY1M2NkYTE4YzJiYWEwYzAzNTRiYjVmOWEzZWNiZTVlZDEyYWI0ZDhlMTFiYTg3M2MyZjExMTYxMjAyYjk0NSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8MzA3ODk4ZGEzZmEwZTIyY2UwZDE0ZGI4NzU0ZDUyNDgzMDBmMGY4Y2ZlMjZkOThlNzk1NDA4ZjJjY2NhODc4MSIsInQiOjAsInkiOltdfQ.b116e2b2c023e24f403b0f2158bd8d1f54eb569c961fa3b27775a2220d37a858",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|307898da3fa0e22ce0d14db8754d5248300f0f8cfe26d98e795408f2ccca8781",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/knowledge_governance/terms/EnterpriseKnowledgeGovernance.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|342dda9448cecaa2a25124191766393750b16cfc51fdce859ad8320196ccf152"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#KnowledgePublicationProcess",
+      "kind": "class",
+      "ordinal": 3,
+      "query": "proceso de publicación de conocimiento",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJwcm9jZXNvIGRlIHB1YmxpY2FjaW9uIGRlIGNvbm9jaW1pZW50byIsInIiOiI0ZjUzY2RhMThjMmJhYTBjMDM1NGJiNWY5YTNlY2JlNWVkMTJhYjRkOGUxMWJhODczYzJmMTExNjEyMDJiOTQ1IiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4ZnwzNDJkZGE5NDQ4Y2VjYWEyYTI1MTI0MTkxNzY2MzkzNzUwYjE2Y2ZjNTFmZGNlODU5YWQ4MzIwMTk2Y2NmMTUyIiwidCI6MCwieSI6W119.88db0cf3d1ad5060eca0ace49dbf0d7d0fbee7f7082d814851d6343bb9a5cf04",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|342dda9448cecaa2a25124191766393750b16cfc51fdce859ad8320196ccf152",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/knowledge_governance/terms/KnowledgePublicationProcess.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance#KnowledgePublicationProcess",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|c4c280cab7738ea63a6f27ced0943e382760ef0bf917b2239639e051e92b190d"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#SoftwareComponent",
+      "kind": "class",
+      "ordinal": 4,
+      "query": "componente de software",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJjb21wb25lbnRlIGRlIHNvZnR3YXJlIiwiciI6IjRmNTNjZGExOGMyYmFhMGMwMzU0YmI1ZjlhM2VjYmU1ZWQxMmFiNGQ4ZTExYmE4NzNjMmYxMTE2MTIwMmI5NDUiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfGM0YzI4MGNhYjc3MzhlYTYzYTZmMjdjZWQwOTQzZTM4Mjc2MGVmMGJmOTE3YjIyMzk2MzllMDUxZTkyYjE5MGQiLCJ0IjowLCJ5IjpbXX0.367b24a84a4086028e2e4e4a0454e49d39feb0e88f043077cb675e5886b07cd2",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|c4c280cab7738ea63a6f27ced0943e382760ef0bf917b2239639e051e92b190d",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/software/terms/SoftwareComponent.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/software#SoftwareComponent",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|7e9ed7a8b86a4101ec308cf961bbd06155bf19e992a79f3f7461a808ed975000"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#SourceCodeRepository",
+      "kind": "class",
+      "ordinal": 5,
+      "query": "repositorio de código fuente",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJyZXBvc2l0b3JpbyBkZSBjb2RpZ28gZnVlbnRlIiwiciI6IjRmNTNjZGExOGMyYmFhMGMwMzU0YmI1ZjlhM2VjYmU1ZWQxMmFiNGQ4ZTExYmE4NzNjMmYxMTE2MTIwMmI5NDUiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDdlOWVkN2E4Yjg2YTQxMDFlYzMwOGNmOTYxYmJkMDYxNTViZjE5ZTk5MmE3OWYzZjc0NjFhODA4ZWQ5NzUwMDAiLCJ0IjowLCJ5IjpbXX0.ea68e5feb08a6b383d6c9bb589b0cde1a1e870adb33b03df78ff7cee10ef6a9b",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|7e9ed7a8b86a4101ec308cf961bbd06155bf19e992a79f3f7461a808ed975000",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/software/terms/SourceCodeRepository.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/software#SourceCodeRepository",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|02208e8f27953b6fcc5810f21959e9a66442e08782c9eba5de6ff7722aeb33c8"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough",
+      "kind": "object_property",
+      "ordinal": 6,
+      "query": "se gobierna mediante",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJzZSBnb2JpZXJuYSBtZWRpYW50ZSIsInIiOiI0ZjUzY2RhMThjMmJhYTBjMDM1NGJiNWY5YTNlY2JlNWVkMTJhYjRkOGUxMWJhODczYzJmMTExNjEyMDJiOTQ1IiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4ZnwwMjIwOGU4ZjI3OTUzYjZmY2M1ODEwZjIxOTU5ZTlhNjY0NDJlMDg3ODJjOWViYTVkZTZmZjc3MjJhZWIzM2M4IiwidCI6MCwieSI6W119.1b2ed5a5965a5f8d8a2e313214e4fdaea7b900d81d7ae27e7ce4c46b63c01d78",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|02208e8f27953b6fcc5810f21959e9a66442e08782c9eba5de6ff7722aeb33c8",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/knowledge_governance/terms/governedThrough.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance#governedThrough",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|80d99cdb804c5181704bd33190d6861f12c399d97c665d3e257fde10a59694d3"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+      "kind": "object_property",
+      "ordinal": 7,
+      "query": "es soportado por aplicación",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJlcyBzb3BvcnRhZG8gcG9yIGFwbGljYWNpb24iLCJyIjoiNGY1M2NkYTE4YzJiYWEwYzAzNTRiYjVmOWEzZWNiZTVlZDEyYWI0ZDhlMTFiYTg3M2MyZjExMTYxMjAyYjk0NSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8ODBkOTljZGI4MDRjNTE4MTcwNGJkMzMxOTBkNjg2MWYxMmMzOTlkOTdjNjY1ZDNlMjU3ZmRlMTBhNTk2OTRkMyIsInQiOjAsInkiOltdfQ.89be9ad953f71193b689ad5de7eaa7ad36cea78b935023e87660f02a131aca19",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|80d99cdb804c5181704bd33190d6861f12c399d97c665d3e257fde10a59694d3",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/knowledge_governance/terms/supportedByApplication.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|941bf0ae55b04f7149c1031278b8b578299326127e3ec367334bcd287e1120b1"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#isComposedOf",
+      "kind": "object_property",
+      "ordinal": 8,
+      "query": "se compone de",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJzZSBjb21wb25lIGRlIiwiciI6IjRmNTNjZGExOGMyYmFhMGMwMzU0YmI1ZjlhM2VjYmU1ZWQxMmFiNGQ4ZTExYmE4NzNjMmYxMTE2MTIwMmI5NDUiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDk0MWJmMGFlNTViMDRmNzE0OWMxMDMxMjc4YjhiNTc4Mjk5MzI2MTI3ZTNlYzM2NzMzNGJjZDI4N2UxMTIwYjEiLCJ0IjowLCJ5IjpbXX0.8930acc7bfc541325aa0a296ab6ac3abb50e3cd01a89ae73b10a1865720eb04e",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|941bf0ae55b04f7149c1031278b8b578299326127e3ec367334bcd287e1120b1",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/software/terms/isComposedOf.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/software#isComposedOf",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|7f1ca082ff2c68c671b227403cd4dccaa7a8d4190cd844b25b8c6df25efb406d"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/ontology/software#implementedByRepository",
+      "kind": "object_property",
+      "ordinal": 9,
+      "query": "es implementado por repositorio",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJlcyBpbXBsZW1lbnRhZG8gcG9yIHJlcG9zaXRvcmlvIiwiciI6IjRmNTNjZGExOGMyYmFhMGMwMzU0YmI1ZjlhM2VjYmU1ZWQxMmFiNGQ4ZTExYmE4NzNjMmYxMTE2MTIwMmI5NDUiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDdmMWNhMDgyZmYyYzY4YzY3MWIyMjc0MDNjZDRkY2NhYTdhOGQ0MTkwY2Q4NDRiMjViOGM2ZGYyNWVmYjQwNmQiLCJ0IjowLCJ5IjpbXX0.2475b4a06cc77f40ffd6216082f75fb3f6fc154779a0f724309e975f668de2db",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|7f1ca082ff2c68c671b227403cd4dccaa7a8d4190cd844b25b8c6df25efb406d",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/ontology/software/terms/implementedByRepository.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/ontology/software#implementedByRepository",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|9598e5d7d2870d243c51922960dde37e2f727b2c11646dc85ce0ca8472f1cab0"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+      "kind": "individual",
+      "ordinal": 10,
+      "query": "publicación de cambios ontológicos",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJwdWJsaWNhY2lvbiBkZSBjYW1iaW9zIG9udG9sb2dpY29zIiwiciI6IjRmNTNjZGExOGMyYmFhMGMwMzU0YmI1ZjlhM2VjYmU1ZWQxMmFiNGQ4ZTExYmE4NzNjMmYxMTE2MTIwMmI5NDUiLCJzIjoicHJvcG9zYWwvcDEyLWdvdmVybmVkLWtub3dsZWRnZS1waWxvdHwzMGU4NTU1OGFjZmMzMmFlODQ4N2E3MWE1ZjA2MjgyOTFlNmQ1YjhmfDk1OThlNWQ3ZDI4NzBkMjQzYzUxOTIyOTYwZGRlMzdlMmY3MjdiMmMxMTY0NmRjODVjZTBjYTg0NzJmMWNhYjAiLCJ0IjowLCJ5IjpbXX0.1ba855febcc99a257f99afe6d818e068061e9d8b883badd86536856a43707c43",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|9598e5d7d2870d243c51922960dde37e2f727b2c11646dc85ce0ca8472f1cab0",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/data/sources/proposals/p12_ontology_change_publication.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|56cde690a266a74e017ba21e10f84022268c84e11810fa580f41537b8bd85c27"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/id/software/component/ontology_core",
+      "kind": "individual",
+      "ordinal": 11,
+      "query": "ontology core",
+      "search": {
+        "has_next": false,
+        "items": [
+          {
+            "compact_iri": "https://knowledge.example.com/graph/ontology/core",
+            "iri": "https://knowledge.example.com/graph/ontology/core",
+            "label": null,
+            "local_name": "core",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [],
+            "score": 5,
+            "types": []
+          },
+          {
+            "compact_iri": "https://knowledge.example.com/ontology/core",
+            "iri": "https://knowledge.example.com/ontology/core",
+            "label": "Módulo núcleo de gobernanza",
+            "local_name": "core",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Ontology"
+            ]
+          },
+          {
+            "compact_iri": "eow:KnowledgeManifest",
+            "iri": "https://knowledge.example.com/ontology/core#KnowledgeManifest",
+            "label": "Manifiesto de conocimiento",
+            "local_name": "KnowledgeManifest",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "eow:OntologyModule",
+            "iri": "https://knowledge.example.com/ontology/core#OntologyModule",
+            "label": "Módulo de ontología",
+            "local_name": "OntologyModule",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#Class"
+            ]
+          },
+          {
+            "compact_iri": "eow:graph",
+            "iri": "https://knowledge.example.com/ontology/core#graph",
+            "label": "grafo responsable",
+            "local_name": "graph",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:manifestVersion",
+            "iri": "https://knowledge.example.com/ontology/core#manifestVersion",
+            "label": "versión del manifiesto",
+            "local_name": "manifestVersion",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:module",
+            "iri": "https://knowledge.example.com/ontology/core#module",
+            "label": "incluye módulo",
+            "local_name": "module",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#ObjectProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:moduleId",
+            "iri": "https://knowledge.example.com/ontology/core#moduleId",
+            "label": "identificador de módulo",
+            "local_name": "moduleId",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:namespaceBase",
+            "iri": "https://knowledge.example.com/ontology/core#namespaceBase",
+            "label": "namespace base",
+            "local_name": "namespaceBase",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:sourcePath",
+            "iri": "https://knowledge.example.com/ontology/core#sourcePath",
+            "label": "ruta fuente",
+            "local_name": "sourcePath",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#DatatypeProperty"
+            ]
+          },
+          {
+            "compact_iri": "eow:status",
+            "iri": "https://knowledge.example.com/ontology/core#status",
+            "label": "estado de gobierno",
+            "local_name": "status",
+            "matched_fields": [
+              "iri"
+            ],
+            "modules": [
+              "https://knowledge.example.com/id/module/core"
+            ],
+            "score": 5,
+            "types": [
+              "http://www.w3.org/2002/07/owl#AnnotationProperty"
+            ]
+          }
+        ],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjExLCJvIjowLCJxIjoib250b2xvZ3kgY29yZSIsInIiOiIzYTY3NWUwMmU3MDIzZjhjYjI3ZTdjOTc1ZDFmMzZiMGUyMzIyODI0MzA2N2UzNGE4MjBlODVhNzRkMjM3MjQxIiwicyI6InByb3Bvc2FsL3AxMi1nb3Zlcm5lZC1rbm93bGVkZ2UtcGlsb3R8MzBlODU1NThhY2ZjMzJhZTg0ODdhNzFhNWYwNjI4MjkxZTZkNWI4Znw1NmNkZTY5MGEyNjZhNzRlMDE3YmEyMWUxMGY4NDAyMjI2OGM4NGUxMTgxMGZhNTgwZjQxNTM3YjhiZDg1YzI3IiwidCI6MTEsInkiOltdfQ.1d773b7edacc4b1849728762322582b6e79952655dea1699c2a070c22add5426",
+        "total": 11
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|56cde690a266a74e017ba21e10f84022268c84e11810fa580f41537b8bd85c27",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/data/sources/proposals/p12_ontology_core_component.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/id/software/component/ontology_core",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|5dfd54df51acdd4a13cf7a383a971d1107add7ce965a2c16e65815c37109faff"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+      "kind": "individual",
+      "ordinal": 12,
+      "query": "enterprise ontology workbench mvp",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJlbnRlcnByaXNlIG9udG9sb2d5IHdvcmtiZW5jaCBtdnAiLCJyIjoiNGY1M2NkYTE4YzJiYWEwYzAzNTRiYjVmOWEzZWNiZTVlZDEyYWI0ZDhlMTFiYTg3M2MyZjExMTYxMjAyYjk0NSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8NWRmZDU0ZGY1MWFjZGQ0YTEzY2Y3YTM4M2E5NzFkMTEwN2FkZDdjZTk2NWEyYzE2ZTY1ODE1YzM3MTA5ZmFmZiIsInQiOjAsInkiOltdfQ.43e67f1c13fee8537494021ca6660a6b42d5bd3761f4538cc844c580776ec338",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|5dfd54df51acdd4a13cf7a383a971d1107add7ce965a2c16e65815c37109faff",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/data/sources/proposals/p12_enterprise_ontology_workbench_repository.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|d91680cbc17affb2bd725fb97bc83774255a73242addea9863616ca06b4881a3"
+      }
+    },
+    {
+      "iri": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+      "kind": "competency_question",
+      "ordinal": 13,
+      "query": "trazabilidad del conocimiento gobernado",
+      "search": {
+        "has_next": false,
+        "items": [],
+        "limit": 50,
+        "offset": 0,
+        "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjAsIm8iOjAsInEiOiJ0cmF6YWJpbGlkYWQgZGVsIGNvbm9jaW1pZW50byBnb2Jlcm5hZG8iLCJyIjoiNGY1M2NkYTE4YzJiYWEwYzAzNTRiYjVmOWEzZWNiZTVlZDEyYWI0ZDhlMTFiYTg3M2MyZjExMTYxMjAyYjk0NSIsInMiOiJwcm9wb3NhbC9wMTItZ292ZXJuZWQta25vd2xlZGdlLXBpbG90fDMwZTg1NTU4YWNmYzMyYWU4NDg3YTcxYTVmMDYyODI5MWU2ZDViOGZ8ZDkxNjgwY2JjMTdhZmZiMmJkNzI1ZmI5N2JjODM3NzQyNTVhNzMyNDJhZGRlYTk4NjM2MTZjYTA2YjQ4ODFhMyIsInQiOjAsInkiOltdfQ.5826997e8d0519930b29822b407710befdaa619d12fa2ec8606daa0e3fe5366d",
+        "total": 0
+      },
+      "search_snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|d91680cbc17affb2bd725fb97bc83774255a73242addea9863616ca06b4881a3",
+      "tool": "ontology_propose_term",
+      "write": {
+        "operation": "created",
+        "path": "knowledge/competency_questions/questions.ttl",
+        "preserved_unknown_triples": 0,
+        "resource": "https://knowledge.example.com/id/competency-question/governed_knowledge_traceability",
+        "snapshot": "proposal/p12-governed-knowledge-pilot|30e85558acfc32ae8487a71a5f0628291e6d5b8f|c484d347aa5126c20bcb8f8bae7a9ae5a5cf4945972d25e5ae822f779f3f02ee"
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "server": "enterprise-ontology-workbench",
+  "validation": {
+    "conforms": true,
+    "counts": {
+      "error": 0,
+      "info": 0,
+      "warning": 0
+    },
+    "issues": []
+  }
+}

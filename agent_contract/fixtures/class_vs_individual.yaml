@@ -1,0 +1,10 @@
+id: choose_class_for_capability
+task: Modelar la categoría reutilizable de capacidades de despliegue.
+facts:
+  reusable_category: true
+  candidate_iri: https://knowledge.example.com/ontology/software#DeploymentCapability
+  task_signals: [categoría reutilizable]
+  query_signals: [capacidad de despliegue]
+query: capacidad de despliegue
+expected_decision: class
+assertions: [category_has_possible_instances, pascal_case_required]

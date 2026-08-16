@@ -1,0 +1,8 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://knowledge.example.com/ontology/alpha> a owl:Ontology ;
+    owl:imports <https://knowledge.example.com/ontology/beta> .
+<https://knowledge.example.com/ontology/beta> a owl:Ontology ;
+    owl:imports <https://knowledge.example.com/ontology/gamma> .
+<https://knowledge.example.com/ontology/gamma> a owl:Ontology ;
+    owl:imports <https://knowledge.example.com/ontology/alpha> .

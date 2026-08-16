@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "enterprise-ontology-workbench": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "ontology-mcp",
+        "--repository",
+        "${CLAUDE_PROJECT_DIR:-.}",
+        "--write-enabled"
+      ]
+    }
+  }
+}

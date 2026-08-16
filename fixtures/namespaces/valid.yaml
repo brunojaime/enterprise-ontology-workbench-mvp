@@ -1,0 +1,26 @@
+fixture_version: '1.0'
+description: Namespace reservado para pruebas; no representa conocimiento empresarial.
+namespace:
+  base: https://knowledge.example.test/
+expected_iris:
+- kind: ontology_class
+  module: pumps
+  local_name: PumpModel
+  iri: https://knowledge.example.test/ontology/pumps#PumpModel
+- kind: ontology_property
+  module: software
+  local_name: managesInformationAbout
+  iri: https://knowledge.example.test/ontology/software#managesInformationAbout
+- kind: individual
+  domain: pumps
+  resource_type: model
+  stable_id: rwbm_20_125
+  iri: https://knowledge.example.test/id/pumps/model/rwbm_20_125
+- kind: source_graph
+  category: source
+  stable_id: inventory_system
+  iri: https://knowledge.example.test/graph/source/inventory_system
+- kind: proposal_graph
+  category: proposal
+  stable_id: '2026_0012'
+  iri: https://knowledge.example.test/graph/proposal/2026_0012

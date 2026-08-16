@@ -1,0 +1,56 @@
+@prefix cq: <https://knowledge.example.com/id/competency-question/> .
+@prefix cqv: <https://knowledge.example.com/ontology/competency#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cq:applications_exist a cqv:CompetencyQuestion ;
+    dcterms:isPartOf module:software ;
+    cqv:expectedBoolean true ;
+    cqv:queryFile "applications_exist.rq" ;
+    cqv:questionText "¿Existe al menos una aplicación en el fixture?"@es ;
+    eow:status "active" .
+
+cq:documented_only a cqv:CompetencyQuestion ;
+    dcterms:isPartOf module:organization ;
+    cqv:acceptanceCriterion "La respuesta identifica una cobertura verificable y su módulo responsable."@es ;
+    cqv:questionText "¿Qué cobertura futura deberá modelarse para este ejemplo?"@es ;
+    eow:status "proposed" .
+
+cq:missing_domain_fixture a cqv:CompetencyQuestion ;
+    dcterms:isPartOf module:software ;
+    cqv:expectedBoolean true ;
+    cqv:queryFile "missing_domain_fixture.rq" ;
+    cqv:questionText "¿Existe el recurso intencionalmente ausente del fixture?"@es ;
+    eow:status "active" .
+
+<urn:eow:proposal-statement:b6357c99a2b176bae5018e2b19772af842c67fb70603b1b352f48ec81d7458cc> a rdf:Statement ;
+    dcterms:source "Consulta SPARQL local confinada del piloto"@es ;
+    rdf:object "governed_knowledge_traceability.rq" ;
+    rdf:predicate cqv:queryFile ;
+    rdf:subject cq:governed_knowledge_traceability ;
+    eow:status "proposed" .
+
+<urn:eow:proposal-statement:c96855ec316442101a0edd99b07bb5799dd81d70a855bd617c26e9f472bd671e> a rdf:Statement ;
+    dcterms:source "La pregunta transversal requiere al menos un recorrido completo"@es ;
+    rdf:object "1"^^xsd:nonNegativeInteger ;
+    rdf:predicate cqv:minimumResultCount ;
+    rdf:subject cq:governed_knowledge_traceability ;
+    eow:status "proposed" .
+
+cq:governed_knowledge_traceability a cqv:CompetencyQuestion ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:isPartOf module:knowledge_governance ;
+    dcterms:source "enterprise_ontology_workbench_mvp_spec.md, sección 34"@es ;
+    skos:definition "Pregunta transversal del piloto que comprueba el recorrido entre dominio, proceso y software."@es ;
+    skos:prefLabel "Trazabilidad del conocimiento gobernado"@es ;
+    cqv:acceptanceCriterion "La consulta devuelve el concepto, proceso, aplicación, componente y repositorio del piloto."@es ;
+    cqv:minimumResultCount "1"^^xsd:nonNegativeInteger ;
+    cqv:queryFile "governed_knowledge_traceability.rq" ;
+    cqv:questionText "¿Qué proceso gobierna el conocimiento empresarial y qué aplicación, componente y repositorio lo soportan?"@es ;
+    eow:status "proposed" .
+

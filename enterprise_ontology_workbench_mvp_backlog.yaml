@@ -1,4 +1,4 @@
-spec_version: '1.0'
+spec_version: '2.0'
 product: Enterprise Ontology Workbench
 status: proposed
 canonical_spec: enterprise_ontology_workbench_mvp_spec.md
@@ -10,6 +10,12 @@ principles:
   rag_is_not_source_of_truth: true
   triple_store_in_mvp: false
   authentication_in_mvp: false
+  codex_is_primary_intake_interface: true
+  web_is_viewer_first: true
+  source_material_is_evidence_not_canonical: true
+  external_content_is_untrusted: true
+  human_decisions_gate_semantics: true
+  source_systems_are_read_only: true
 plans:
 - id: P00
   name: Alineación y decisiones
@@ -22,28 +28,28 @@ plans:
   - id: P00_T02
     title: Crear ADR 001 a ADR 004
     priority: must
-    status: todo
+    status: done
   - id: P00_T03
     title: Crear ADR 005 a ADR 008
     priority: must
-    status: todo
+    status: done
   - id: P00_T04
     title: Crear ADR 009 a ADR 012
     priority: must
-    status: todo
+    status: done
   - id: P00_T05
     title: Definir namespace base configurable
     priority: must
-    status: todo
+    status: done
   - id: P00_T06
     title: Confirmar alcance y no objetivos
     priority: must
-    status: todo
+    status: done
   - id: P00_T07
     title: Crear registro de riesgos
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P01
   name: Monorepo y experiencia local
   depends_on:
@@ -52,36 +58,36 @@ plans:
   - id: P01_T01
     title: Crear workspace Python
     priority: must
-    status: todo
+    status: done
   - id: P01_T02
     title: Crear workspace pnpm y SvelteKit
     priority: must
-    status: todo
+    status: done
   - id: P01_T03
     title: Configurar calidad Python
     priority: must
-    status: todo
+    status: done
   - id: P01_T04
     title: Configurar calidad frontend
     priority: must
-    status: todo
+    status: done
   - id: P01_T05
     title: Crear compose para Podman y Docker
     priority: must
-    status: todo
+    status: done
   - id: P01_T06
     title: Crear scripts Bash y PowerShell
     priority: must
-    status: todo
+    status: done
   - id: P01_T07
     title: Agregar configuración de entorno
     priority: must
-    status: todo
+    status: done
   - id: P01_T08
     title: Crear pipeline CI inicial
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P02
   name: Repositorio RDF y modelo núcleo
   depends_on:
@@ -90,44 +96,44 @@ plans:
   - id: P02_T01
     title: Crear estructura knowledge
     priority: must
-    status: todo
+    status: done
   - id: P02_T02
     title: Definir manifest RDF
     priority: must
-    status: todo
+    status: done
   - id: P02_T03
     title: Crear módulo core mínimo
     priority: must
-    status: todo
+    status: done
   - id: P02_T04
     title: Crear fixtures organization y software
     priority: must
-    status: todo
+    status: done
   - id: P02_T05
     title: Implementar FilesystemRdfStore
     priority: must
-    status: todo
+    status: done
   - id: P02_T06
     title: Preservar named graphs
     priority: must
-    status: todo
+    status: done
   - id: P02_T07
     title: Resolver prefijos
     priority: must
-    status: todo
+    status: done
   - id: P02_T08
     title: Descubrir archivos por módulo
     priority: must
-    status: todo
+    status: done
   - id: P02_T09
     title: Crear fixtures válidos e inválidos
     priority: must
-    status: todo
+    status: done
   - id: P02_T10
     title: Probar carga y round trip
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P03
   name: Validación y gobernanza
   depends_on:
@@ -136,44 +142,44 @@ plans:
   - id: P03_T01
     title: Crear shapes globales
     priority: must
-    status: todo
+    status: done
   - id: P03_T02
     title: Integrar pySHACL
     priority: must
-    status: todo
+    status: done
   - id: P03_T03
     title: Lint de namespaces
     priority: must
-    status: todo
+    status: done
   - id: P03_T04
     title: Lint de módulo responsable
     priority: must
-    status: todo
+    status: done
   - id: P03_T05
     title: Detector de duplicados léxicos
     priority: must
-    status: todo
+    status: done
   - id: P03_T06
     title: Reglas de deprecación
     priority: must
-    status: todo
+    status: done
   - id: P03_T07
     title: Reglas de propiedades peligrosas
     priority: must
-    status: todo
+    status: done
   - id: P03_T08
     title: Detectar ciclos de imports
     priority: must
-    status: todo
+    status: done
   - id: P03_T09
     title: Unificar reportes
     priority: must
-    status: todo
+    status: done
   - id: P03_T10
     title: Crear suite de regresión
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P04
   name: Consultas, búsqueda, contexto e impacto
   depends_on:
@@ -182,44 +188,44 @@ plans:
   - id: P04_T01
     title: Índice de etiquetas
     priority: must
-    status: todo
+    status: done
   - id: P04_T02
     title: Servicio describe
     priority: must
-    status: todo
+    status: done
   - id: P04_T03
     title: Servicio vecindario
     priority: must
-    status: todo
+    status: done
   - id: P04_T04
     title: Estadísticas
     priority: must
-    status: todo
+    status: done
   - id: P04_T05
     title: SPARQL de lectura
     priority: must
-    status: todo
+    status: done
   - id: P04_T06
     title: ImpactService
     priority: must
-    status: todo
+    status: done
   - id: P04_T07
     title: Modelar competency questions
     priority: must
-    status: todo
+    status: done
   - id: P04_T08
     title: Ejecutar competency questions
     priority: must
-    status: todo
+    status: done
   - id: P04_T09
     title: AgentContextService
     priority: must
-    status: todo
+    status: done
   - id: P04_T10
     title: Presupuesto de contexto
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P05
   name: API FastAPI
   depends_on:
@@ -228,44 +234,44 @@ plans:
   - id: P05_T01
     title: Routers y errores
     priority: must
-    status: todo
+    status: done
   - id: P05_T02
     title: Endpoints workspace y módulos
     priority: must
-    status: todo
+    status: done
   - id: P05_T03
     title: Endpoints search y describe
     priority: must
-    status: todo
+    status: done
   - id: P05_T04
     title: Endpoints de grafo
     priority: must
-    status: todo
+    status: done
   - id: P05_T05
     title: Endpoints validation, diff e impact
     priority: must
-    status: todo
+    status: done
   - id: P05_T06
     title: SPARQL y competency questions
     priority: must
-    status: todo
+    status: done
   - id: P05_T07
     title: Endpoints de contexto de agente
     priority: must
-    status: todo
+    status: done
   - id: P05_T08
     title: Reload y cache
     priority: must
-    status: todo
+    status: done
   - id: P05_T09
     title: Cliente TypeScript generado
     priority: must
-    status: todo
+    status: done
   - id: P05_T10
     title: Pruebas de integración
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P06
   name: Visualización y navegación Svelte
   depends_on:
@@ -274,44 +280,44 @@ plans:
   - id: P06_T01
     title: Layout y navegación
     priority: must
-    status: todo
+    status: done
   - id: P06_T02
     title: Dashboard
     priority: must
-    status: todo
+    status: done
   - id: P06_T03
     title: Integrar Cytoscape
     priority: must
-    status: todo
+    status: done
   - id: P06_T04
     title: Filtros de grafo
     priority: must
-    status: todo
+    status: done
   - id: P06_T05
     title: Expansión progresiva
     priority: must
-    status: todo
+    status: done
   - id: P06_T06
     title: Panel de detalle
     priority: must
-    status: todo
+    status: done
   - id: P06_T07
     title: Buscador global
     priority: must
-    status: todo
+    status: done
   - id: P06_T08
     title: Explorador de módulos
     priority: must
-    status: todo
+    status: done
   - id: P06_T09
     title: Vista raw RDF
     priority: should
-    status: todo
+    status: done
   - id: P06_T10
     title: Accesibilidad básica
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P07
   name: Edición, propuestas y Git
   depends_on:
@@ -320,52 +326,52 @@ plans:
   - id: P07_T01
     title: GitWorkspaceService
     priority: must
-    status: todo
+    status: done
   - id: P07_T02
     title: Ramas de propuesta
     priority: must
-    status: todo
+    status: done
   - id: P07_T03
     title: TermWriter
     priority: must
-    status: todo
+    status: done
   - id: P07_T04
     title: Formulario de clase y concept
     priority: must
-    status: todo
+    status: done
   - id: P07_T05
     title: Formularios de propiedades
     priority: must
-    status: todo
+    status: done
   - id: P07_T06
     title: Formulario de individuo
     priority: must
-    status: todo
+    status: done
   - id: P07_T07
     title: Editor de relaciones
     priority: must
-    status: todo
+    status: done
   - id: P07_T08
     title: Flujo de deprecación
     priority: must
-    status: todo
+    status: done
   - id: P07_T09
     title: Diff semántico
     priority: must
-    status: todo
+    status: done
   - id: P07_T10
     title: Pantalla de revisión
     priority: must
-    status: todo
+    status: done
   - id: P07_T11
     title: Commit estructurado
     priority: must
-    status: todo
+    status: done
   - id: P07_T12
     title: Creación opcional de PR
     priority: should
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P08
   name: Contrato, skills y CLI para agentes
   depends_on:
@@ -374,48 +380,48 @@ plans:
   - id: P08_T01
     title: Manifest del contrato
     priority: must
-    status: todo
+    status: done
   - id: P08_T02
     title: Reglas canónicas
     priority: must
-    status: todo
+    status: done
   - id: P08_T03
     title: Ejemplos y contraejemplos
     priority: must
-    status: todo
+    status: done
   - id: P08_T04
     title: Skill ontology_discover
     priority: must
-    status: todo
+    status: done
   - id: P08_T05
     title: Skill ontology_author
     priority: must
-    status: todo
+    status: done
   - id: P08_T06
     title: Skill ontology_review
     priority: must
-    status: todo
+    status: done
   - id: P08_T07
     title: Generar AGENTS y CLAUDE
     priority: must
-    status: todo
+    status: done
   - id: P08_T08
     title: Generar carpetas de skills
     priority: must
-    status: todo
+    status: done
   - id: P08_T09
     title: CLI completo
     priority: must
-    status: todo
+    status: done
   - id: P08_T10
     title: Search ID obligatorio
     priority: must
-    status: todo
+    status: done
   - id: P08_T11
     title: Fixtures de tareas de agente
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P09
   name: Servidor MCP
   depends_on:
@@ -425,44 +431,44 @@ plans:
   - id: P09_T01
     title: Servidor MCP stdio
     priority: must
-    status: todo
+    status: done
   - id: P09_T02
     title: Tools de lectura
     priority: must
-    status: todo
+    status: done
   - id: P09_T03
     title: Write tools controlados
     priority: must
-    status: todo
+    status: done
   - id: P09_T04
     title: Resources MCP
     priority: should
-    status: todo
+    status: done
   - id: P09_T05
     title: Prompts MCP
     priority: should
-    status: todo
+    status: done
   - id: P09_T06
     title: Schemas estrictos
     priority: must
-    status: todo
+    status: done
   - id: P09_T07
     title: Audit log de escritura
     priority: must
-    status: todo
+    status: done
   - id: P09_T08
     title: Configurar Codex
     priority: must
-    status: todo
+    status: done
   - id: P09_T09
     title: Configurar Claude Code
     priority: must
-    status: todo
+    status: done
   - id: P09_T10
     title: Pruebas MCP
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P10
   name: CI, GitHub y gobernanza
   depends_on:
@@ -471,44 +477,44 @@ plans:
   - id: P10_T01
     title: Workflow de validación RDF
     priority: must
-    status: todo
+    status: done
   - id: P10_T02
     title: Workflow de tests
     priority: must
-    status: todo
+    status: done
   - id: P10_T03
     title: Artifact de diff semántico
     priority: must
-    status: todo
+    status: done
   - id: P10_T04
     title: Resumen de validación en PR
     priority: must
-    status: todo
+    status: done
   - id: P10_T05
     title: CODEOWNERS
     priority: must
-    status: todo
+    status: done
   - id: P10_T06
     title: Template de PR ontológico
     priority: must
-    status: todo
+    status: done
   - id: P10_T07
     title: Documentar ruleset de main
     priority: must
-    status: todo
+    status: done
   - id: P10_T08
     title: Validar sincronización de agentes
     priority: must
-    status: todo
+    status: done
   - id: P10_T09
     title: Detectar cambios semánticamente vacíos
     priority: should
-    status: todo
+    status: done
   - id: P10_T10
     title: Reporte de deprecados usados
     priority: should
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P11
   name: Empaquetado y despliegue interno
   depends_on:
@@ -517,36 +523,36 @@ plans:
   - id: P11_T01
     title: Imagen API
     priority: must
-    status: todo
+    status: done
   - id: P11_T02
     title: Build SvelteKit
     priority: must
-    status: todo
+    status: done
   - id: P11_T03
     title: Compose de producción interna
     priority: must
-    status: todo
+    status: done
   - id: P11_T04
     title: Health y readiness
     priority: must
-    status: todo
+    status: done
   - id: P11_T05
     title: Logs JSON
     priority: must
-    status: todo
+    status: done
   - id: P11_T06
     title: Documentar backup
     priority: must
-    status: todo
+    status: done
   - id: P11_T07
     title: Documentar actualización
     priority: must
-    status: todo
+    status: done
   - id: P11_T08
     title: Smoke tests
     priority: must
-    status: todo
-  status: todo
+    status: done
+  status: done
 - id: P12
   name: Piloto empresarial y aceptación
   depends_on:
@@ -555,27 +561,27 @@ plans:
   - id: P12_T01
     title: Elegir pregunta transversal real
     priority: must
-    status: todo
+    status: done
   - id: P12_T02
     title: Relevar contexto mínimo
     priority: must
-    status: todo
+    status: done
   - id: P12_T03
     title: Codex propone el modelo
     priority: must
-    status: todo
+    status: done
   - id: P12_T04
-    title: Claude revisa la propuesta
+    title: Segundo Codex revisa la propuesta
     priority: must
-    status: todo
+    status: done
   - id: P12_T05
     title: Revisión de dominio
     priority: must
-    status: todo
+    status: done
   - id: P12_T06
     title: Publicar primer módulo de dominio
     priority: must
-    status: todo
+    status: in_progress
   - id: P12_T07
     title: Ejecutar competency questions
     priority: must
@@ -594,6 +600,564 @@ plans:
     status: todo
   - id: P12_T11
     title: Crear backlog posterior
+    priority: must
+    status: todo
+  status: in_progress
+- id: P13
+  name: Contrato de producto y arquitectura de intake
+  depends_on:
+  - P12
+  tasks:
+  - id: P13_T01
+    title: Confirmar experiencia Codex-first y web viewer-first
+    priority: must
+    status: todo
+  - id: P13_T02
+    title: Crear ADR 014 y ADR 015
+    priority: must
+    status: todo
+  - id: P13_T03
+    title: Crear ADR 016 y ADR 017
+    priority: must
+    status: todo
+  - id: P13_T04
+    title: Crear ADR 018 a ADR 020
+    priority: must
+    status: todo
+  - id: P13_T05
+    title: Definir schemas versionados de intake
+    priority: must
+    status: todo
+  - id: P13_T06
+    title: Definir compatibilidad y migraciones
+    priority: must
+    status: todo
+  - id: P13_T07
+    title: Crear ejemplos y contraejemplos de contratos
+    priority: must
+    status: todo
+  - id: P13_T08
+    title: Actualizar riesgos y threat model
+    priority: must
+    status: todo
+  - id: P13_T09
+    title: Crear validación documental de la evolución
+    priority: must
+    status: todo
+  status: todo
+- id: P14
+  name: Workspace de proyectos y ledger de evidencia
+  depends_on:
+  - P13
+  tasks:
+  - id: P14_T01
+    title: Implementar KnowledgeProjectService
+    priority: must
+    status: todo
+  - id: P14_T02
+    title: Implementar SourceRegistry
+    priority: must
+    status: todo
+  - id: P14_T03
+    title: Implementar fingerprint de fuentes
+    priority: must
+    status: todo
+  - id: P14_T04
+    title: Implementar EvidenceLedger
+    priority: must
+    status: todo
+  - id: P14_T05
+    title: Implementar IntakeRunStore
+    priority: must
+    status: todo
+  - id: P14_T06
+    title: Implementar cache content-addressed
+    priority: must
+    status: todo
+  - id: P14_T07
+    title: Implementar ledgers de candidatos y decisiones
+    priority: must
+    status: todo
+  - id: P14_T08
+    title: Agregar locks y compare-and-swap
+    priority: must
+    status: todo
+  - id: P14_T09
+    title: Agregar clasificación y redacción
+    priority: must
+    status: todo
+  - id: P14_T10
+    title: Crear CLI project y source básico
+    priority: must
+    status: todo
+  - id: P14_T11
+    title: Agregar audit log de intake
+    priority: must
+    status: todo
+  - id: P14_T12
+    title: Crear suite adversarial de workspace
+    priority: must
+    status: todo
+  status: todo
+- id: P15
+  name: Adaptadores de documentos
+  depends_on:
+  - P14
+  tasks:
+  - id: P15_T01
+    title: Definir SourceAdapter y ExtractionUnit
+    priority: must
+    status: todo
+  - id: P15_T02
+    title: Implementar texto y Markdown
+    priority: must
+    status: todo
+  - id: P15_T03
+    title: Implementar PDF textual
+    priority: must
+    status: todo
+  - id: P15_T04
+    title: Implementar OCR opcional
+    priority: should
+    status: todo
+  - id: P15_T05
+    title: Implementar DOCX
+    priority: must
+    status: todo
+  - id: P15_T06
+    title: Implementar XLSX
+    priority: must
+    status: todo
+  - id: P15_T07
+    title: Implementar CSV
+    priority: must
+    status: todo
+  - id: P15_T08
+    title: Normalizar unidades de extracción
+    priority: must
+    status: todo
+  - id: P15_T09
+    title: Aplicar límites de recursos
+    priority: must
+    status: todo
+  - id: P15_T10
+    title: Neutralizar instrucciones embebidas
+    priority: must
+    status: todo
+  - id: P15_T11
+    title: Crear corpus de fixtures redistribuible
+    priority: must
+    status: todo
+  - id: P15_T12
+    title: Probar round trip de evidencia documental
+    priority: must
+    status: todo
+  status: todo
+- id: P16
+  name: Adaptador Git y GitHub
+  depends_on:
+  - P15
+  tasks:
+  - id: P16_T01
+    title: Implementar checkout Git read-only
+    priority: must
+    status: todo
+  - id: P16_T02
+    title: Implementar GitHub autenticado
+    priority: must
+    status: todo
+  - id: P16_T03
+    title: Confinar clones temporales
+    priority: must
+    status: todo
+  - id: P16_T04
+    title: Crear inventario de archivos
+    priority: must
+    status: todo
+  - id: P16_T05
+    title: Crear locators Git
+    priority: must
+    status: todo
+  - id: P16_T06
+    title: Detectar secrets y binarios
+    priority: must
+    status: todo
+  - id: P16_T07
+    title: Implementar refresh Git incremental
+    priority: must
+    status: todo
+  - id: P16_T08
+    title: Resolver submodules y LFS explícitamente
+    priority: should
+    status: todo
+  - id: P16_T09
+    title: Extraer contexto de arquitectura
+    priority: must
+    status: todo
+  - id: P16_T10
+    title: Crear pruebas públicas y privadas simuladas
+    priority: must
+    status: todo
+  status: todo
+- id: P17
+  name: Adaptador PostgreSQL read-only
+  depends_on:
+  - P16
+  tasks:
+  - id: P17_T01
+    title: Definir interfaz de database source
+    priority: must
+    status: todo
+  - id: P17_T02
+    title: Resolver credenciales por alias
+    priority: must
+    status: todo
+  - id: P17_T03
+    title: Forzar sesiones read-only
+    priority: must
+    status: todo
+  - id: P17_T04
+    title: Implementar introspección PostgreSQL
+    priority: must
+    status: todo
+  - id: P17_T05
+    title: Implementar consultas acotadas
+    priority: must
+    status: todo
+  - id: P17_T06
+    title: Mantener sampling opt-in
+    priority: should
+    status: todo
+  - id: P17_T07
+    title: Agregar clasificación y masking
+    priority: must
+    status: todo
+  - id: P17_T08
+    title: Crear fingerprints de schema y query
+    priority: must
+    status: todo
+  - id: P17_T09
+    title: Implementar refresh de schema
+    priority: must
+    status: todo
+  - id: P17_T10
+    title: Documentar frontera operacional
+    priority: must
+    status: todo
+  - id: P17_T11
+    title: Crear integración PostgreSQL efímera
+    priority: must
+    status: todo
+  status: todo
+- id: P18
+  name: Candidatos y alineación ontológica
+  depends_on:
+  - P17
+  tasks:
+  - id: P18_T01
+    title: Implementar creación determinista de candidatos
+    priority: must
+    status: todo
+  - id: P18_T02
+    title: Clasificar observaciones
+    priority: must
+    status: todo
+  - id: P18_T03
+    title: Exigir suficiencia de evidencia
+    priority: must
+    status: todo
+  - id: P18_T04
+    title: Integrar contexto y búsqueda global
+    priority: must
+    status: todo
+  - id: P18_T05
+    title: Inspeccionar matches plausibles
+    priority: must
+    status: todo
+  - id: P18_T06
+    title: Implementar disposiciones de candidatos
+    priority: must
+    status: todo
+  - id: P18_T07
+    title: Detectar duplicados entre fuentes
+    priority: must
+    status: todo
+  - id: P18_T08
+    title: Detectar conflictos semánticos
+    priority: must
+    status: todo
+  - id: P18_T09
+    title: Resolver módulo e imports candidatos
+    priority: must
+    status: todo
+  - id: P18_T10
+    title: Ordenar dependencias entre candidatos
+    priority: must
+    status: todo
+  - id: P18_T11
+    title: Invalidar alineación stale
+    priority: must
+    status: todo
+  - id: P18_T12
+    title: Crear evaluación reproducible de alineación
+    priority: must
+    status: todo
+  status: todo
+- id: P19
+  name: Skills, CLI y MCP de incorporación
+  depends_on:
+  - P18
+  tasks:
+  - id: P19_T01
+    title: Agregar reglas canónicas de intake
+    priority: must
+    status: todo
+  - id: P19_T02
+    title: Crear skill knowledge_intake
+    priority: must
+    status: todo
+  - id: P19_T03
+    title: Crear skill knowledge_align
+    priority: must
+    status: todo
+  - id: P19_T04
+    title: Crear skill knowledge_decide
+    priority: must
+    status: todo
+  - id: P19_T05
+    title: Crear skill knowledge_publish
+    priority: must
+    status: todo
+  - id: P19_T06
+    title: Completar CLI de intake
+    priority: must
+    status: todo
+  - id: P19_T07
+    title: Exponer tools MCP de lectura de intake
+    priority: must
+    status: todo
+  - id: P19_T08
+    title: Exponer tools MCP controladas de intake
+    priority: must
+    status: todo
+  - id: P19_T09
+    title: Agregar resume y report
+    priority: must
+    status: todo
+  - id: P19_T10
+    title: Auditar toda mutación y rechazo
+    priority: must
+    status: todo
+  - id: P19_T11
+    title: Generar adaptadores de agentes
+    priority: must
+    status: todo
+  - id: P19_T12
+    title: Crear evaluación de agentes de intake
+    priority: must
+    status: todo
+  status: todo
+- id: P20
+  name: Decisiones humanas y propuesta gobernada por lote
+  depends_on:
+  - P19
+  tasks:
+  - id: P20_T01
+    title: Generar resumen conversacional
+    priority: must
+    status: todo
+  - id: P20_T02
+    title: Formular preguntas estructuradas
+    priority: must
+    status: todo
+  - id: P20_T03
+    title: Registrar decisiones humanas
+    priority: must
+    status: todo
+  - id: P20_T04
+    title: Bloquear decisiones stale o incompletas
+    priority: must
+    status: todo
+  - id: P20_T05
+    title: Implementar ProposalOrchestrator
+    priority: must
+    status: todo
+  - id: P20_T06
+    title: Implementar staging por lote
+    priority: must
+    status: todo
+  - id: P20_T07
+    title: Materializar evidencia y PROV
+    priority: must
+    status: todo
+  - id: P20_T08
+    title: Preservar ownership y proposal graphs
+    priority: must
+    status: todo
+  - id: P20_T09
+    title: Ejecutar gates completos de propuesta
+    priority: must
+    status: todo
+  - id: P20_T10
+    title: Generar aprobación plain-language
+    priority: must
+    status: todo
+  - id: P20_T11
+    title: Preparar commit y PR de intake
+    priority: must
+    status: todo
+  - id: P20_T12
+    title: Crear regresiones transaccionales
+    priority: must
+    status: todo
+  status: todo
+- id: P21
+  name: Incrementalidad, privacidad y resiliencia
+  depends_on:
+  - P20
+  tasks:
+  - id: P21_T01
+    title: Implementar refresh multi-source
+    priority: must
+    status: todo
+  - id: P21_T02
+    title: Propagar stale evidence
+    priority: must
+    status: todo
+  - id: P21_T03
+    title: Recalcular impacto incremental
+    priority: must
+    status: todo
+  - id: P21_T04
+    title: Manejar revocación y ausencia de fuentes
+    priority: must
+    status: todo
+  - id: P21_T05
+    title: Garantizar idempotencia
+    priority: must
+    status: todo
+  - id: P21_T06
+    title: Aislar proyectos
+    priority: must
+    status: todo
+  - id: P21_T07
+    title: Endurecer parsers y subprocesses
+    priority: must
+    status: todo
+  - id: P21_T08
+    title: Endurecer secrets y PII
+    priority: must
+    status: todo
+  - id: P21_T09
+    title: Resolver concurrencia y recovery
+    priority: must
+    status: todo
+  - id: P21_T10
+    title: Agregar retención y borrado seguro
+    priority: must
+    status: todo
+  - id: P21_T11
+    title: Agregar métricas y logs de intake
+    priority: must
+    status: todo
+  - id: P21_T12
+    title: Ejecutar suite adversarial completa
+    priority: must
+    status: todo
+  status: todo
+- id: P22
+  name: Viewer y consulta empresarial
+  depends_on:
+  - P21
+  tasks:
+  - id: P22_T01
+    title: Establecer web read-only por defecto
+    priority: must
+    status: todo
+  - id: P22_T02
+    title: Mostrar projects y proposal overlays
+    priority: must
+    status: todo
+  - id: P22_T03
+    title: Mostrar evidencia y locators
+    priority: must
+    status: todo
+  - id: P22_T04
+    title: Mostrar decisiones y ownership
+    priority: must
+    status: todo
+  - id: P22_T05
+    title: Ampliar filtros del grafo
+    priority: must
+    status: todo
+  - id: P22_T06
+    title: Exponer consulta Codex read-only
+    priority: must
+    status: todo
+  - id: P22_T07
+    title: Generar respuestas trazables
+    priority: must
+    status: todo
+  - id: P22_T08
+    title: Cubrir estados de fuente
+    priority: must
+    status: todo
+  - id: P22_T09
+    title: Validar UX y accesibilidad del viewer
+    priority: must
+    status: todo
+  status: todo
+- id: P23
+  name: Piloto mixto y aceptación Codex-first
+  depends_on:
+  - P22
+  tasks:
+  - id: P23_T01
+    title: Elegir pregunta empresarial real de intake
+    priority: must
+    status: todo
+  - id: P23_T02
+    title: Crear proyecto y source pack mixto
+    priority: must
+    status: todo
+  - id: P23_T03
+    title: Ejecutar extracción gobernada
+    priority: must
+    status: todo
+  - id: P23_T04
+    title: Crear y alinear candidatos
+    priority: must
+    status: todo
+  - id: P23_T05
+    title: Resolver decisiones con especialista
+    priority: must
+    status: todo
+  - id: P23_T06
+    title: Hacer que Codex prepare la propuesta
+    priority: must
+    status: todo
+  - id: P23_T07
+    title: Revisar y publicar mediante Git
+    priority: must
+    status: todo
+  - id: P23_T08
+    title: Visualizar el conocimiento publicado
+    priority: must
+    status: todo
+  - id: P23_T09
+    title: Responder una consulta futura
+    priority: must
+    status: todo
+  - id: P23_T10
+    title: Reprocesar una fuente modificada
+    priority: must
+    status: todo
+  - id: P23_T11
+    title: Ejecutar adversariales y escala
+    priority: must
+    status: todo
+  - id: P23_T12
+    title: Cerrar aceptación y operación Codex-first
     priority: must
     status: todo
   status: todo

@@ -1,0 +1,54 @@
+name: enterprise-ontology-workbench
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Containerfile
+    environment:
+      EOW_ENV: ${EOW_ENV:-development}
+      EOW_REPOSITORY_ROOT: /repository
+      EOW_KNOWLEDGE_ROOT: /repository/knowledge
+      EOW_NAMESPACE_CONFIG: /repository/config/namespace.yaml
+      EOW_WRITE_ENABLED: "true"
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: /repository
+    volumes:
+      - type: bind
+        source: .
+        target: /repository
+        read_only: false
+    ports:
+      - "${API_PORT:-8000}:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://localhost:8000/ready', timeout=2)
+      interval: 2s
+      timeout: 3s
+      retries: 15
+      start_period: 5s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Containerfile
+    environment:
+      PUBLIC_API_BASE_URL: ${PUBLIC_API_BASE_URL:-http://localhost:8000}
+      EOW_API_UPSTREAM_URL: ${EOW_API_UPSTREAM_URL:-http://api:8000}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://127.0.0.1:3000/"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+      start_period: 5s

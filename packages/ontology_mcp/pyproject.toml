@@ -1,0 +1,21 @@
+[project]
+name = "ontology-mcp"
+version = "0.1.0"
+description = "MCP adapter for the Enterprise Ontology Workbench"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "mcp>=2,<3",
+  "ontology-core",
+  "pydantic>=2.10,<3",
+]
+
+[project.scripts]
+ontology-mcp = "ontology_mcp.server:main"
+ontology-mcp-smoke = "ontology_mcp.smoke:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+ontology-core = { workspace = true }

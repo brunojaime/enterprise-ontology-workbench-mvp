@@ -1,0 +1,12 @@
+@prefix ex: <https://knowledge.example.com/example/invalid/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+# This parses as RDF but deliberately omits labels, ownership and lifecycle
+# metadata. Plan 03 will define and execute the rules that reject it.
+ex:ClassWithoutMetadata a owl:Class .
+ex:propertyWithoutMetadata a owl:ObjectProperty .
+ex:individualWithoutMetadata a ex:ClassWithoutMetadata .
+ex:conceptWithoutMetadata a skos:Concept .
+ex:shapeWithoutMetadata a sh:NodeShape .

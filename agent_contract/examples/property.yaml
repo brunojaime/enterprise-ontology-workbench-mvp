@@ -1,0 +1,9 @@
+id: property_supports_unit
+decision: object_property
+valid:
+  iri: https://knowledge.example.com/ontology/software#supportsOrganizationUnit
+  direction: Una aplicación soporta una unidad organizativa.
+  example: app:workbench software:supportsOrganizationUnit orgid:architecture .
+invalid:
+  iri: https://knowledge.example.com/ontology/software#RelatedTo
+  defects: [property_name_not_lower_camel_case, direction_missing, generic_semantics]

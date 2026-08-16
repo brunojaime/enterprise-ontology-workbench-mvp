@@ -1,0 +1,26 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix kg: <https://knowledge.example.com/ontology/knowledge_governance#> .
+@prefix kgid: <https://knowledge.example.com/id/knowledge_governance/process/> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:eow:proposal-statement:20fa573ab7831fced012c7a9b81c094d78798045684c21e33aac46c74b669eb1> a rdf:Statement ;
+    dcterms:source "Recorrido transversal definido en la pregunta real del piloto P12"@es ;
+    rdf:object kgid:ontology_change_publication ;
+    rdf:predicate kg:governedThrough ;
+    rdf:subject kg:EnterpriseKnowledgeGovernance ;
+    eow:status "proposed" .
+
+kg:EnterpriseKnowledgeGovernance a skos:Concept ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:isPartOf module:knowledge_governance ;
+    dcterms:source "enterprise_ontology_workbench_mvp_spec.md, secciones 1 a 4 y 34"@es ;
+    skos:definition "Disciplina que controla cómo el conocimiento empresarial se propone, valida, revisa y publica como información canónica trazable."@es ;
+    skos:prefLabel "Gobernanza del conocimiento empresarial"@es ;
+    eow:status "proposed" ;
+    kg:governedThrough kgid:ontology_change_publication .
+

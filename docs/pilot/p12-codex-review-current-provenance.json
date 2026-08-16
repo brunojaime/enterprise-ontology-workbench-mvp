@@ -1,0 +1,138 @@
+{
+  "artifacts": [
+    {
+      "path": "docs/pilot/p12-codex-review-current.json",
+      "sha256": "7499d661a09984a017b9cf48d5cffb81d12600ba819787429e48e41f85c20206"
+    },
+    {
+      "path": "docs/pilot/p12-authoring-evidence.json",
+      "sha256": "37284ab5ce2eb4d86cd0ad79c94d1de697eb38dc796a88d4b677c2ce26fb7674"
+    },
+    {
+      "path": "docs/pilot/p12-domain-review.json",
+      "sha256": "d0fd1061618af6a7cc519818fadaeab916f271aac50db80f9e2e6725fe10bd74"
+    },
+    {
+      "path": "docs/pilot/p12-semantic-diff.json",
+      "sha256": "e1ea3ce1f9f141238e9875e0b47c5bee3ab74cb5aedfca12aeca0a430af126f3"
+    },
+    {
+      "path": "docs/pilot/p12-pilot.md",
+      "sha256": "b9fea7ddcce81dcfbd76e88ea28f207894bbd58c258cae183fcb3cfe57e5efc1"
+    },
+    {
+      "path": "docs/pilot/p12-codex-review-prompt.md",
+      "sha256": "b8a2812f0a404a3a7834f2e88ed426a4afc6533108119f988c4e6c2c2a4e561b"
+    },
+    {
+      "path": "docs/pilot/p12-codex-review-output.schema.json",
+      "sha256": "a0ca9c71983399c43d2bb30642863ad929338a71d3f957e08f5d98bceab77398"
+    },
+    {
+      "path": "enterprise_ontology_workbench_mvp_spec.md",
+      "sha256": "740fa783ddae90d91d4e67b7229c1117c7aa88b8de2e5cb5717be01561615e4b"
+    },
+    {
+      "path": "enterprise_ontology_workbench_mvp_backlog.yaml",
+      "sha256": "beb590dd94b6b5bf6f312f4066477901e8c8941b55f1dbffc0e4ae89f9fb7e28"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "76723eeb39cd578d4a36bb9724b520d99e909df5114b08f4eb6b5638bb4bab06"
+    },
+    {
+      "path": "agent_contract/rules/change_protocol.md",
+      "sha256": "528a41b3390830e7d92375fb7e7472e15a1d0fac0a93e3c23327948b0e9a0e8b"
+    },
+    {
+      "path": "agent_contract/rules/modeling_decision_tree.md",
+      "sha256": "841067bd0fd5d91d31d48d68c834f654354a88e71939e2e1e521d3a1a99bd2ce"
+    },
+    {
+      "path": "agent_contract/rules/principles.md",
+      "sha256": "2b808b9fa39a0f1b78b81fff4e8cdca202b92013900e6ba5cf653983e302474e"
+    },
+    {
+      "path": "agent_contract/rules/prohibited_patterns.md",
+      "sha256": "0c27fa96bf66dec3874bf81d7b554082c83af1ae0bc0a876385a765fec14e0ff"
+    }
+  ],
+  "baseline": {
+    "source_package_sha256": "8f036835a2e334fdccfc5ca4530e991934074b1cc3ccb7db724b29d0b3014649",
+    "source_spec_sha256": "c40fbf3a1efa557ed505d496270a73637b74e53a7cfc3cc86d41b3e1e015212c"
+  },
+  "claude_compatibility": {
+    "executed_for_acceptance": false,
+    "role": "optional_compatibility_only"
+  },
+  "execution": {
+    "canonical_checkout_modified": false,
+    "commands": [
+      {
+        "command": "./.venv/bin/ontology context --task Revisar independientemente la propuesta RDF del piloto P12 --json",
+        "exit_code": 0
+      },
+      {
+        "command": "./.venv/bin/ontology search gobernanza del conocimiento --json",
+        "exit_code": 0
+      },
+      {
+        "command": "./.venv/bin/ontology validate --json",
+        "exit_code": 0
+      },
+      {
+        "command": "./.venv/bin/ontology diff --base main --json",
+        "exit_code": 0
+      },
+      {
+        "command": "./.venv/bin/ontology impact <reviewed-resource> --json",
+        "exit_code": 0
+      },
+      {
+        "command": "./.venv/bin/ontology query knowledge/competency_questions/queries/governed_knowledge_traceability.rq --json",
+        "exit_code": 0
+      }
+    ],
+    "isolated_copy": false,
+    "mode": "read_only_review",
+    "reviewed_at": "2026-08-15"
+  },
+  "post_review_specification_extension": {
+    "affected_plans": [
+      "P13",
+      "P14",
+      "P15",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21",
+      "P22",
+      "P23"
+    ],
+    "p12_acceptance_changed": false,
+    "review_scope": "The review remains evidence for the P12 RDF snapshot and the specification/backlog digests captured on 2026-08-15.",
+    "status": "not_part_of_this_p12_review"
+  },
+  "reviewed_revision": {
+    "branch": "proposal/p12-governed-knowledge-pilot",
+    "head": "30e85558acfc32ae8487a71a5f0628291e6d5b8f",
+    "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17"
+  },
+  "reviewer": {
+    "authentication": "ChatGPT",
+    "client": "codex-cli",
+    "version": "0.114.0"
+  },
+  "semantic_diff": {
+    "counts": {
+      "added_quads": 497,
+      "change_groups": 61,
+      "removed_quads": 0
+    },
+    "normalized_diff_sha256": "eb29cab72465d87ad4496900015b4b7b182371e8408b7760c99f4555ebaa772e"
+  },
+  "status": "current",
+  "verdict": "approve"
+}

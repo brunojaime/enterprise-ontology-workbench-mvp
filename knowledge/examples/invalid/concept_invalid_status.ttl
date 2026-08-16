@@ -1,0 +1,16 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/example/invalid/> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Contraejemplo dirigido: el estado no pertenece al vocabulario permitido.
+ex:ConceptInvalidStatus a skos:Concept ;
+    skos:prefLabel "Concepto con estado inválido"@es ;
+    skos:definition "Concepto sintético completo salvo por un estado fuera del vocabulario controlado."@es ;
+    dcterms:isPartOf module:fixture ;
+    eow:status "draft" ;
+    dcterms:source "Contraejemplo de concepto con estado inválido de Plan 02"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

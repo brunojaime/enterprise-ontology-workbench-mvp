@@ -1,0 +1,4 @@
+@prefix external: <https://external.example/vocabulary#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+external:lowercase_class a owl:Class .

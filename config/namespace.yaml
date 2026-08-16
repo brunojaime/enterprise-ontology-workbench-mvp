@@ -1,0 +1,19 @@
+config_version: '1.0'
+namespace:
+  base: https://knowledge.example.com/
+prefixes:
+  cq: id/competency-question/
+  cqv: ontology/competency#
+  dcterms: http://purl.org/dc/terms/
+  eow: ontology/core#
+  kg: ontology/knowledge_governance#
+  kgid: id/knowledge_governance/process/
+  module: id/module/
+  org: ontology/organization#
+  owl: http://www.w3.org/2002/07/owl#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  sh: http://www.w3.org/ns/shacl#
+  skos: http://www.w3.org/2004/02/skos/core#
+  software: ontology/software#
+  xsd: http://www.w3.org/2001/XMLSchema#

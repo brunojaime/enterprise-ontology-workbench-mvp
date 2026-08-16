@@ -1,0 +1,6 @@
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+ex:relatedTo a owl:ObjectProperty .
+ex:has a owl:ObjectProperty .
+ex:subject owl:sameAs ex:object .

@@ -1,0 +1,18 @@
+@prefix cqv: <https://knowledge.example.com/ontology/competency#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cqv:acceptanceCriterion a owl:DatatypeProperty ;
+    rdfs:domain cqv:CompetencyQuestion ; rdfs:range xsd:string ;
+    skos:prefLabel "criterio de aceptación"@es ;
+    skos:definition "Criterio textual verificable que explica cuándo se considera respondida una pregunta sin expectativa ejecutable."@es ;
+    skos:scopeNote "Se lee desde la pregunta hacia el criterio humano que permite evaluar su respuesta."@es ;
+    skos:example "cq:documented_only cqv:acceptanceCriterion \"La cobertura futura está descrita de forma verificable.\"@es ." ;
+    dcterms:isPartOf module:competency ; eow:status "active" ;
+    dcterms:source "Especificación canónica, sección 11.4"@es ;
+    dcterms:creator "Codex generator" ; dcterms:created "2026-08-12"^^xsd:date .

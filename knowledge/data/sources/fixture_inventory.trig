@@ -1,0 +1,57 @@
+@prefix app: <https://knowledge.example.com/id/software/application/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix org1: <https://knowledge.example.com/ontology/organization#> .
+@prefix orgid: <https://knowledge.example.com/id/organization/unit/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix software: <https://knowledge.example.com/ontology/software#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://knowledge.example.com/graph/metadata/proposal/p12-governed-knowledge-pilot/fixture_inventory> {
+    <https://knowledge.example.com/graph/proposal/p12-governed-knowledge-pilot/fixture_inventory> a prov:Entity ;
+        prov:wasDerivedFrom <https://knowledge.example.com/graph/source/fixture_inventory> ;
+        eow:status "proposed" .
+}
+
+<https://knowledge.example.com/graph/source/fixture_inventory> {
+    app:workbench a software:Application ;
+        software:supportsOrganizationUnit orgid:architecture .
+
+    orgid:architecture a owl:NamedIndividual,
+            org1:OrganizationUnit ;
+        skos:prefLabel "Arquitectura (fixture)"@es .
+}
+
+<https://knowledge.example.com/graph/proposal/p12-governed-knowledge-pilot/fixture_inventory> {
+    <urn:eow:proposal-statement:24c9fab89a04fdc104cfd92721ce567f5d3e8ce8fe8a168f4efc75747e98ff87> a rdf:Statement ;
+        dcterms:source "packages/ontology_core/ y arquitectura de la especificación, sección 8"@es ;
+        rdf:object <https://knowledge.example.com/id/software/component/ontology_core> ;
+        rdf:predicate software:isComposedOf ;
+        rdf:subject app:workbench ;
+        eow:status "proposed" .
+
+    app:workbench software:isComposedOf <https://knowledge.example.com/id/software/component/ontology_core> .
+}
+
+<https://knowledge.example.com/graph/metadata/source/fixture_inventory> {
+    <https://knowledge.example.com/graph/source/fixture_inventory> a prov:Entity ;
+        prov:generatedAtTime "2026-08-12T00:00:00+00:00"^^xsd:dateTime ;
+        prov:wasDerivedFrom <https://knowledge.example.com/id/source/synthetic_fixture_inventory> ;
+        prov:wasGeneratedBy <https://knowledge.example.com/id/activity/generate_fixture_inventory> ;
+        eow:status "published" .
+
+    <https://knowledge.example.com/id/activity/generate_fixture_inventory> a prov:Activity ;
+        prov:endedAtTime "2026-08-12T00:00:00+00:00"^^xsd:dateTime ;
+        prov:used <https://knowledge.example.com/id/source/synthetic_fixture_inventory> ;
+        prov:wasAssociatedWith <https://knowledge.example.com/id/agent/codex_generator> .
+
+    <https://knowledge.example.com/id/agent/codex_generator> a prov:SoftwareAgent ;
+        skos:prefLabel "Generador Codex"@es .
+
+    <https://knowledge.example.com/id/source/synthetic_fixture_inventory> a prov:Entity ;
+        dcterms:title "Inventario sintético para pruebas de P02"@es .
+}
+

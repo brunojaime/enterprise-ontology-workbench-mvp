@@ -1,0 +1,3 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://knowledge.example.com/id/resource?version=1> a rdfs:Resource .

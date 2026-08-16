@@ -1,0 +1,15 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://knowledge.example.com/graph/manifest-fixture> {
+    module:alpha a eow:OntologyModule ;
+        eow:graph <https://knowledge.example.com/graph/ontology/alpha> .
+}
+
+<https://knowledge.example.com/graph/ontology/alpha> {
+    ex:TermWithUnknownOwner a owl:Class ;
+        dcterms:isPartOf module:missing .
+}

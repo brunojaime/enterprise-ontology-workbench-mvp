@@ -1,0 +1,6 @@
+id: duplicate_application
+decision: reuse
+search: aplicación empresarial
+existing: https://knowledge.example.com/ontology/software#Application
+invalid_proposal: https://knowledge.example.com/ontology/software#SoftwareApplication
+defects: [duplicates_existing_meaning]

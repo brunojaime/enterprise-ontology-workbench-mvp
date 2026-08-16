@@ -1,0 +1,16 @@
+[project]
+name = "ontology-cli"
+version = "0.1.0"
+description = "CLI adapter for the Enterprise Ontology Workbench"
+requires-python = ">=3.12,<3.13"
+dependencies = ["ontology-core"]
+
+[project.scripts]
+ontology = "ontology_cli.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+ontology-core = { workspace = true }

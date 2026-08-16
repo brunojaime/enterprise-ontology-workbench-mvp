@@ -1,0 +1,4 @@
+@prefix individual: <https://knowledge.example.com/id/organization/unit/> .
+@prefix org: <https://knowledge.example.com/ontology/organization#> .
+
+individual:valid_instance a org:OrganizationUnit .

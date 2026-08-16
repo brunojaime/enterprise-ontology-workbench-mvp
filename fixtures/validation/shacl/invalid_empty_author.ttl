@@ -1,0 +1,16 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:EmptyAuthor a owl:Class ;
+    skos:prefLabel "Autor vacío"@es ;
+    skos:definition "Clase de prueba con una sola autoría inválida."@es ;
+    dcterms:isPartOf module:fixture ;
+    eow:status "active" ;
+    dcterms:source "fixture P03 empty author" ;
+    dcterms:creator "   " ;
+    dcterms:created "2026-08-12"^^xsd:date .

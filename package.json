@@ -1,0 +1,18 @@
+{
+  "name": "enterprise-ontology-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.5",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @eow/web build",
+    "check": "pnpm --filter @eow/web check",
+    "dev": "pnpm --filter @eow/web dev",
+    "format": "pnpm --filter @eow/web format",
+    "generate:api-client": "uv run python scripts/generate_api_client.py",
+    "lint": "pnpm --filter @eow/web lint",
+    "test": "pnpm --filter @eow/web test"
+  }
+}

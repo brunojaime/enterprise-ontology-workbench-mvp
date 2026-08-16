@@ -1,0 +1,107 @@
+{
+  "checks": [
+    {
+      "evidence": "`uv run ontology context --task \"Revisar independientemente la propuesta RDF del piloto P12\" --json` terminó con código 0 y devolvió 5 módulos, 4 preguntas de competencia y contexto estructurado.",
+      "id": "required_context",
+      "status": "passed"
+    },
+    {
+      "evidence": "`uv run ontology search \"gobernanza del conocimiento\" --json` terminó con código 0; búsqueda global, offset 0, límite 50, sin página siguiente y 2 resultados actuales.",
+      "id": "required_global_search",
+      "status": "passed"
+    },
+    {
+      "evidence": "`uv run ontology validate --json` terminó con código 0: conforms=true y 0 errores, warnings o infos.",
+      "id": "required_validation",
+      "status": "passed"
+    },
+    {
+      "evidence": "`uv run ontology diff --base main --json` terminó con código 0: 493 quads agregadas, 0 removidas, 60 recursos/grupos y 4 preguntas potencialmente impactadas.",
+      "id": "required_semantic_diff",
+      "status": "passed"
+    },
+    {
+      "evidence": "Los hashes SHA-256 del diff actual y `.diff` en `p12-semantic-diff.json` coinciden: c57af17d9c90145d9450423abf0343d1ffce720f4a793b75f7c521459a5b1f64.",
+      "id": "semantic_diff_artifact",
+      "status": "passed"
+    },
+    {
+      "evidence": "Los 13 receipts decodificados declaran offset=0, limit=50, filtros de tipos y módulos vacíos, snapshot coincidente y página completa; los snapshots encadenan cada write con la búsqueda siguiente, los targets estaban ausentes y la verificación posterior encuentra los 13.",
+      "id": "search_receipts",
+      "status": "passed"
+    },
+    {
+      "evidence": "El ledger contiene 23 invocation_id únicos: 13 ontology_propose_term y 10 ontology_propose_relation, todos con result=success y archivos responsables identificados.",
+      "id": "write_audit",
+      "status": "passed"
+    },
+    {
+      "evidence": "Los describe actuales confirman los tipos declarados: ontología, SKOS Concept, 3 clases, 4 ObjectProperty, 3 NamedIndividual con clase empresarial explícita y 1 CompetencyQuestion. No obstante, la elección SKOS pendiente impide superar la revisión semántica.",
+      "id": "resource_type_review",
+      "status": "failed"
+    },
+    {
+      "evidence": "Cada término ontológico y la pregunta tienen un único direct module; no hay ciclos y knowledge_governance importa core y software. Sin embargo, su rightsHolder declara explícitamente que está pendiente de confirmación de dominio.",
+      "id": "ownership_and_imports",
+      "status": "failed"
+    },
+    {
+      "evidence": "Los 13 recursos tienen etiqueta, estado proposed, evidencia, autor y fecha; clases, propiedades, concepto, ontología y CQ tienen definición. Las propiedades incluyen dirección, ejemplo, dominio y rango.",
+      "id": "metadata_and_evidence",
+      "status": "passed"
+    },
+    {
+      "evidence": "La validación no reporta duplicados ni IRIs internas colgantes; búsquedas globales actuales recuperan cada target y los 11 candidatos históricos de `ontology core` no incluyen otro componente equivalente.",
+      "id": "duplicates_and_internal_iris",
+      "status": "passed"
+    },
+    {
+      "evidence": "No se encontraron owl:sameAs, relaciones relatedTo, blank nodes empresariales, eliminaciones RDF, SPARQL Update ni SERVICE en el alcance revisado; removed_quads=0.",
+      "id": "prohibited_patterns",
+      "status": "passed"
+    },
+    {
+      "evidence": "Se ejecutó `ontology impact --json` para los 13 recursos. El resultado cubre incoming/outgoing, jerarquía, shapes, predicate uses, preguntas, imports y affected importers; software:isComposedOf y las otras propiedades tienen uso verificable.",
+      "id": "impact_review",
+      "status": "passed"
+    },
+    {
+      "evidence": "La consulta `governed_knowledge_traceability.rq` terminó con código 0 y devolvió exactamente un recorrido completo concepto → proceso → aplicación → componente → repositorio, sin truncamiento.",
+      "id": "competency_question_and_path",
+      "status": "passed"
+    },
+    {
+      "evidence": "La relación propuesta app:workbench software:isComposedOf component:ontology_core está materializada dentro de `graph/source/fixture_inventory`, cuyo recurso de procedencia conserva eow:status \"published\"; solo su reificación separada dice \"proposed\".",
+      "id": "proposal_state_separation",
+      "status": "failed"
+    },
+    {
+      "evidence": "La rama actual es `proposal/p12-governed-knowledge-pilot`; HEAD coincide con main/origin-main, no hay commit, push, publicación ni merge del piloto. La revisión no modificó archivos.",
+      "id": "git_governance",
+      "status": "passed"
+    }
+  ],
+  "findings": [
+    {
+      "evidence": "`knowledge/data/sources/fixture_inventory.trig` declara `graph/source/fixture_inventory` como published y, en ese mismo named graph, agrega directamente `app:workbench software:isComposedOf ...ontology_core`; la reificación asociada está proposed. Un consumidor del grafo directo observará la afirmación como parte de la fuente publicada.",
+      "message": "La propuesta mezcla una afirmación proposed con un named graph marcado published. Debe alojarse en un grafo/fuente de propuesta o cambiarse el mecanismo para que no sea indistinguible de conocimiento publicado.",
+      "rule_id": "enterprise_ontology_workbench_mvp_spec.md#6.5-6.6",
+      "severity": "high"
+    },
+    {
+      "evidence": "`EnterpriseKnowledgeGovernance.ttl` tipa el recurso como `skos:Concept`, mientras `p12-pilot.md` reconoce que aún debe decidirse si realmente es vocabulario controlado. Su definición actual describe una disciplina y no demuestra una función de clasificación o navegación.",
+      "message": "La elección SKOS Concept permanece semánticamente irresuelta. Debe confirmarse y documentarse su función de vocabulario o remodelarse; el árbol canónico ordena detener la propuesta cuando existe esta duda.",
+      "rule_id": "agent_contract/rules/modeling_decision_tree.md#5-8",
+      "severity": "medium"
+    },
+    {
+      "evidence": "El módulo declara `dcterms:rightsHolder \"Equipo de gobernanza ontológica (pendiente de confirmación de dominio)\"` y el handoff mantiene abierto el gate P12_T05.",
+      "message": "El ownership único existe técnicamente, pero todavía es provisional. Debe confirmarse el módulo responsable y reemplazarse la metadata provisional antes de aprobar la propuesta RDF.",
+      "rule_id": "agent_contract/rules/principles.md#4",
+      "severity": "medium"
+    }
+  ],
+  "reviewer": "codex",
+  "summary": "La propuesta valida, el artifact de diff coincide exactamente con el RDF actual, los 13 receipts y 23 writes son coherentes, y la pregunta transversal devuelve el recorrido completo. Requiere cambios porque una relación proposed quedó materializada en un named graph published y siguen abiertas decisiones canónicas sobre tipo SKOS y ownership.",
+  "verdict": "requires_changes"
+}

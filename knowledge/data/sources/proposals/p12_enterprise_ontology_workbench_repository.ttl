@@ -1,0 +1,15 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix software: <https://knowledge.example.com/ontology/software#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp> a owl:NamedIndividual,
+        software:SourceCodeRepository ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:source "Git 30e85558acfc32ae8487a71a5f0628291e6d5b8f y README.md"@es ;
+    skos:prefLabel "enterprise-ontology-workbench-mvp"@es ;
+    eow:status "proposed" .
+

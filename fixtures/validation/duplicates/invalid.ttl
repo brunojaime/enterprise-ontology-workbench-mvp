@@ -1,0 +1,6 @@
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+ex:FirstDuplicate a owl:Class ; skos:prefLabel "Área técnica"@es .
+ex:SecondDuplicate a owl:Class ; skos:altLabel "area-tecnica"@es .

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knowledge.example.com/schema/agent-task",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "task", "facts", "expected_decision", "assertions"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]+$"},
+    "task": {"type": "string", "minLength": 1},
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_signals"],
+      "properties": {
+        "existing_match_iri": {"type": "string", "format": "uri"},
+        "candidate_iri": {"type": "string", "format": "uri"},
+        "requested_module": {"type": "string", "minLength": 1},
+        "reusable_category": {"type": "boolean"},
+        "concrete_identity": {"type": "boolean"},
+        "controlled_vocabulary": {"type": "boolean"},
+        "relation_between_resources": {"type": "boolean"},
+        "requires_validation": {"type": "boolean"},
+        "task_signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "query_signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "expected_decision": {"enum": ["reuse", "class", "individual", "concept", "property", "reject"]},
+    "assertions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "query": {"type": "string", "minLength": 1},
+    "expected_iri": {"type": "string", "format": "uri"},
+    "expected_module": {"type": "string", "minLength": 1},
+    "repository_conforms": {"type": "boolean"}
+  }
+}

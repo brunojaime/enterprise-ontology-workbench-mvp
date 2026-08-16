@@ -1,0 +1,134 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix govern: <https://knowledge.example.com/shape/governance/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+govern:TermShape a sh:NodeShape ;
+    sh:name "Metadata mínima de términos"@es ;
+    sh:description "Valida la metadata obligatoria de clases, propiedades y conceptos."@es ;
+    sh:targetClass owl:Class,
+        owl:ObjectProperty,
+        owl:DatatypeProperty,
+        owl:AnnotationProperty,
+        skos:Concept ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+        sh:qualifiedValueShape [
+            sh:languageIn ( "es" ) ;
+            sh:minLength 1 ;
+            sh:pattern "\\S"
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "El término debe tener una etiqueta preferida única en español."@es
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:minCount 1 ;
+        sh:qualifiedValueShape [
+            sh:languageIn ( "es" ) ;
+            sh:minLength 1 ;
+            sh:pattern "\\S"
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "El término debe tener una definición en español."@es
+    ] ;
+    sh:property [
+        sh:path dcterms:isPartOf ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "El término debe declarar exactamente un módulo responsable mediante una IRI."@es
+    ] ;
+    sh:property [
+        sh:path eow:status ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "proposed" "active" "deprecated" ) ;
+        sh:message "El estado debe ser proposed, active o deprecated."@es
+    ] ;
+    sh:property [
+        sh:path dcterms:source ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:pattern "\\S" ;
+        sh:message "El término debe declarar fuente o evidencia."@es
+    ] ;
+    sh:property [
+        sh:path dcterms:creator ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:pattern "\\S" ;
+        sh:message "El término debe declarar autoría."@es
+    ] ;
+    sh:or (
+        [
+            sh:property [
+                sh:path dcterms:created ;
+                sh:minCount 1 ;
+                sh:datatype xsd:date
+            ]
+        ]
+        [
+            sh:property [
+                sh:path dcterms:modified ;
+                sh:minCount 1 ;
+                sh:datatype xsd:date
+            ]
+        ]
+    ) ;
+    sh:message "El término debe declarar una fecha de creación o modificación xsd:date."@es .
+
+govern:PropertyShape a sh:NodeShape ;
+    sh:name "Metadata adicional de propiedades"@es ;
+    sh:description "Valida dirección, ejemplo y semántica de dominio/rango de las propiedades."@es ;
+    sh:targetClass owl:ObjectProperty,
+        owl:DatatypeProperty,
+        owl:AnnotationProperty ;
+    sh:property [
+        sh:path skos:scopeNote ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:pattern "\\S" ;
+        sh:message "La propiedad debe explicar su dirección de lectura."@es
+    ] ;
+    sh:property [
+        sh:path skos:example ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:pattern "\\S" ;
+        sh:message "La propiedad debe incluir un ejemplo de triple válido."@es
+    ] ;
+    sh:or (
+        [
+            sh:and (
+                [
+                    sh:property [
+                        sh:path rdfs:domain ;
+                        sh:minCount 1
+                    ]
+                ]
+                [
+                    sh:property [
+                        sh:path rdfs:range ;
+                        sh:minCount 1
+                    ]
+                ]
+            )
+        ]
+        [
+            sh:property [
+                sh:path dcterms:description ;
+                sh:minCount 1 ;
+                sh:minLength 1 ;
+                sh:pattern "\\S"
+            ]
+        ]
+    ) ;
+    sh:message "La propiedad debe declarar dominio y rango, o justificar explícitamente su omisión."@es .

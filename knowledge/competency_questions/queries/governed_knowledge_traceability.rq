@@ -1,0 +1,12 @@
+PREFIX kg: <https://knowledge.example.com/ontology/knowledge_governance#>
+PREFIX software: <https://knowledge.example.com/ontology/software#>
+
+SELECT ?domainConcept ?process ?application ?component ?repository
+WHERE {
+  BIND(kg:EnterpriseKnowledgeGovernance AS ?domainConcept)
+  ?domainConcept kg:governedThrough ?process .
+  ?process kg:supportedByApplication ?application .
+  ?application software:isComposedOf ?component .
+  ?component software:implementedByRepository ?repository .
+}
+ORDER BY ?process ?application ?component ?repository

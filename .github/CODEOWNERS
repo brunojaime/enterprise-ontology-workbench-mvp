@@ -1,0 +1,15 @@
+# Repository owner confirmed by the configured GitHub remote.
+* @brunojaime
+
+# Canonical knowledge and semantic governance require ontology review.
+/knowledge/ @brunojaime
+/config/ @brunojaime
+/agent_contract/ @brunojaime
+/AGENTS.md @brunojaime
+/CLAUDE.md @brunojaime
+/docs/adr/ @brunojaime
+
+# Framework-independent semantic core and publication policy require technical review.
+/packages/ontology_core/ @brunojaime
+/.github/CODEOWNERS @brunojaime
+/.github/workflows/ @brunojaime

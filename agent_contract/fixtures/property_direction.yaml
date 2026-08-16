@@ -1,0 +1,10 @@
+id: propose_property_with_direction
+task: Relacionar una aplicación con la unidad organizativa soportada.
+facts:
+  relation_between_resources: true
+  task_signals: [Relacionar, aplicación, unidad organizativa]
+  query_signals: [soporta, unidad organizativa]
+query: soporta unidad organizativa
+expected_decision: property
+expected_iri: https://knowledge.example.com/ontology/software#supportsOrganizationUnit
+assertions: [lower_camel_case, reading_direction, valid_example]

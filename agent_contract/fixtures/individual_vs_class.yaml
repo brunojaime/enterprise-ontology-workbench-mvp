@@ -1,0 +1,11 @@
+id: choose_individual_for_concrete_application
+task: Modelar la aplicación concreta Workbench registrada en el inventario.
+facts:
+  concrete_identity: true
+  task_signals: [aplicación concreta, inventario]
+  query_signals: [workbench]
+query: workbench
+expected_decision: individual
+expected_iri: https://knowledge.example.com/id/software/application/workbench
+expected_module: software
+assertions: [concrete_identity, business_class_explicit, snake_case_iri]

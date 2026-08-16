@@ -1,0 +1,76 @@
+name: RDF governance
+
+"on":
+  pull_request: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rdf-governance-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  agent-contract:
+    name: Agent contract synchronization
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Verify generated adapters and references
+        run: uv run python scripts/generate_agent_files.py --check
+
+  rdf-validation:
+    name: RDF validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Parse, SHACL and semantic lint
+        run: uv run python scripts/validate_rdf.py
+
+  semantic-review:
+    name: Semantic governance report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Generate semantic diff, validation and warnings
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: >-
+          uv run python scripts/generate_pr_report.py
+          --base "$BASE_SHA" --head "$HEAD_SHA" --output artifacts/semantic-governance
+      - name: Publish validation summary
+        if: ${{ always() && hashFiles('artifacts/semantic-governance/pr-summary.md') != '' }}
+        run: cat artifacts/semantic-governance/pr-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload semantic governance artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-governance-${{ github.event.pull_request.number }}
+          path: artifacts/semantic-governance/
+          if-no-files-found: error
+          retention-days: 30
