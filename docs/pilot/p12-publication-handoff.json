@@ -22,9 +22,10 @@
     "command": "./scripts/local_gate.sh --include-smoke --record-git-note",
     "git_note_ref": "refs/notes/eow-local-gates",
     "human_domain_review_verified": false,
+    "human_domain_selected": false,
     "human_publication_approval_verified": false,
     "receipt_locator": "git notes --ref=eow-local-gates show HEAD",
-    "status": "technical_gate_passed_awaiting_human_signatures"
+    "status": "technical_gate_passed_awaiting_domain_selection_and_human_signatures"
   },
   "publication": {
     "human_approval_recorded": false,

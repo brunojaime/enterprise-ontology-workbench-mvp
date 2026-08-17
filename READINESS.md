@@ -4,7 +4,7 @@
 
 **Alcance:** P12_T05–P12_T06; migración del gate operativo a ejecución local
 
-**Veredicto:** el gate local está implementado y validado, pero P12_T05 carece de rol/autoridad y firma; P12_T06 sigue sin aprobación humana ni merge
+**Veredicto:** el gate local está implementado y validado; el rol de Bruno está declarado, pero P12_T05 carece de dominio confirmado y firma; P12_T06 sigue sin aprobación humana ni merge
 
 ## Resultado
 
@@ -35,9 +35,13 @@ La configuración Claude permanece preparada como compatibilidad opcional, pero
 no se ejecuta ni se usa como gate de aceptación. P12_T04 está `done`. El
 artifact de dominio registra cambios sobre `skos:Concept`, la frontera de
 `ontology_core`, las relaciones, nombre, definición y owner. La interacción más
-reciente identifica a Bruno Jaime y confirma los primeros cuatro puntos, pero
-no declara su rol o autoridad de dominio, no tiene firma o referencia durable y
-deja la cadena Workbench en `requires_clarification`. P12_T05 está
+reciente identifica a Bruno Jaime como responsable de producto y administrador
+de plataforma, con autoridad sobre dirección del producto, repositorio y
+alcance del piloto. El MVP no define un rol RBAC superior. Esa declaración no
+prueba especialidad en un dominio empresarial externo, no tiene firma o
+referencia durable y deja la cadena Workbench en `requires_clarification`.
+Workbench fue una elección de implementación para el tramo “aplicación”, no el
+dominio empresarial ni un requisito de la especificación. P12_T05 está
 `in_progress`. El snapshot completo quedó inicialmente en el commit
 `7515d64`, sincronizado con la rama remota
 `proposal/p12-governed-knowledge-pilot`, y el PR borrador #1 apunta a `main`.
@@ -86,10 +90,12 @@ atribuirle una revisión que no ocurrió.
   497/0/61. El artifact y su manifest fijan los hashes de todos los inputs.
 - P12_T05: `in_progress`. `docs/pilot/p12-domain-review.json` conserva
   decisiones declaradas y aplicadas al candidato. El nuevo
-  `p12-local-governance-decision.json` identifica a Bruno Jaime, confirma
-  identidad, owner, SKOS y frontera de componente, y registra el gate local;
-  no inventa rol/autoridad, firma ni aprobación de la cadena cuestionada. El
-  assessment exige resolver y firmar esos puntos, separado de publicación.
+  `p12-local-governance-decision.json` identifica a Bruno Jaime como responsable
+  de producto y administrador de plataforma, confirma identidad, owner, SKOS y
+  frontera de componente, y registra el gate local. No amplía esa autoridad a
+  un dominio externo ni inventa firma o aprobación de la cadena cuestionada. El
+  assessment exige elegir o confirmar el dominio, resolver la cadena y firmar,
+  separado de publicación.
 
 ## Publicación y trabajo no iniciado
 
@@ -99,7 +105,7 @@ atribuirle una revisión que no ocurrió.
   GitHub Actions queda superseded como gate. El runner local, wrappers Bash y
   PowerShell, ADR 010A, tests adversariales y documentación están implementados;
   el gate final registra su receipt post-commit en `refs/notes/eow-local-gates`
-  sin cambiar el tree; faltan firma de dominio, aprobación
+  sin cambiar el tree; faltan dominio confirmado, firma de dominio, aprobación
   humana de publicación y merge a `main`. El detalle queda en
   `docs/pilot/p12-publication-handoff.json`.
 - P12_T07–P12_T11: `todo`. No hay publicación, medición final ni aceptación
@@ -188,10 +194,13 @@ aceptado.
 
 ## Riesgos y checks no disponibles
 
-- Bruno Jaime quedó identificado, pero su rol y autoridad de dominio no fueron
-  declarados. El owner RDF y la identidad Git no prueban autoridad; además la
-  cadena metatécnica sigue cuestionada. P12_T05 no se cerrará sin resolución y
-  firma verificable ligada al snapshot exacto.
+- Bruno Jaime quedó identificado como responsable de producto y administrador
+  de plataforma, el máximo rol operativo expresable en este MVP sin inventar
+  RBAC. Ese rol gobierna producto, repositorio y alcance del piloto, pero no
+  acredita por sí solo conocimiento de un dominio empresarial externo. La
+  cadena metatécnica sigue cuestionada. P12_T05 no se cerrará sin seleccionar o
+  confirmar el dominio, resolver la cadena y aportar una firma verificable
+  ligada al snapshot exacto.
 - La compatibilidad Claude permanece generada, pero por decisión de producto no
   se ejecutó ni se usa como aceptación. Su artifact previo sólo documenta una
   prueba histórica no autenticada y no se atribuye a esta iteración.
@@ -228,5 +237,5 @@ publicada hasta completar el flujo Git gobernado.
 
 - ZIP original: `8f036835a2e334fdccfc5ca4530e991934074b1cc3ccb7db724b29d0b3014649`
 - Especificación baseline dentro del ZIP: `c40fbf3a1efa557ed505d496270a73637b74e53a7cfc3cc86d41b3e1e015212c`
-- Especificación vigente 2.0: `3b7ce554a01d3f837e652565f375c9a2a68d6f649ffc242fa583bfee7a6ad0bc`
+- Especificación vigente 2.0: `979a3aa12dc97f1bf8f358e5f6499ef67041030eaa51aa194f1037115b7d77fb`
 - Backlog actualizado: `5f056c8f5821839d16af4c1042213ff311e4ad64261e936093112c7ee94604e4`

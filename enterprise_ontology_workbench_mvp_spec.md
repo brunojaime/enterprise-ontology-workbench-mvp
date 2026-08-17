@@ -1907,6 +1907,14 @@ workflows dejan de estar activas y su historia permanece en Git.
 
 **Objetivo:** demostrar que la plataforma sirve para conocimiento organizacional, no solo para software.
 
+En este plan, Enterprise Ontology Workbench puede ocupar el tramo de
+“aplicación” que soporta un proceso, pero no constituye por sí mismo el dominio
+empresarial. Un piloto autorreferencial sobre la gobernanza del propio producto
+solo satisface el objetivo si el especialista confirma explícitamente que esa
+gobernanza es el dominio real que desea modelar. Si no lo confirma, debe
+seleccionarse una pregunta de un dominio independiente y repetir P12 desde la
+primera task afectada; esa selección puede realizarse en una sesión fresca.
+
 | Task | Trabajo | Aceptación |
 |---|---|---|
 | P12 T01 | Elegir una pregunta transversal real | Conecta un dominio empresarial con proceso y software |

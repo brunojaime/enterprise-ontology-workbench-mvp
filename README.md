@@ -48,10 +48,14 @@ P12_T04. Codex 0.114.0 revisó el checkout actual en sandbox de sólo lectura, e
 contexto, búsqueda, validación, diff e impacto y emitió `approve` mediante un
 schema cerrado; la salida y su provenance fijan todos los hashes revisados.
 P12_T04 está `done`. El registro de dominio conserva decisiones aplicadas sobre
-nombre, definición, modelado SKOS, `ontology_core`, cadena transversal y owner,
-pero la interacción más reciente sólo identifica a Bruno Jaime: no declara su
-rol o autoridad de dominio, no está firmada y cuestiona —en lugar de aprobar—
-la cadena que mezcla el Workbench con un dominio empresarial. Por eso P12_T05
+nombre, definición, modelado SKOS, `ontology_core`, cadena transversal y owner.
+Bruno Jaime declaró el máximo rol operativo disponible; como el MVP no define
+RBAC ni un super-admin, se registra como responsable de producto y administrador
+de plataforma, con autoridad sobre producto, repositorio y alcance del piloto.
+Esa autoridad no demuestra especialidad en un dominio empresarial externo. La
+cadena sigue cuestionada: Workbench fue elegido por la implementación como la
+aplicación del recorrido, no como el dominio ni por mandato de la especificación.
+Por eso P12_T05
 continúa `in_progress`; su
 [assessment](docs/pilot/p12-domain-review-verification.json) enumera la evidencia
 necesaria para cerrarla sin confundir revisión de dominio con aprobación de
@@ -61,8 +65,8 @@ en el commit `7515d64`, publicado en la rama
 [#1](https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1).
 Por decisión de producto, ADR 010A reemplazó GitHub Actions por un gate local
 reproducible. Las workflows activas fueron retiradas; el PR se conserva sólo
-como historia/colaboración opcional. Todavía faltan la firma de dominio, un
-rol/autoridad verificable, resolución de la cadena, aprobación humana de
+como historia/colaboración opcional. Todavía faltan elegir o confirmar el
+dominio real, resolver y firmar la cadena, la aprobación humana de
 publicación y merge humano a `main`. El gate técnico conforme se liga al HEAD
 mediante `refs/notes/eow-local-gates`. El estado verificable está en el
 [handoff de publicación](docs/pilot/p12-publication-handoff.json).

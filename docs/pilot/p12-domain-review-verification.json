@@ -8,15 +8,15 @@
     "authority_traceable": false,
     "conclusion": "insufficient_for_task_completion",
     "reasons": [
-      "The latest interactive record names Bruno Jaime but does not declare a domain role or authority scope.",
+      "The latest interactive record declares Bruno Jaime as product owner and platform administrator, but the declaration is unsigned and has no stable external reference.",
+      "The declared authority covers product direction, platform administration, repository governance and pilot scope; it does not by itself establish expertise in an external business domain.",
       "The Workbench relationship chain was questioned and remains unresolved rather than approved.",
-      "The interactive record has no stable external reference or verifiable signature.",
       "The historical domain record still declares reviewer_identity as not_disclosed.",
       "The observed proposal commits were unsigned."
     ],
     "requirements_to_complete": [
-      "Declare Bruno Jaime's domain role and the authority being exercised, or identify another authorized specialist.",
-      "Resolve whether the metatechnical Workbench chain is accepted for P12 or must be corrected.",
+      "Confirm that enterprise knowledge governance is the real domain for P12, or select an independent business domain and repeat the affected P12 tasks.",
+      "Resolve whether the metatechnical Workbench chain is accepted only as the application segment or must be replaced.",
       "Bind the final decision to the exact commit and knowledge/config fingerprint reviewed.",
       "Attach a verifiable signed Git tag or equivalent signed artifact.",
       "Keep domain approval distinct from publication approval and merge authorization."
@@ -51,12 +51,12 @@
   },
   "latest_interactive_decision": {
     "actor": "Bruno Jaime",
-    "authority_scope": "not_declared",
+    "authority_scope": "product_direction_platform_administration_repository_governance_and_pilot_scope",
     "path": "docs/pilot/p12-local-governance-decision.json",
-    "role": "not_declared",
-    "sha256": "8d12ffb7be653994bacee06f8d7c13e73fbbcd11035672897e183c49f28e84b4",
+    "role": "product_owner_and_platform_administrator",
+    "sha256": "73ee575737f17138972c250dee44a2da87769223d5c260346116105858567fa8",
     "signature_verified": false,
-    "status": "awaiting_role_authority_chain_resolution_and_signature"
+    "status": "awaiting_domain_selection_chain_resolution_and_signature"
   },
   "status": "in_progress",
   "task": "P12_T05"

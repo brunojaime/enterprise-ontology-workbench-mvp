@@ -1,8 +1,9 @@
 {
   "actor": {
-    "authority_scope": "not_declared",
+    "authority_scope": "product_direction_platform_administration_repository_governance_and_pilot_scope",
+    "domain_authority": "not_established_for_an_external_business_domain",
     "name": "Bruno Jaime",
-    "role": "not_declared"
+    "role": "product_owner_and_platform_administrator"
   },
   "decisions": [
     {
@@ -28,7 +29,7 @@
     {
       "decision": "requires_clarification",
       "id": "transversal_relationship_chain",
-      "rationale": "The actor questioned why the Workbench is mixed with a business domain. The current chain is retained only as a metatechnical pilot candidate and is not presented as approval of a real port domain."
+      "rationale": "Workbench was selected by the implementation as the application segment of the acceptance chain; the canonical specification did not require that choice and Workbench is not the business domain. The actor has not approved knowledge governance as the real enterprise domain for P12, so the metatechnical chain remains only a candidate and a fresh domain selection may be required."
     },
     {
       "decision": "approved_product_direction",
@@ -37,6 +38,7 @@
     }
   ],
   "evidence": {
+    "authority_declaration": "Bruno Jaime declared that his role is administrator or the highest available role. The repository maps that statement to product owner and platform administrator because the MVP defines conceptual roles but no RBAC hierarchy or super-admin role.",
     "channel": "interactive_project_session",
     "external_reference": null,
     "recorded_at": "2026-08-16",
@@ -44,9 +46,9 @@
   },
   "reviewed_snapshot": {
     "branch": "proposal/p12-governed-knowledge-pilot",
-    "head": "dd09c509bf2d2bfd2100a5879ce4d1abe3cebd4a",
+    "head": "f0273cba4a078138153491271f7c04d03e8fdec3",
     "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17"
   },
-  "status": "awaiting_role_authority_chain_resolution_and_signature",
+  "status": "awaiting_domain_selection_chain_resolution_and_signature",
   "task": "P12_T05"
 }

@@ -320,17 +320,22 @@ def test_p12_domain_review_claim_is_applied_but_not_traceably_approved() -> None
     )
     assert verification["latest_interactive_decision"] == {
         "actor": "Bruno Jaime",
-        "authority_scope": "not_declared",
+        "authority_scope": (
+            "product_direction_platform_administration_repository_governance_and_pilot_scope"
+        ),
         "path": "docs/pilot/p12-local-governance-decision.json",
-        "role": "not_declared",
+        "role": "product_owner_and_platform_administrator",
         "sha256": hashlib.sha256(latest_path.read_bytes()).hexdigest(),
         "signature_verified": False,
-        "status": "awaiting_role_authority_chain_resolution_and_signature",
+        "status": "awaiting_domain_selection_chain_resolution_and_signature",
     }
     assert latest["actor"] == {
-        "authority_scope": "not_declared",
+        "authority_scope": (
+            "product_direction_platform_administration_repository_governance_and_pilot_scope"
+        ),
+        "domain_authority": "not_established_for_an_external_business_domain",
         "name": "Bruno Jaime",
-        "role": "not_declared",
+        "role": "product_owner_and_platform_administrator",
     }
     latest_decisions = {item["id"]: item for item in latest["decisions"]}
     assert latest_decisions["transversal_relationship_chain"]["decision"] == (
@@ -439,9 +444,10 @@ def test_p12_publication_handoff_uses_local_gate_without_claiming_publication() 
         "command": "./scripts/local_gate.sh --include-smoke --record-git-note",
         "git_note_ref": "refs/notes/eow-local-gates",
         "human_domain_review_verified": False,
+        "human_domain_selected": False,
         "human_publication_approval_verified": False,
         "receipt_locator": "git notes --ref=eow-local-gates show HEAD",
-        "status": "technical_gate_passed_awaiting_human_signatures",
+        "status": "technical_gate_passed_awaiting_domain_selection_and_human_signatures",
     }
     assert handoff["publication"]["merged_to_main"] is False
     assert handoff["publication"]["human_approval_recorded"] is False

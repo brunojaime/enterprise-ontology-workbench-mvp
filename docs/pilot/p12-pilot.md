@@ -20,6 +20,16 @@ Gobernanza del conocimiento empresarial
 → enterprise-ontology-workbench-mvp
 ```
 
+Workbench aparece únicamente porque la implementación lo eligió como la
+**aplicación** del tramo exigido por P12. No es el dominio empresarial ni una
+elección impuesta por la especificación. El concepto inicial de este candidato
+es “gobernanza del conocimiento empresarial”; `ontology_core` y el repositorio
+son detalles técnicos de la aplicación. Esta elección autorreferencial sirve
+para ejercitar la plataforma, pero no demuestra por sí sola que el piloto se
+haya aplicado a un dominio empresarial independiente. La duda de Bruno Jaime
+mantiene esa elección sin aprobar y puede requerir reiniciar P12 desde una
+pregunta de dominio real en una sesión fresca.
+
 ## Fuentes verificables
 
 | Fuente | Evidencia utilizada | Límite |
@@ -145,14 +155,16 @@ estas decisiones, que fueron aplicadas al candidato RDF:
 
 Ese registro no demuestra todavía P12_T05. La
 [decisión interactiva más reciente](p12-local-governance-decision.json) identifica
-a Bruno Jaime y confirma los primeros cuatro puntos, pero no declara su rol o
-autoridad de dominio, no aporta firma o referencia durable y deja la cadena en
-`requires_clarification`. El
+a Bruno Jaime como responsable de producto y administrador de plataforma, con
+autoridad sobre dirección del producto, repositorio y alcance del piloto. Ese
+rol no prueba especialidad sobre un dominio empresarial externo, no aporta
+firma o referencia durable y deja la cadena en `requires_clarification`. El
 [assessment de autoridad](p12-domain-review-verification.json) conserva también
 el déficit histórico. P12_T05 queda `in_progress`; para cerrarla se necesita
-resolver la cadena, declarar autoridad, ligar la decisión final al snapshot y
-firmarla de forma verificable. Esa revisión de dominio es distinta de la
-aprobación posterior de publicación y del merge.
+elegir explícitamente si “gobernanza del conocimiento” es el dominio real del
+piloto o reemplazarlo por otro, resolver la cadena, ligar la decisión final al
+snapshot y firmarla de forma verificable. Esa revisión de dominio es distinta
+de la aprobación posterior de publicación y del merge.
 
 Permanecen abiertos los gates de dominio, publicación y aceptación:
 
