@@ -1,0 +1,11 @@
+id: reuse_existing_application
+task: Modelar una aplicación empresarial.
+facts:
+  existing_match_iri: https://knowledge.example.com/ontology/software#Application
+  task_signals: [aplicación empresarial]
+  query_signals: [aplicación]
+query: aplicación
+expected_decision: reuse
+expected_iri: https://knowledge.example.com/ontology/software#Application
+expected_module: software
+assertions: [search_before_create, reuse_matching_definition]

@@ -1,0 +1,13 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+module:fixture a eow:OntologyModule ;
+    skos:prefLabel "Módulo de fixtures válidos"@es ;
+    skos:definition "Módulo sintético definido solo en el dataset agregado de ejemplos válidos."@es ;
+    dcterms:source "Suite de fixtures RDF válidos de Plan 02"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date ;
+    eow:status "active" .

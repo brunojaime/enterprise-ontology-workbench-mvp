@@ -1,0 +1,11 @@
+id: reject_duplicate_application
+task: Crear SoftwareApplication aunque Application ya expresa el significado.
+facts:
+  candidate_iri: https://knowledge.example.com/ontology/software#SoftwareApplication
+  existing_match_iri: https://knowledge.example.com/ontology/software#Application
+  task_signals: [Application, expresa el significado]
+  query_signals: [aplicación]
+query: aplicación
+expected_decision: reject
+expected_iri: https://knowledge.example.com/ontology/software#Application
+assertions: [duplicate_detected, no_new_iri]

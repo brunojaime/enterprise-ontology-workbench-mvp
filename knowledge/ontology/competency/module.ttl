@@ -1,0 +1,19 @@
+@prefix cqv: <https://knowledge.example.com/ontology/competency#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://knowledge.example.com/ontology/competency> a owl:Ontology ;
+    owl:imports <https://knowledge.example.com/ontology/core> ;
+    dcterms:identifier "competency" ;
+    dcterms:isPartOf module:competency ;
+    dcterms:rightsHolder "Equipo de gobernanza ontológica"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date ;
+    dcterms:source "Especificación canónica, Plan 04"@es ;
+    eow:status "active" ;
+    skos:prefLabel "Módulo de preguntas de competencia"@es ;
+    skos:definition "Vocabulario mínimo para registrar y ejecutar preguntas de competencia del workbench."@es .

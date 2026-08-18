@@ -1,0 +1,6 @@
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+ex:FirstTerm a owl:Class ; skos:prefLabel "Primer término"@es .
+ex:SecondTerm a owl:Class ; skos:altLabel "Segundo término"@es .

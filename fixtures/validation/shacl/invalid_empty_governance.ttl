@@ -1,0 +1,5 @@
+@prefix govern: <https://knowledge.example.com/shape/governance/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+govern:TermShape a sh:NodeShape .
+govern:PropertyShape a sh:NodeShape .

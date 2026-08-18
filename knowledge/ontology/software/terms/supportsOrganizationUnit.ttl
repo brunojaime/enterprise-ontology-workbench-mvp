@@ -1,0 +1,22 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix org: <https://knowledge.example.com/ontology/organization#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix software: <https://knowledge.example.com/ontology/software#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+software:supportsOrganizationUnit a owl:ObjectProperty ;
+    rdfs:domain software:Application ;
+    rdfs:range org:OrganizationUnit ;
+    skos:prefLabel "soporta unidad organizativa"@es ;
+    skos:definition "Indica que una aplicación brinda soporte operativo a una unidad organizativa."@es ;
+    skos:scopeNote "Se lee desde una aplicación hacia la unidad organizativa a la que brinda soporte."@es ;
+    skos:example "app:workbench software:supportsOrganizationUnit orgid:architecture ." ;
+    dcterms:isPartOf module:software ;
+    eow:status "active" ;
+    dcterms:source "Fixture sintético de software de Plan 02"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

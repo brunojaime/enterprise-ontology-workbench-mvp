@@ -1,0 +1,8 @@
+id: class_application_capability
+decision: class
+valid:
+  iri: https://knowledge.example.com/ontology/software#DeploymentCapability
+  rationale: Categoría reutilizable con múltiples instancias posibles.
+invalid:
+  iri: https://knowledge.example.com/ontology/software#deploymentCapability
+  defects: [class_local_name_not_pascal_case]

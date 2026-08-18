@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knowledge.example.com/schema/search-receipt",
+  "description": "Authoring proof for an unfiltered first-page search bound to the current snapshot and exact search modality.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["query", "search_id"],
+  "properties": {
+    "query": {"type": "string", "minLength": 1},
+    "search_id": {"type": "string", "pattern": "^eow-search-v2:[A-Za-z0-9_-]+\\.[0-9a-f]{64}$"}
+  }
+}

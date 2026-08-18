@@ -1,0 +1,9 @@
+id: individual_deployment_service
+decision: individual
+valid:
+  iri: https://knowledge.example.com/id/software/service/deployment_service
+  class: https://knowledge.example.com/ontology/software#Application
+  rationale: Entidad concreta identificable del inventario sintético.
+invalid:
+  representation: blank_node
+  defects: [enterprise_individual_requires_iri]

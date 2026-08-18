@@ -1,0 +1,14 @@
+[project]
+name = "ontology-core"
+version = "0.1.0"
+description = "Semantic core for the Enterprise Ontology Workbench"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "pyshacl>=0.31,<0.41",
+  "pyyaml>=6.0.2,<7",
+  "rdflib>=7.1,<8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

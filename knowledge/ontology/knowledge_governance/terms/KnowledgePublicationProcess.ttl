@@ -1,0 +1,17 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix kg: <https://knowledge.example.com/ontology/knowledge_governance#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kg:KnowledgePublicationProcess a owl:Class ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:isPartOf module:knowledge_governance ;
+    dcterms:source "enterprise_ontology_workbench_mvp_spec.md, secciones 4 y 18"@es ;
+    skos:definition "Proceso gobernado que convierte una necesidad y su evidencia en una propuesta RDF validada, revisada y apta para publicación mediante Git."@es ;
+    skos:prefLabel "Proceso de publicación de conocimiento"@es ;
+    eow:status "proposed" .
+

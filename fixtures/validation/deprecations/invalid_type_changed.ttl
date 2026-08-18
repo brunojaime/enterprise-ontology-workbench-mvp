@@ -1,0 +1,8 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+ex:PublishedTerm a owl:ObjectProperty ;
+    eow:status "deprecated" ;
+    dcterms:description "El tipo se cambió de forma inválida para esta prueba."@es .

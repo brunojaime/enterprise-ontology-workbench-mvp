@@ -1,0 +1,18 @@
+fixture_version: '1.0'
+description: Valores que deben rechazarse al implementar la carga de configuración.
+invalid_namespaces:
+- name: relative_iri
+  base: knowledge.example.test/
+  reason: El namespace base debe ser una IRI HTTPS absoluta.
+- name: insecure_scheme
+  base: http://knowledge.example.test/
+  reason: El namespace base debe usar HTTPS.
+- name: missing_trailing_slash
+  base: https://knowledge.example.test
+  reason: El slash final hace determinista la composición de IRIs.
+- name: fragment_in_base
+  base: https://knowledge.example.test/#base
+  reason: El namespace base no puede incluir query ni fragmento.
+- name: query_in_base
+  base: https://knowledge.example.test/?version=1
+  reason: El namespace base no puede incluir query ni fragmento.

@@ -1,0 +1,67 @@
+version: 1.0.0
+contract_id: enterprise-ontology-workbench-agents
+canonical_root: agent_contract
+compatibility:
+  codex:
+    instructions: AGENTS.md
+    skills_root: .agents/skills
+  claude_code:
+    instructions: CLAUDE.md
+    skills_root: .claude/skills
+rules:
+  - id: principles
+    path: rules/principles.md
+  - id: modeling_decision_tree
+    path: rules/modeling_decision_tree.md
+  - id: change_protocol
+    path: rules/change_protocol.md
+  - id: prohibited_patterns
+    path: rules/prohibited_patterns.md
+skills:
+  - id: ontology_discover
+    path: skills/ontology_discover/SKILL.md
+  - id: ontology_author
+    path: skills/ontology_author/SKILL.md
+  - id: ontology_review
+    path: skills/ontology_review/SKILL.md
+prompts:
+  - id: model_domain_concept
+    path: prompts/model_domain_concept.md
+  - id: review_ontology_change
+    path: prompts/review_ontology_change.md
+  - id: connect_repository_to_enterprise_knowledge
+    path: prompts/connect_repository_to_enterprise_knowledge.md
+mcp:
+  instructions: prompts/server_instructions.md
+schemas:
+  - id: agent_task
+    path: schemas/agent_task.schema.json
+  - id: search_receipt
+    path: schemas/search_receipt.schema.json
+examples:
+  - examples/class.yaml
+  - examples/individual.yaml
+  - examples/concept.yaml
+  - examples/property.yaml
+  - examples/duplicate.yaml
+task_fixtures:
+  - fixtures/reuse_existing.yaml
+  - fixtures/reject_duplicate.yaml
+  - fixtures/class_vs_individual.yaml
+  - fixtures/individual_vs_class.yaml
+  - fixtures/concept_vs_class.yaml
+  - fixtures/property_direction.yaml
+  - fixtures/other_module.yaml
+  - fixtures/validate_before_finish.yaml
+required_commands:
+  - ontology context --task <tarea>
+  - ontology search <texto>
+  - ontology validate
+  - ontology diff --base main
+generated:
+  instructions:
+    - AGENTS.md
+    - CLAUDE.md
+  skills:
+    - .agents/skills
+    - .claude/skills

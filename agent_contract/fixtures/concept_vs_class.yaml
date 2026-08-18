@@ -1,0 +1,10 @@
+id: choose_concept_for_criticality
+task: Modelar valores de criticidad para un vocabulario controlado.
+facts:
+  controlled_vocabulary: true
+  candidate_iri: https://knowledge.example.com/id/concept/application_criticality
+  task_signals: [vocabulario controlado]
+  query_signals: [criticidad]
+query: criticidad
+expected_decision: concept
+assertions: [controlled_vocabulary, no_automatic_owl_class]

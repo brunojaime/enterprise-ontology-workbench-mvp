@@ -1,0 +1,72 @@
+{
+  "application": {
+    "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17",
+    "modified_file": "knowledge/ontology/knowledge_governance/module.ttl",
+    "prior_knowledge_config_fingerprint": "78d5cdceb7863fd2d93c92b8dd13e1b56644018fec15f0a6e45327cf931c0ed9",
+    "semantic_diff": {
+      "added_quads": 497,
+      "change_groups": 61,
+      "path": "docs/pilot/p12-semantic-diff.json",
+      "removed_quads": 0,
+      "sha256": "e1ea3ce1f9f141238e9875e0b47c5bee3ab74cb5aedfca12aeca0a430af126f3"
+    },
+    "validation_conforms": true
+  },
+  "decisions": [
+    {
+      "decision": "approved",
+      "id": "module_identity",
+      "value": {
+        "definition_es": "Módulo piloto mínimo para describir cómo una necesidad empresarial llega a conocimiento RDF gobernado y qué software soporta ese proceso.",
+        "identifier": "knowledge_governance",
+        "preferred_label_es": "Gobernanza del conocimiento"
+      }
+    },
+    {
+      "decision": "corrected",
+      "id": "module_owner",
+      "previous_value": "Equipo de gobernanza ontológica (pendiente de confirmación de dominio)",
+      "value": "Bruno Jaime"
+    },
+    {
+      "decision": "approved",
+      "id": "enterprise_knowledge_governance_type",
+      "value": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "decision": "approved",
+      "id": "ontology_core_component_boundary",
+      "value": "https://knowledge.example.com/ontology/software#SoftwareComponent"
+    },
+    {
+      "decision": "approved",
+      "id": "transversal_relationship_chain",
+      "value": [
+        "https://knowledge.example.com/ontology/knowledge_governance#EnterpriseKnowledgeGovernance https://knowledge.example.com/ontology/knowledge_governance#governedThrough https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication",
+        "https://knowledge.example.com/id/knowledge_governance/process/ontology_change_publication https://knowledge.example.com/ontology/knowledge_governance#supportedByApplication https://knowledge.example.com/id/software/application/workbench",
+        "https://knowledge.example.com/id/software/application/workbench https://knowledge.example.com/ontology/software#isComposedOf https://knowledge.example.com/id/software/component/ontology_core",
+        "https://knowledge.example.com/id/software/component/ontology_core https://knowledge.example.com/ontology/software#implementedByRepository https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp"
+      ]
+    }
+  ],
+  "evidence": {
+    "channel": "interactive_project_session",
+    "module_search": {
+      "filters": {
+        "modules": [],
+        "rdf_types": []
+      },
+      "limit": 50,
+      "offset": 0,
+      "query": "gobernanza del conocimiento",
+      "result_count": 2,
+      "search_id": "eow-search-v2:eyJsIjo1MCwibSI6W10sIm4iOjIsIm8iOjAsInEiOiJnb2Jlcm5hbnphIGRlbCBjb25vY2ltaWVudG8iLCJyIjoiYWU4OGYzODA1MjUyMGQ0NzRiMGI0NjliNmQyODRhMjY5MjYxZWZjODU2MDcwNTBkY2Y0M2FhYTM0NjY4YjYyYSIsInMiOiJkYXRhc2V0OmQ4M2FhMmUyYTE2ZWYzYTNmZWI5NWM2ZTI2YThhY2UwOWVhMDgxYWE4ZDRkNTczNzRiNGQ0MGMwMzE2MTc4NWUiLCJ0IjoyLCJ5IjpbXX0.90662e33328b94ebde3a01ae000c93446bf0f5df9ca6fb2fb657d3cf6158b82b"
+    },
+    "recorded_at": "2026-08-15",
+    "reviewer_identity": "not_disclosed",
+    "reviewer_role": "human_domain_authority"
+  },
+  "required_application": [],
+  "status": "approved_and_applied",
+  "task": "P12_T05"
+}

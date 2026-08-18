@@ -1,0 +1,8 @@
+[mcp_servers.enterprise_ontology_workbench]
+command = "uv"
+args = ["run", "ontology-mcp", "--repository", ".", "--write-enabled"]
+cwd = "."
+default_tools_approval_mode = "writes"
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+enabled = true

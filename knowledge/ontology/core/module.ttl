@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://knowledge.example.com/ontology/core> a owl:Ontology ;
+    dcterms:identifier "core" ;
+    dcterms:isPartOf module:core ;
+    dcterms:rightsHolder "Equipo de gobernanza ontológica"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date ;
+    dcterms:source "Especificación canónica, secciones 10 a 14"@es ;
+    dcterms:requires "Módulo raíz sin imports; define únicamente el contrato mínimo del manifiesto."@es ;
+    eow:status "active" ;
+    skos:prefLabel "Módulo núcleo de gobernanza"@es ;
+    skos:definition "Vocabulario mínimo para describir el manifiesto y descubrir módulos RDF del repositorio."@es .

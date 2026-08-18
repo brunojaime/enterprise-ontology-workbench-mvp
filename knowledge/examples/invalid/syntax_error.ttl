@@ -1,0 +1,3 @@
+@prefix ex: <https://knowledge.example.com/example/invalid/> .
+
+ex:broken ex:predicate "unterminated literal .

@@ -1,0 +1,20 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+eow:namespaceBase a owl:DatatypeProperty ;
+    rdfs:domain eow:KnowledgeManifest ;
+    rdfs:range xsd:anyURI ;
+    skos:prefLabel "namespace base"@es ;
+    skos:definition "IRI HTTPS base usada para construir las IRIs internas del repositorio."@es ;
+    skos:scopeNote "Se lee desde un manifiesto hacia la IRI base configurada."@es ;
+    skos:example "manifest:workbench eow:namespaceBase \"https://knowledge.example.com/\"^^xsd:anyURI ." ;
+    dcterms:isPartOf module:core ;
+    eow:status "active" ;
+    dcterms:source "Especificación canónica, sección 12"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

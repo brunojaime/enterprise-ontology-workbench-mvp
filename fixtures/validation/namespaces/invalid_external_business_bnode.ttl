@@ -1,0 +1,6 @@
+@prefix external: <https://external.example/vocabulary#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+external:Organization a owl:Class .
+
+[] a external:Organization .

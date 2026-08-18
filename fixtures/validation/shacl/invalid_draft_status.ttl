@@ -1,0 +1,15 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:DraftStatus a skos:Concept ;
+    skos:prefLabel "Estado draft"@es ;
+    skos:definition "Concepto de prueba con un estado no permitido."@es ;
+    dcterms:isPartOf module:fixture ;
+    eow:status "draft" ;
+    dcterms:source "fixture P03 draft status" ;
+    dcterms:creator "generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

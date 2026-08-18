@@ -1,0 +1,54 @@
+{
+  "actor": {
+    "authority_scope": "product_direction_platform_administration_repository_governance_and_pilot_scope",
+    "domain_authority": "not_established_for_an_external_business_domain",
+    "name": "Bruno Jaime",
+    "role": "product_owner_and_platform_administrator"
+  },
+  "decisions": [
+    {
+      "decision": "confirmed",
+      "id": "module_identity",
+      "value": "knowledge_governance"
+    },
+    {
+      "decision": "confirmed",
+      "id": "module_owner",
+      "value": "Bruno Jaime"
+    },
+    {
+      "decision": "confirmed",
+      "id": "enterprise_knowledge_governance_type",
+      "value": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "decision": "confirmed",
+      "id": "ontology_core_component_boundary",
+      "value": "https://knowledge.example.com/ontology/software#SoftwareComponent"
+    },
+    {
+      "decision": "requires_clarification",
+      "id": "transversal_relationship_chain",
+      "rationale": "Workbench was selected by the implementation as the application segment of the acceptance chain; the canonical specification did not require that choice and Workbench is not the business domain. The actor has not approved knowledge governance as the real enterprise domain for P12, so the metatechnical chain remains only a candidate and a fresh domain selection may be required."
+    },
+    {
+      "decision": "approved_product_direction",
+      "id": "publication_gate",
+      "value": "local_reproducible_gate_without_github_actions"
+    }
+  ],
+  "evidence": {
+    "authority_declaration": "Bruno Jaime declared that his role is administrator or the highest available role. The repository maps that statement to product owner and platform administrator because the MVP defines conceptual roles but no RBAC hierarchy or super-admin role.",
+    "channel": "interactive_project_session",
+    "external_reference": null,
+    "recorded_at": "2026-08-16",
+    "signature": null
+  },
+  "reviewed_snapshot": {
+    "branch": "proposal/p12-governed-knowledge-pilot",
+    "head": "f0273cba4a078138153491271f7c04d03e8fdec3",
+    "knowledge_config_fingerprint": "4d11725a217bd4725b4eb4a7469d0e1ca5f975be924ca701f2ebb7282e45df17"
+  },
+  "status": "awaiting_domain_selection_chain_resolution_and_signature",
+  "task": "P12_T05"
+}

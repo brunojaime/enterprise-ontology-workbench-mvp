@@ -1,0 +1,2 @@
+*.ttl whitespace=-blank-at-eof
+*.trig whitespace=-blank-at-eof

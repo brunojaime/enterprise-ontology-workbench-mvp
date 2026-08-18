@@ -1,0 +1,11 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://knowledge.example.com/example/valid/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:example_individual a ex:ExampleClass, owl:NamedIndividual ;
+    skos:prefLabel "Individuo de ejemplo"@es ;
+    dcterms:source "Fixture válido de individuo de Plan 02"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

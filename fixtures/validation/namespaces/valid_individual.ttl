@@ -1,0 +1,4 @@
+@prefix individual: <https://knowledge.example.com/id/fixture/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+individual:valid_individual a owl:NamedIndividual .

@@ -1,0 +1,4 @@
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+ex:InvalidPropertyName a owl:ObjectProperty .

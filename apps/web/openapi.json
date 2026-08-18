@@ -1,0 +1,4879 @@
+{
+  "components": {
+    "schemas": {
+      "AgentRuleModel": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": ["id", "source", "content"],
+        "title": "AgentRuleModel",
+        "type": "object"
+      },
+      "AgentSkillStatusModel": {
+        "additionalProperties": false,
+        "properties": {
+          "available": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Available",
+            "type": "array"
+          },
+          "status": {
+            "enum": ["synchronized", "stale"],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": ["available", "status", "version"],
+        "title": "AgentSkillStatusModel",
+        "type": "object"
+      },
+      "AgentStatusModel": {
+        "additionalProperties": false,
+        "properties": {
+          "canonical_contract_available": {
+            "title": "Canonical Contract Available",
+            "type": "boolean"
+          },
+          "cli_commands": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Cli Commands",
+            "type": "array"
+          },
+          "context_available": {
+            "title": "Context Available",
+            "type": "boolean"
+          },
+          "digest": {
+            "title": "Digest",
+            "type": "string"
+          },
+          "generated": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Generated",
+            "type": "array"
+          },
+          "mcp_status": {
+            "const": "available_stdio",
+            "title": "Mcp Status",
+            "type": "string"
+          },
+          "rules_available": {
+            "title": "Rules Available",
+            "type": "boolean"
+          },
+          "skills_available": {
+            "title": "Skills Available",
+            "type": "boolean"
+          },
+          "stale": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Stale",
+            "type": "array"
+          },
+          "synchronized": {
+            "title": "Synchronized",
+            "type": "boolean"
+          },
+          "validation_conforms": {
+            "title": "Validation Conforms",
+            "type": "boolean"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "context_available",
+          "rules_available",
+          "skills_available",
+          "canonical_contract_available",
+          "version",
+          "digest",
+          "synchronized",
+          "stale",
+          "generated",
+          "mcp_status",
+          "cli_commands",
+          "validation_conforms"
+        ],
+        "title": "AgentStatusModel",
+        "type": "object"
+      },
+      "ApiError": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "details": {
+            "additionalProperties": true,
+            "title": "Details",
+            "type": "object"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": ["code", "message", "details"],
+        "title": "ApiError",
+        "type": "object"
+      },
+      "BranchRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "branch": {
+            "maxLength": 72,
+            "minLength": 1,
+            "title": "Branch",
+            "type": "string"
+          },
+          "create": {
+            "default": false,
+            "title": "Create",
+            "type": "boolean"
+          }
+        },
+        "required": ["branch"],
+        "title": "BranchRequest",
+        "type": "object"
+      },
+      "CommitRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "exception_reason": {
+            "anyOf": [
+              {
+                "maxLength": 5000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exception Reason"
+          },
+          "module": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Module",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 72,
+            "minLength": 5,
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": ["module", "summary"],
+        "title": "CommitRequest",
+        "type": "object"
+      },
+      "CommitResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "commit": {
+            "title": "Commit",
+            "type": "string"
+          },
+          "exception_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exception Reason"
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Paths",
+            "type": "array"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          },
+          "validation_conforms": {
+            "title": "Validation Conforms",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "commit",
+          "subject",
+          "paths",
+          "validation_conforms",
+          "exception_reason"
+        ],
+        "title": "CommitResultModel",
+        "type": "object"
+      },
+      "CompetencyQuestionModel": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_criterion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acceptance Criterion"
+          },
+          "expected_boolean": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Boolean"
+          },
+          "iri": {
+            "title": "Iri",
+            "type": "string"
+          },
+          "minimum_result_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum Result Count"
+          },
+          "module": {
+            "title": "Module",
+            "type": "string"
+          },
+          "query_file": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query File"
+          },
+          "state": {
+            "title": "State",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "iri",
+          "text",
+          "module",
+          "state",
+          "query_file",
+          "expected_boolean",
+          "minimum_result_count",
+          "acceptance_criterion"
+        ],
+        "title": "CompetencyQuestionModel",
+        "type": "object"
+      },
+      "CompetencyQuestionPageModel": {
+        "additionalProperties": false,
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CompetencyQuestionModel"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": ["items", "total", "offset", "limit", "has_next"],
+        "title": "CompetencyQuestionPageModel",
+        "type": "object"
+      },
+      "CompetencyResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "question": {
+            "$ref": "#/components/schemas/CompetencyQuestionModel"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SparqlResultModel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": ["passed", "failed", "not_executable"],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": ["question", "status", "reason", "result"],
+        "title": "CompetencyResultModel",
+        "type": "object"
+      },
+      "CompetencyRunRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "iri": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iri"
+          }
+        },
+        "title": "CompetencyRunRequest",
+        "type": "object"
+      },
+      "ContextRequestModel": {
+        "additionalProperties": false,
+        "properties": {
+          "depth": {
+            "default": 2,
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Depth",
+            "type": "integer"
+          },
+          "max_bytes": {
+            "default": 65536,
+            "maximum": 1048576.0,
+            "minimum": 4096.0,
+            "title": "Max Bytes",
+            "type": "integer"
+          },
+          "max_terms": {
+            "default": 80,
+            "maximum": 500.0,
+            "minimum": 1.0,
+            "title": "Max Terms",
+            "type": "integer"
+          },
+          "modules": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "title": "Modules",
+            "type": "array"
+          },
+          "task": {
+            "minLength": 1,
+            "title": "Task",
+            "type": "string"
+          },
+          "terms": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 500,
+            "title": "Terms",
+            "type": "array"
+          }
+        },
+        "required": ["task"],
+        "title": "ContextRequestModel",
+        "type": "object"
+      },
+      "ContextResponseModel": {
+        "additionalProperties": false,
+        "properties": {
+          "json": {
+            "title": "Json",
+            "type": "string"
+          },
+          "markdown": {
+            "title": "Markdown",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "title": "Payload",
+            "type": "object"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": ["payload", "json", "markdown", "truncated"],
+        "title": "ContextResponseModel",
+        "type": "object"
+      },
+      "DatasetStatsModel": {
+        "additionalProperties": false,
+        "properties": {
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleStatsModel"
+            },
+            "title": "Modules",
+            "type": "array"
+          },
+          "named_graphs": {
+            "title": "Named Graphs",
+            "type": "integer"
+          },
+          "quads": {
+            "title": "Quads",
+            "type": "integer"
+          },
+          "resources": {
+            "title": "Resources",
+            "type": "integer"
+          },
+          "types": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Types",
+            "type": "object"
+          }
+        },
+        "required": ["quads", "named_graphs", "resources", "types", "modules"],
+        "title": "DatasetStatsModel",
+        "type": "object"
+      },
+      "DeprecationRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "iri": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Iri",
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "replacement_iri": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement Iri"
+          }
+        },
+        "required": ["iri", "reason"],
+        "title": "DeprecationRequest",
+        "type": "object"
+      },
+      "EditableResourceModel": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_criterion_es": {
+            "title": "Acceptance Criterion Es",
+            "type": "string"
+          },
+          "alternative_labels_es": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Alternative Labels Es",
+            "type": "array"
+          },
+          "author": {
+            "title": "Author",
+            "type": "string"
+          },
+          "class_iri": {
+            "title": "Class Iri",
+            "type": "string"
+          },
+          "definition_es": {
+            "title": "Definition Es",
+            "type": "string"
+          },
+          "domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "evidence": {
+            "title": "Evidence",
+            "type": "string"
+          },
+          "form_values": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Form Values",
+            "type": "object"
+          },
+          "iri": {
+            "title": "Iri",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "preferred_label_es": {
+            "title": "Preferred Label Es",
+            "type": "string"
+          },
+          "question_text_es": {
+            "title": "Question Text Es",
+            "type": "string"
+          },
+          "range": {
+            "title": "Range",
+            "type": "string"
+          },
+          "reading_direction_es": {
+            "title": "Reading Direction Es",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "valid_example": {
+            "title": "Valid Example",
+            "type": "string"
+          }
+        },
+        "required": [
+          "iri",
+          "kind",
+          "preferred_label_es",
+          "alternative_labels_es",
+          "definition_es",
+          "module_id",
+          "status",
+          "evidence",
+          "author",
+          "reading_direction_es",
+          "valid_example",
+          "domain",
+          "range",
+          "class_iri",
+          "source_id",
+          "question_text_es",
+          "acceptance_criterion_es",
+          "form_values",
+          "path"
+        ],
+        "title": "EditableResourceModel",
+        "type": "object"
+      },
+      "FormFieldModel": {
+        "additionalProperties": false,
+        "properties": {
+          "allowed_values": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Allowed Values",
+            "type": "array"
+          },
+          "class_iri": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Class Iri"
+          },
+          "datatype": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datatype"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "input": {
+            "enum": ["text", "textarea", "iri", "select", "number", "checkbox"],
+            "title": "Input",
+            "type": "string"
+          },
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "max_count": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Count"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "min_count": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Count"
+          },
+          "multiple": {
+            "title": "Multiple",
+            "type": "boolean"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "pattern": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pattern"
+          },
+          "required": {
+            "title": "Required",
+            "type": "boolean"
+          },
+          "severity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Severity"
+          }
+        },
+        "required": [
+          "key",
+          "path",
+          "name",
+          "description",
+          "input",
+          "required",
+          "multiple",
+          "min_count",
+          "max_count",
+          "datatype",
+          "class_iri",
+          "allowed_values",
+          "pattern",
+          "message",
+          "severity"
+        ],
+        "title": "FormFieldModel",
+        "type": "object"
+      },
+      "FormSchemaModel": {
+        "additionalProperties": false,
+        "properties": {
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FormFieldModel"
+            },
+            "title": "Fields",
+            "type": "array"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "rdf_type": {
+            "title": "Rdf Type",
+            "type": "string"
+          }
+        },
+        "required": ["kind", "rdf_type", "name", "fields"],
+        "title": "FormSchemaModel",
+        "type": "object"
+      },
+      "GitCommitModel": {
+        "additionalProperties": false,
+        "properties": {
+          "author": {
+            "title": "Author",
+            "type": "string"
+          },
+          "commit": {
+            "title": "Commit",
+            "type": "string"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": ["commit", "author", "date", "subject"],
+        "title": "GitCommitModel",
+        "type": "object"
+      },
+      "GitHistoryEntryModel": {
+        "additionalProperties": false,
+        "properties": {
+          "author": {
+            "title": "Author",
+            "type": "string"
+          },
+          "commit": {
+            "title": "Commit",
+            "type": "string"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": ["commit", "author", "date", "subject", "path"],
+        "title": "GitHistoryEntryModel",
+        "type": "object"
+      },
+      "GitStatusModel": {
+        "additionalProperties": false,
+        "properties": {
+          "base_branch": {
+            "title": "Base Branch",
+            "type": "string"
+          },
+          "base_commit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Commit"
+          },
+          "branch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch"
+          },
+          "changed_paths": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Changed Paths",
+            "type": "array"
+          },
+          "dirty": {
+            "title": "Dirty",
+            "type": "boolean"
+          },
+          "editable": {
+            "title": "Editable",
+            "type": "boolean"
+          },
+          "head": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Head"
+          },
+          "proposal_branches": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Proposal Branches",
+            "type": "array"
+          },
+          "proposal_commits": {
+            "items": {
+              "$ref": "#/components/schemas/GitCommitModel"
+            },
+            "title": "Proposal Commits",
+            "type": "array"
+          },
+          "repository_root": {
+            "title": "Repository Root",
+            "type": "string"
+          }
+        },
+        "required": [
+          "repository_root",
+          "branch",
+          "head",
+          "base_branch",
+          "base_commit",
+          "dirty",
+          "changed_paths",
+          "proposal_commits",
+          "proposal_branches",
+          "editable"
+        ],
+        "title": "GitStatusModel",
+        "type": "object"
+      },
+      "GraphNodeModel": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "class",
+              "property",
+              "individual",
+              "concept",
+              "shape",
+              "module",
+              "literal",
+              "resource"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "compact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Compact"
+          },
+          "datatype": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datatype"
+          },
+          "kind": {
+            "enum": ["iri", "bnode", "literal"],
+            "title": "Kind",
+            "type": "string"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "module": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Module"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": ["kind", "value", "category"],
+        "title": "GraphNodeModel",
+        "type": "object"
+      },
+      "HealthModel": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "const": "ok",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": ["status"],
+        "title": "HealthModel",
+        "type": "object"
+      },
+      "ImpactModel": {
+        "additionalProperties": false,
+        "properties": {
+          "affected_importers": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Affected Importers",
+            "type": "array"
+          },
+          "ancestors": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Ancestors",
+            "type": "array"
+          },
+          "competency_questions": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Competency Questions",
+            "type": "array"
+          },
+          "descendants": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Descendants",
+            "type": "array"
+          },
+          "import_dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Import Dependencies",
+            "type": "array"
+          },
+          "incoming": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Incoming",
+            "type": "array"
+          },
+          "outgoing": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Outgoing",
+            "type": "array"
+          },
+          "predicate_uses": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Predicate Uses",
+            "type": "array"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "shapes": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Shapes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "resource",
+          "incoming",
+          "outgoing",
+          "predicate_uses",
+          "ancestors",
+          "descendants",
+          "shapes",
+          "competency_questions",
+          "import_dependencies",
+          "affected_importers"
+        ],
+        "title": "ImpactModel",
+        "type": "object"
+      },
+      "IndividualWriteRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "alternative_labels_es": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "title": "Alternative Labels Es",
+            "type": "array"
+          },
+          "author": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Author",
+            "type": "string"
+          },
+          "class_iri": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Class Iri",
+            "type": "string"
+          },
+          "evidence": {
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Evidence",
+            "type": "string"
+          },
+          "form_values": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ]
+            },
+            "maxProperties": 100,
+            "title": "Form Values",
+            "type": "object"
+          },
+          "iri": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Iri",
+            "type": "string"
+          },
+          "preferred_label_es": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Preferred Label Es",
+            "type": "string"
+          },
+          "search": {
+            "$ref": "#/components/schemas/SearchConfirmationModel"
+          },
+          "source_id": {
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "status": {
+            "default": "proposed",
+            "enum": ["proposed", "active", "deprecated"],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "iri",
+          "class_iri",
+          "source_id",
+          "preferred_label_es",
+          "evidence",
+          "author",
+          "search"
+        ],
+        "title": "IndividualWriteRequest",
+        "type": "object"
+      },
+      "ModuleGraphModel": {
+        "additionalProperties": false,
+        "properties": {
+          "graph_iri": {
+            "title": "Graph Iri",
+            "type": "string"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "quads": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Quads",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "module_id",
+          "graph_iri",
+          "total",
+          "offset",
+          "limit",
+          "truncated",
+          "quads"
+        ],
+        "title": "ModuleGraphModel",
+        "type": "object"
+      },
+      "ModuleModel": {
+        "additionalProperties": false,
+        "properties": {
+          "classes": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Classes",
+            "type": "array"
+          },
+          "competency_question_count": {
+            "title": "Competency Question Count",
+            "type": "integer"
+          },
+          "definitions": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Definitions",
+            "type": "array"
+          },
+          "graph_iri": {
+            "title": "Graph Iri",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "import_cycles": {
+            "items": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Import Cycles",
+            "type": "array"
+          },
+          "imports": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Imports",
+            "type": "array"
+          },
+          "labels": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Labels",
+            "type": "array"
+          },
+          "ontology_iri": {
+            "title": "Ontology Iri",
+            "type": "string"
+          },
+          "properties": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Properties",
+            "type": "array"
+          },
+          "responsible": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Responsible",
+            "type": "array"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "status": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Status",
+            "type": "array"
+          },
+          "term_count": {
+            "title": "Term Count",
+            "type": "integer"
+          },
+          "term_limit": {
+            "title": "Term Limit",
+            "type": "integer"
+          },
+          "term_offset": {
+            "title": "Term Offset",
+            "type": "integer"
+          },
+          "term_total": {
+            "title": "Term Total",
+            "type": "integer"
+          },
+          "terms_has_next": {
+            "title": "Terms Has Next",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "ontology_iri",
+          "graph_iri",
+          "source_path",
+          "imports",
+          "labels",
+          "definitions",
+          "responsible",
+          "status",
+          "classes",
+          "properties",
+          "term_total",
+          "term_offset",
+          "term_limit",
+          "terms_has_next",
+          "import_cycles",
+          "term_count",
+          "competency_question_count"
+        ],
+        "title": "ModuleModel",
+        "type": "object"
+      },
+      "ModulePageModel": {
+        "additionalProperties": false,
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleModel"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": ["items", "total", "offset", "limit", "has_next"],
+        "title": "ModulePageModel",
+        "type": "object"
+      },
+      "ModuleStatsModel": {
+        "additionalProperties": false,
+        "properties": {
+          "graph_iri": {
+            "title": "Graph Iri",
+            "type": "string"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "quads": {
+            "title": "Quads",
+            "type": "integer"
+          },
+          "resources": {
+            "title": "Resources",
+            "type": "integer"
+          },
+          "types": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Types",
+            "type": "object"
+          }
+        },
+        "required": ["module_id", "graph_iri", "quads", "resources", "types"],
+        "title": "ModuleStatsModel",
+        "type": "object"
+      },
+      "NeighborhoodModel": {
+        "additionalProperties": false,
+        "properties": {
+          "center": {
+            "$ref": "#/components/schemas/GraphNodeModel"
+          },
+          "depth": {
+            "title": "Depth",
+            "type": "integer"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Edges",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/GraphNodeModel"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": ["center", "depth", "nodes", "edges", "truncated"],
+        "title": "NeighborhoodModel",
+        "type": "object"
+      },
+      "OperationMetricModel": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "minimum": 0.0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "failures": {
+            "minimum": 0.0,
+            "title": "Failures",
+            "type": "integer"
+          },
+          "last_duration_ms": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Duration Ms"
+          },
+          "total_duration_ms": {
+            "minimum": 0.0,
+            "title": "Total Duration Ms",
+            "type": "number"
+          }
+        },
+        "required": ["count", "failures", "total_duration_ms"],
+        "title": "OperationMetricModel",
+        "type": "object"
+      },
+      "OperationalCheckModel": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "status": {
+            "enum": ["pass", "fail"],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": ["status", "detail"],
+        "title": "OperationalCheckModel",
+        "type": "object"
+      },
+      "OperationalMetricsModel": {
+        "additionalProperties": false,
+        "properties": {
+          "load": {
+            "$ref": "#/components/schemas/OperationMetricModel"
+          },
+          "query": {
+            "$ref": "#/components/schemas/OperationMetricModel"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/OperationMetricModel"
+          }
+        },
+        "required": ["load", "validation", "query"],
+        "title": "OperationalMetricsModel",
+        "type": "object"
+      },
+      "ProposalReviewModel": {
+        "additionalProperties": false,
+        "properties": {
+          "diff": {
+            "$ref": "#/components/schemas/SemanticDiffModel"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticQuadModel"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "impact": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Impact",
+            "type": "object"
+          },
+          "ready_to_commit": {
+            "title": "Ready To Commit",
+            "type": "boolean"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ValidationReportModel"
+          }
+        },
+        "required": [
+          "diff",
+          "validation",
+          "impact",
+          "evidence",
+          "ready_to_commit"
+        ],
+        "title": "ProposalReviewModel",
+        "type": "object"
+      },
+      "PullRequestRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Body",
+            "type": "string"
+          },
+          "draft": {
+            "default": true,
+            "title": "Draft",
+            "type": "boolean"
+          },
+          "title": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": ["title", "body"],
+        "title": "PullRequestRequest",
+        "type": "object"
+      },
+      "PullRequestResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": ["status", "url", "reason"],
+        "title": "PullRequestResultModel",
+        "type": "object"
+      },
+      "QuadModel": {
+        "additionalProperties": false,
+        "properties": {
+          "graph": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "object": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "predicate": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "priority": {
+            "default": 7,
+            "maximum": 7.0,
+            "minimum": 1.0,
+            "title": "Priority",
+            "type": "integer"
+          },
+          "relationship_kind": {
+            "default": "other",
+            "enum": [
+              "subclass",
+              "subproperty",
+              "domain",
+              "range",
+              "import",
+              "internal_object_property",
+              "other"
+            ],
+            "title": "Relationship Kind",
+            "type": "string"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          }
+        },
+        "required": ["subject", "predicate", "object", "graph"],
+        "title": "QuadModel",
+        "type": "object"
+      },
+      "RdfValueModel": {
+        "additionalProperties": false,
+        "properties": {
+          "compact": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Compact"
+          },
+          "datatype": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datatype"
+          },
+          "kind": {
+            "enum": ["iri", "bnode", "literal"],
+            "title": "Kind",
+            "type": "string"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": ["kind", "value"],
+        "title": "RdfValueModel",
+        "type": "object"
+      },
+      "ReadinessModel": {
+        "additionalProperties": false,
+        "properties": {
+          "checks": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OperationalCheckModel"
+            },
+            "title": "Checks",
+            "type": "object"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "loaded_at": {
+            "title": "Loaded At",
+            "type": "string"
+          },
+          "status": {
+            "enum": ["ready", "not_ready"],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": ["status", "checks", "generation", "loaded_at"],
+        "title": "ReadinessModel",
+        "type": "object"
+      },
+      "RelationDeleteRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "datatype": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datatype"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "literal": {
+            "anyOf": [
+              {
+                "maxLength": 10000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Literal"
+          },
+          "object_iri": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Object Iri"
+          },
+          "predicate": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Predicate",
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": ["subject", "predicate"],
+        "title": "RelationDeleteRequest",
+        "type": "object"
+      },
+      "RelationWriteRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "datatype": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datatype"
+          },
+          "evidence": {
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Evidence",
+            "type": "string"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "literal": {
+            "anyOf": [
+              {
+                "maxLength": 10000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Literal"
+          },
+          "object_iri": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Object Iri"
+          },
+          "predicate": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Predicate",
+            "type": "string"
+          },
+          "status": {
+            "default": "proposed",
+            "enum": ["proposed", "active", "deprecated"],
+            "title": "Status",
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": ["subject", "predicate", "evidence"],
+        "title": "RelationWriteRequest",
+        "type": "object"
+      },
+      "RepositoryRevisionModel": {
+        "additionalProperties": false,
+        "properties": {
+          "branch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch"
+          },
+          "commit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commit"
+          },
+          "dirty": {
+            "title": "Dirty",
+            "type": "boolean"
+          }
+        },
+        "required": ["branch", "commit", "dirty"],
+        "title": "RepositoryRevisionModel",
+        "type": "object"
+      },
+      "ResourceChangeModel": {
+        "additionalProperties": false,
+        "properties": {
+          "added": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticQuadModel"
+            },
+            "title": "Added",
+            "type": "array"
+          },
+          "categories": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "removed": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticQuadModel"
+            },
+            "title": "Removed",
+            "type": "array"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          }
+        },
+        "required": ["resource", "categories", "added", "removed"],
+        "title": "ResourceChangeModel",
+        "type": "object"
+      },
+      "ResourceDescriptionModel": {
+        "additionalProperties": false,
+        "properties": {
+          "definitions": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Definitions",
+            "type": "array"
+          },
+          "direct_modules": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Direct Modules",
+            "type": "array"
+          },
+          "domains": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Domains",
+            "type": "array"
+          },
+          "git_history": {
+            "items": {
+              "$ref": "#/components/schemas/GitHistoryEntryModel"
+            },
+            "title": "Git History",
+            "type": "array"
+          },
+          "incoming": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Incoming",
+            "type": "array"
+          },
+          "labels": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Labels",
+            "type": "array"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Modules",
+            "type": "array"
+          },
+          "outgoing": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Outgoing",
+            "type": "array"
+          },
+          "predicate_uses": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Predicate Uses",
+            "type": "array"
+          },
+          "provenance": {
+            "items": {
+              "$ref": "#/components/schemas/QuadModel"
+            },
+            "title": "Provenance",
+            "type": "array"
+          },
+          "ranges": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Ranges",
+            "type": "array"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "shapes": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Shapes",
+            "type": "array"
+          },
+          "status": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Status",
+            "type": "array"
+          },
+          "subclasses": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Subclasses",
+            "type": "array"
+          },
+          "superclasses": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Superclasses",
+            "type": "array"
+          },
+          "types": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Types",
+            "type": "array"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/ResourceUsageModel"
+          }
+        },
+        "required": [
+          "resource",
+          "types",
+          "labels",
+          "definitions",
+          "modules",
+          "direct_modules",
+          "status",
+          "outgoing",
+          "incoming",
+          "superclasses",
+          "subclasses",
+          "domains",
+          "ranges",
+          "shapes",
+          "provenance",
+          "predicate_uses",
+          "usage",
+          "git_history"
+        ],
+        "title": "ResourceDescriptionModel",
+        "type": "object"
+      },
+      "ResourceUsageModel": {
+        "additionalProperties": false,
+        "properties": {
+          "incoming_references": {
+            "title": "Incoming References",
+            "type": "integer"
+          },
+          "outgoing_statements": {
+            "title": "Outgoing Statements",
+            "type": "integer"
+          },
+          "predicate_uses": {
+            "title": "Predicate Uses",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "incoming_references",
+          "outgoing_statements",
+          "predicate_uses"
+        ],
+        "title": "ResourceUsageModel",
+        "type": "object"
+      },
+      "RuntimeStatusModel": {
+        "additionalProperties": false,
+        "properties": {
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "loaded_at": {
+            "title": "Loaded At",
+            "type": "string"
+          },
+          "modules": {
+            "title": "Modules",
+            "type": "integer"
+          },
+          "quads": {
+            "title": "Quads",
+            "type": "integer"
+          },
+          "ready": {
+            "title": "Ready",
+            "type": "boolean"
+          },
+          "revision": {
+            "$ref": "#/components/schemas/RepositoryRevisionModel"
+          },
+          "validation_conforms": {
+            "title": "Validation Conforms",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ready",
+          "generation",
+          "loaded_at",
+          "revision",
+          "quads",
+          "modules",
+          "validation_conforms"
+        ],
+        "title": "RuntimeStatusModel",
+        "type": "object"
+      },
+      "SearchConfirmationModel": {
+        "additionalProperties": false,
+        "properties": {
+          "confirmed": {
+            "title": "Confirmed",
+            "type": "boolean"
+          },
+          "query": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "search_id": {
+            "pattern": "^eow-search-v2:[A-Za-z0-9_-]+\\.[0-9a-f]{64}$",
+            "title": "Search Id",
+            "type": "string"
+          }
+        },
+        "required": ["query", "confirmed", "search_id"],
+        "title": "SearchConfirmationModel",
+        "type": "object"
+      },
+      "SearchPageModel": {
+        "additionalProperties": false,
+        "properties": {
+          "has_next": {
+            "title": "Has Next",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SearchResultModel"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "limit": {
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "title": "Offset",
+            "type": "integer"
+          },
+          "search_id": {
+            "pattern": "^eow-search-v2:[A-Za-z0-9_-]+\\.[0-9a-f]{64}$",
+            "title": "Search Id",
+            "type": "string"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "offset",
+          "limit",
+          "has_next",
+          "search_id"
+        ],
+        "title": "SearchPageModel",
+        "type": "object"
+      },
+      "SearchResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "compact_iri": {
+            "title": "Compact Iri",
+            "type": "string"
+          },
+          "iri": {
+            "title": "Iri",
+            "type": "string"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "local_name": {
+            "title": "Local Name",
+            "type": "string"
+          },
+          "matched_fields": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Matched Fields",
+            "type": "array"
+          },
+          "modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Modules",
+            "type": "array"
+          },
+          "score": {
+            "title": "Score",
+            "type": "integer"
+          },
+          "types": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Types",
+            "type": "array"
+          }
+        },
+        "required": [
+          "iri",
+          "compact_iri",
+          "local_name",
+          "label",
+          "types",
+          "modules",
+          "matched_fields",
+          "score"
+        ],
+        "title": "SearchResultModel",
+        "type": "object"
+      },
+      "SemanticDiffModel": {
+        "additionalProperties": false,
+        "properties": {
+          "added_quads": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticQuadModel"
+            },
+            "title": "Added Quads",
+            "type": "array"
+          },
+          "added_resources": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Added Resources",
+            "type": "array"
+          },
+          "affected_modules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Affected Modules",
+            "type": "array"
+          },
+          "base": {
+            "title": "Base",
+            "type": "string"
+          },
+          "changes": {
+            "items": {
+              "$ref": "#/components/schemas/ResourceChangeModel"
+            },
+            "title": "Changes",
+            "type": "array"
+          },
+          "deprecated_resources": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Deprecated Resources",
+            "type": "array"
+          },
+          "head": {
+            "title": "Head",
+            "type": "string"
+          },
+          "modified_resources": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Modified Resources",
+            "type": "array"
+          },
+          "potentially_impacted_questions": {
+            "items": {
+              "$ref": "#/components/schemas/RdfValueModel"
+            },
+            "title": "Potentially Impacted Questions",
+            "type": "array"
+          },
+          "removed_quads": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticQuadModel"
+            },
+            "title": "Removed Quads",
+            "type": "array"
+          }
+        },
+        "required": [
+          "base",
+          "head",
+          "added_resources",
+          "modified_resources",
+          "deprecated_resources",
+          "added_quads",
+          "removed_quads",
+          "changes",
+          "affected_modules",
+          "potentially_impacted_questions"
+        ],
+        "title": "SemanticDiffModel",
+        "type": "object"
+      },
+      "SemanticQuadModel": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "type",
+              "label",
+              "definition",
+              "hierarchy",
+              "domain_range",
+              "status",
+              "evidence",
+              "relation",
+              "other"
+            ],
+            "title": "Category",
+            "type": "string"
+          },
+          "graph": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "object": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "predicate": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          },
+          "subject": {
+            "$ref": "#/components/schemas/RdfValueModel"
+          }
+        },
+        "required": ["subject", "predicate", "object", "graph", "category"],
+        "title": "SemanticQuadModel",
+        "type": "object"
+      },
+      "SparqlRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "max_results": {
+            "default": 1000,
+            "maximum": 5000.0,
+            "minimum": 1.0,
+            "title": "Max Results",
+            "type": "integer"
+          },
+          "query": {
+            "maxLength": 65536,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "default": 5.0,
+            "exclusiveMinimum": 0.0,
+            "maximum": 10.0,
+            "title": "Timeout Seconds",
+            "type": "number"
+          }
+        },
+        "required": ["query"],
+        "title": "SparqlRequest",
+        "type": "object"
+      },
+      "SparqlResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "boolean": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Boolean"
+          },
+          "kind": {
+            "enum": ["select", "ask", "construct", "describe"],
+            "title": "Kind",
+            "type": "string"
+          },
+          "rows": {
+            "items": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/RdfValueModel"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "title": "Rows",
+            "type": "array"
+          },
+          "triples": {
+            "items": {
+              "items": {
+                "$ref": "#/components/schemas/RdfValueModel"
+              },
+              "type": "array"
+            },
+            "title": "Triples",
+            "type": "array"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          },
+          "variables": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Variables",
+            "type": "array"
+          }
+        },
+        "required": [
+          "kind",
+          "variables",
+          "rows",
+          "boolean",
+          "triples",
+          "truncated"
+        ],
+        "title": "SparqlResultModel",
+        "type": "object"
+      },
+      "TermWriteRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_criterion_es": {
+            "anyOf": [
+              {
+                "maxLength": 5000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acceptance Criterion Es"
+          },
+          "alternative_labels_es": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "title": "Alternative Labels Es",
+            "type": "array"
+          },
+          "author": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Author",
+            "type": "string"
+          },
+          "definition_es": {
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Definition Es",
+            "type": "string"
+          },
+          "domain": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Domain"
+          },
+          "evidence": {
+            "maxLength": 5000,
+            "minLength": 1,
+            "title": "Evidence",
+            "type": "string"
+          },
+          "form_values": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ]
+            },
+            "maxProperties": 100,
+            "title": "Form Values",
+            "type": "object"
+          },
+          "iri": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Iri",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "ontology",
+              "class",
+              "concept",
+              "object_property",
+              "datatype_property",
+              "annotation_property",
+              "node_shape",
+              "competency_question"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "module_id": {
+            "pattern": "^[a-z][a-z0-9_-]{0,63}$",
+            "title": "Module Id",
+            "type": "string"
+          },
+          "preferred_label_es": {
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Preferred Label Es",
+            "type": "string"
+          },
+          "question_text_es": {
+            "anyOf": [
+              {
+                "maxLength": 5000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Text Es"
+          },
+          "range": {
+            "anyOf": [
+              {
+                "maxLength": 2048,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Range"
+          },
+          "reading_direction_es": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reading Direction Es"
+          },
+          "search": {
+            "$ref": "#/components/schemas/SearchConfirmationModel"
+          },
+          "status": {
+            "default": "proposed",
+            "enum": ["proposed", "active", "deprecated"],
+            "title": "Status",
+            "type": "string"
+          },
+          "valid_example": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Example"
+          }
+        },
+        "required": [
+          "iri",
+          "module_id",
+          "kind",
+          "preferred_label_es",
+          "definition_es",
+          "evidence",
+          "author",
+          "search"
+        ],
+        "title": "TermWriteRequest",
+        "type": "object"
+      },
+      "ValidationIssueModel": {
+        "additionalProperties": false,
+        "properties": {
+          "details": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Details",
+            "type": "object"
+          },
+          "graph": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Graph"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path"
+          },
+          "resource": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource"
+          },
+          "resource_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Type"
+          },
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "severity": {
+            "title": "Severity",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "rule_id",
+          "severity",
+          "message",
+          "resource",
+          "resource_type",
+          "path",
+          "graph",
+          "details"
+        ],
+        "title": "ValidationIssueModel",
+        "type": "object"
+      },
+      "ValidationReportModel": {
+        "additionalProperties": false,
+        "properties": {
+          "conforms": {
+            "title": "Conforms",
+            "type": "boolean"
+          },
+          "counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Counts",
+            "type": "object"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationIssueModel"
+            },
+            "title": "Issues",
+            "type": "array"
+          }
+        },
+        "required": ["conforms", "counts", "issues"],
+        "title": "ValidationReportModel",
+        "type": "object"
+      },
+      "WorkspaceModel": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_contract_status": {
+            "enum": ["synchronized", "stale", "not_available"],
+            "title": "Agent Contract Status",
+            "type": "string"
+          },
+          "branch": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Branch"
+          },
+          "class_count": {
+            "title": "Class Count",
+            "type": "integer"
+          },
+          "commit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commit"
+          },
+          "competency_questions": {
+            "title": "Competency Questions",
+            "type": "integer"
+          },
+          "concept_count": {
+            "title": "Concept Count",
+            "type": "integer"
+          },
+          "individual_count": {
+            "title": "Individual Count",
+            "type": "integer"
+          },
+          "module_count": {
+            "title": "Module Count",
+            "type": "integer"
+          },
+          "pending_changes": {
+            "title": "Pending Changes",
+            "type": "boolean"
+          },
+          "property_count": {
+            "title": "Property Count",
+            "type": "integer"
+          },
+          "runtime": {
+            "$ref": "#/components/schemas/RuntimeStatusModel"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/DatasetStatsModel"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ValidationReportModel"
+          },
+          "validation_conforms": {
+            "title": "Validation Conforms",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "runtime",
+          "stats",
+          "validation",
+          "competency_questions",
+          "agent_contract_status",
+          "branch",
+          "commit",
+          "pending_changes",
+          "module_count",
+          "class_count",
+          "property_count",
+          "concept_count",
+          "individual_count",
+          "validation_conforms"
+        ],
+        "title": "WorkspaceModel",
+        "type": "object"
+      },
+      "WriteResultModel": {
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "title": "Operation",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "preserved_unknown_triples": {
+            "title": "Preserved Unknown Triples",
+            "type": "integer"
+          },
+          "resource": {
+            "title": "Resource",
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation",
+          "resource",
+          "path",
+          "preserved_unknown_triples"
+        ],
+        "title": "WriteResultModel",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Stable API over the canonical RDF/Git workspace, including controlled proposal authoring, semantic review and the synchronized canonical agent contract.",
+    "title": "Enterprise Ontology Workbench API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/agent/context": {
+      "post": {
+        "operationId": "agent_context_api_agent_context_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContextRequestModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextResponseModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Agent Context",
+        "tags": ["agent-context"]
+      }
+    },
+    "/api/agent/rules": {
+      "get": {
+        "operationId": "agent_rules_api_agent_rules_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AgentRuleModel"
+                  },
+                  "title": "Response Agent Rules Api Agent Rules Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Agent Rules",
+        "tags": ["agent-context"]
+      }
+    },
+    "/api/agent/skills": {
+      "get": {
+        "operationId": "agent_skills_api_agent_skills_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentSkillStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Agent Skills",
+        "tags": ["agent-context"]
+      }
+    },
+    "/api/agent/status": {
+      "get": {
+        "operationId": "agent_status_api_agent_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Agent Status",
+        "tags": ["agent-context"]
+      }
+    },
+    "/api/authoring/forms": {
+      "get": {
+        "operationId": "authoring_forms_api_authoring_forms_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FormSchemaModel"
+                  },
+                  "title": "Response Authoring Forms Api Authoring Forms Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Authoring Forms",
+        "tags": ["editing"]
+      }
+    },
+    "/api/authoring/state": {
+      "get": {
+        "operationId": "authoring_state_api_authoring_state_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "iri",
+            "required": true,
+            "schema": {
+              "title": "Iri",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditableResourceModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Authoring State",
+        "tags": ["editing"]
+      }
+    },
+    "/api/competency_questions": {
+      "get": {
+        "operationId": "list_competency_questions_api_competency_questions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "module",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Module"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetencyQuestionPageModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "List Competency Questions",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/competency_questions/run": {
+      "post": {
+        "operationId": "run_competency_questions_api_competency_questions_run_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompetencyRunRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CompetencyResultModel"
+                  },
+                  "title": "Response Run Competency Questions Api Competency Questions Run Post",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Run Competency Questions",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/diff": {
+      "get": {
+        "operationId": "semantic_diff_api_diff_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemanticDiffModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Semantic Diff",
+        "tags": ["editing"]
+      }
+    },
+    "/api/git/branch": {
+      "post": {
+        "operationId": "git_branch_api_git_branch_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BranchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Git Branch",
+        "tags": ["editing"]
+      }
+    },
+    "/api/git/commit": {
+      "post": {
+        "operationId": "git_commit_api_git_commit_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommitResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Git Commit",
+        "tags": ["editing"]
+      }
+    },
+    "/api/git/pull_request": {
+      "post": {
+        "operationId": "git_pull_request_api_git_pull_request_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PullRequestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PullRequestResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Git Pull Request",
+        "tags": ["editing"]
+      }
+    },
+    "/api/git/status": {
+      "get": {
+        "operationId": "git_status_api_git_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Git Status",
+        "tags": ["editing"]
+      }
+    },
+    "/api/graph/module": {
+      "get": {
+        "operationId": "get_graph_module_api_graph_module_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "module_id",
+            "required": true,
+            "schema": {
+              "title": "Module Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "maximum": 1500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleGraphModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Get Graph Module",
+        "tags": ["workspace", "graph"]
+      }
+    },
+    "/api/graph/neighborhood": {
+      "get": {
+        "operationId": "neighborhood_api_graph_neighborhood_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "center",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "title": "Center",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depth",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "maximum": 3,
+              "minimum": 0,
+              "title": "Depth",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_nodes",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Max Nodes",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_edges",
+            "required": false,
+            "schema": {
+              "default": 1500,
+              "maximum": 1500,
+              "minimum": 0,
+              "title": "Max Edges",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "graph_iri",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Graph Iri"
+            }
+          },
+          {
+            "in": "query",
+            "name": "predicate",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Predicate"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NeighborhoodModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Neighborhood",
+        "tags": ["resources", "graph"]
+      }
+    },
+    "/api/graph/stats": {
+      "get": {
+        "operationId": "graph_stats_api_graph_stats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetStatsModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Graph Stats",
+        "tags": ["resources", "graph"]
+      }
+    },
+    "/api/impact": {
+      "get": {
+        "operationId": "impact_api_impact_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "iri",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "title": "Iri",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImpactModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Impact",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/modules": {
+      "get": {
+        "operationId": "list_modules_api_modules_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModulePageModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "List Modules",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/modules/{module_id}": {
+      "get": {
+        "operationId": "get_module_api_modules__module_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "module_id",
+            "required": true,
+            "schema": {
+              "title": "Module Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "term_offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Term Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "term_limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Term Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Get Module",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/modules/{module_id}/graph": {
+      "get": {
+        "operationId": "get_module_graph_api_modules__module_id__graph_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "module_id",
+            "required": true,
+            "schema": {
+              "title": "Module Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "maximum": 1500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleGraphModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Get Module Graph",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/modules/{module_id}/raw": {
+      "get": {
+        "description": "Return a read-only Turtle view generated by the semantic core.",
+        "operationId": "get_module_raw_api_modules__module_id__raw_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "module_id",
+            "required": true,
+            "schema": {
+              "title": "Module Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "text/turtle": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Read-only Turtle serialization of the module graph."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Get Module Raw",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/relations": {
+      "post": {
+        "operationId": "write_relation_api_relations_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationWriteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Write Relation",
+        "tags": ["editing"]
+      }
+    },
+    "/api/relations/draft": {
+      "delete": {
+        "operationId": "delete_relation_api_relations_draft_delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationDeleteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Delete Relation",
+        "tags": ["editing"]
+      }
+    },
+    "/api/resources": {
+      "patch": {
+        "operationId": "write_term_api_resources_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermWriteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Write Term",
+        "tags": ["editing"]
+      },
+      "post": {
+        "operationId": "write_term_api_resources_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermWriteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Write Term",
+        "tags": ["editing"]
+      }
+    },
+    "/api/resources/deprecate": {
+      "post": {
+        "operationId": "deprecate_resource_api_resources_deprecate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeprecationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Deprecate Resource",
+        "tags": ["editing"]
+      }
+    },
+    "/api/resources/describe": {
+      "get": {
+        "operationId": "describe_resource_api_resources_describe_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "iri",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "title": "Iri",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceDescriptionModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Describe Resource",
+        "tags": ["resources"]
+      }
+    },
+    "/api/resources/individual": {
+      "post": {
+        "operationId": "write_individual_api_resources_individual_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndividualWriteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WriteResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Write Individual",
+        "tags": ["editing"]
+      }
+    },
+    "/api/resources/search": {
+      "get": {
+        "operationId": "search_resources_api_resources_search_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "in": "query",
+            "name": "module",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Module"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchPageModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Search Resources",
+        "tags": ["resources"]
+      }
+    },
+    "/api/review": {
+      "get": {
+        "operationId": "proposal_review_api_review_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalReviewModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Proposal Review",
+        "tags": ["editing"]
+      }
+    },
+    "/api/sparql/query": {
+      "post": {
+        "operationId": "sparql_query_api_sparql_query_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SparqlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SparqlResultModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Sparql Query",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/validation/latest": {
+      "get": {
+        "operationId": "latest_validation_api_validation_latest_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationReportModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Latest Validation",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/validation/run": {
+      "post": {
+        "operationId": "run_validation_api_validation_run_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationReportModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Run Validation",
+        "tags": ["semantic"]
+      }
+    },
+    "/api/workspace": {
+      "get": {
+        "operationId": "get_workspace_api_workspace_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Get Workspace",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/workspace/reload": {
+      "post": {
+        "operationId": "reload_workspace_api_workspace_reload_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            },
+            "description": "Structured API error"
+          }
+        },
+        "summary": "Reload Workspace",
+        "tags": ["workspace"]
+      }
+    },
+    "/api/workspace/status": {
+      "get": {
+        "operationId": "get_status_api_workspace_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeStatusModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Status",
+        "tags": ["workspace"]
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Liveness only: the ASGI process can answer HTTP.",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health",
+        "tags": ["operations"]
+      }
+    },
+    "/metrics": {
+      "get": {
+        "description": "Expose bounded process-local load, validation and query metrics.",
+        "operationId": "operational_metrics_metrics_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationalMetricsModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Operational Metrics",
+        "tags": ["operations"]
+      }
+    },
+    "/ready": {
+      "get": {
+        "description": "Verify the published dataset snapshot and its canonical Git worktree.",
+        "operationId": "readiness_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessModel"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessModel"
+                }
+              }
+            },
+            "description": "Runtime is not ready"
+          }
+        },
+        "summary": "Readiness",
+        "tags": ["operations"]
+      }
+    }
+  }
+}

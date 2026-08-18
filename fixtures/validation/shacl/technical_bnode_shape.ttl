@@ -1,0 +1,11 @@
+@prefix govern: <https://knowledge.example.com/shape/governance/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+govern:TechnicalRestrictionShape a sh:NodeShape ;
+    sh:targetClass owl:Restriction ;
+    sh:property [
+        sh:path owl:onProperty ;
+        sh:minCount 1 ;
+        sh:message "La restricción técnica de prueba requiere owl:onProperty."@es
+    ] .

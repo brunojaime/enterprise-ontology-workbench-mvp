@@ -1,15 +1,42 @@
 # Enterprise Ontology Workbench
 
-## Especificación completa del MVP
+## Especificación completa del MVP y evolución Codex-first
 
-**Estado:** propuesta lista para implementación  
-**Fecha:** 11 de agosto de 2026  
+**Versión:** 2.0
+**Estado:** MVP en aceptación y evolución Codex-first lista para implementación progresiva
+**Fecha:** 16 de agosto de 2026
 **Producto:** aplicación interna para visualizar, gestionar y evolucionar ontologías y una base de conocimiento empresarial  
 **Frontend:** SvelteKit con TypeScript  
 **Backend semántico:** Python con FastAPI, RDFLib y pySHACL  
 **Persistencia canónica inicial:** archivos RDF versionados en Git  
 **Autores principales del conocimiento:** agentes como Codex y Claude Code  
 **Rol humano principal:** revisión, validación y aprobación de cambios
+
+**Enmienda de aceptación del piloto (15 de agosto de 2026):** por decisión
+explícita del responsable del producto, P12 usa una segunda ejecución
+independiente de Codex como revisor automático reproducible. La compatibilidad
+con Claude Code se conserva en el contrato y la configuración, pero su ejecución
+no es un gate de aceptación de este MVP. La revisión humana de dominio continúa
+siendo obligatoria.
+
+**Extensión Codex-first de incorporación de conocimiento (16 de agosto de
+2026):** esta versión agrega el alcance posterior al MVP para que una persona
+entregue documentos, repositorios o acceso de solo lectura a bases de datos y
+Codex convierta esa evidencia en propuestas ontológicas gobernadas. La web pasa
+a ser principalmente un visor de ontologías, grafos, procedencia, validaciones
+y diffs; la incorporación y autoría operativa ocurren mediante Codex, CLI y MCP.
+Los documentos y sistemas externos aportan evidencia versionada, pero RDF y Git
+continúan siendo la representación canónica del conocimiento aprobado. Esta
+extensión no cambia los estados ni los criterios pendientes de P12 y comienza
+recién en P13.
+
+**Enmienda de gobierno local (16 de agosto de 2026):** por decisión explícita
+del responsable del producto, GitHub Actions deja de ser un gate de aceptación.
+Las propuestas continúan en `proposal/*`, pero tests, builds, RDF/SHACL, diff e
+impacto se ejecutan mediante un gate local reproducible ligado a branch, HEAD,
+base y fingerprint RDF. La revisión de dominio y la aprobación de publicación
+requieren evidencia humana firmada y separada; sólo una persona integra `main`.
+GitHub y los pull requests quedan como colaboración o backup opcionales.
 
 ---
 
@@ -350,8 +377,11 @@ El linter cubrirá reglas organizacionales como duplicados, propiedad del módul
 1. Una rama representa una propuesta.
 2. El diff textual se complementa con un diff semántico de triples.
 3. La rama principal representa conocimiento publicado.
-4. GitHub Actions valida cada pull request.
-5. La app no fusiona directamente a la rama principal durante el MVP.
+4. Un gate local fija el snapshot y ejecuta todos los checks reproducibles.
+5. La revisión de dominio y la aprobación de publicación son actos humanos
+   firmados distintos del gate técnico.
+6. La app y los agentes no fusionan directamente a la rama principal.
+7. Un remoto Git o pull request es opcional y no sustituye el gate local.
 
 ## 9.7 Integración con agentes
 
@@ -812,7 +842,9 @@ La app muestra:
 
 ## 18.6 Publicación
 
-El agente prepara el commit y el pull request. Una persona revisa y GitHub integra el cambio.
+El agente prepara el commit y el bundle local de revisión. Una persona revisa,
+firma la decisión correspondiente e integra el cambio mediante Git. Un pull
+request puede usarse opcionalmente, pero no es condición de aceptación.
 
 ---
 
@@ -1476,10 +1508,11 @@ Los cambios de etiquetas, definiciones, jerarquías, dominio, rango y estado ten
 ## 30.3 Git
 
 1. Los agentes trabajan en ramas.
-2. La rama principal estará protegida.
-3. Los checks serán obligatorios.
-4. Los archivos de gobernanza tendrán CODEOWNERS.
+2. La rama principal sólo será integrada por una persona.
+3. El gate local y sus receipts ligados al snapshot serán obligatorios.
+4. Las autoridades de revisión y sus firmas serán verificables localmente.
 5. Los write tools MCP no podrán fusionar cambios.
+6. GitHub, CODEOWNERS y pull requests son compatibilidad opcional.
 
 ## 30.4 MCP
 
@@ -1629,10 +1662,13 @@ El MVP se considera terminado cuando:
 9. El CLI ofrece búsqueda, contexto, validación, diff e impacto.
 10. El servidor MCP funciona con tools de lectura y escritura controlada.
 11. Codex carga `AGENTS.md`, skills y MCP del proyecto.
-12. Claude Code carga `CLAUDE.md`, skills y MCP del proyecto.
+12. Una segunda ejecución independiente de Codex carga `AGENTS.md`, la skill de
+    revisión y las herramientas del proyecto, y emite un veredicto estructurado
+    sobre la propuesta del piloto.
 13. Un agente puede agregar correctamente un término reutilizando el contexto existente.
 14. Un segundo agente puede revisar la propuesta y detectar un duplicado sembrado para la prueba.
-15. GitHub Actions bloquea una propuesta inválida.
+15. El gate local reproducible bloquea una propuesta inválida y conserva un
+    receipt ligado al snapshot exacto.
 16. El piloto conecta al menos un concepto de dominio con proceso, aplicación, componente y repositorio.
 17. No se utiliza RAG ni embeddings como fuente canónica.
 18. La aplicación y el conocimiento pueden separarse mediante configuración, sin cambiar la lógica de dominio.
@@ -1653,6 +1689,7 @@ El MVP se considera terminado cuando:
 | ADR 008 | Skills, AGENTS.md, CLAUDE.md y MCP desde un contrato canónico |
 | ADR 009 | Contexto estructurado desde el grafo, sin RAG como verdad |
 | ADR 010 | Publicación mediante ramas, checks y pull requests |
+| ADR 010A | Gates locales y revisión humana firmada; reemplaza ADR 010 |
 | ADR 011 | Un archivo por término de ontología |
 | ADR 012 | Subconjunto editable de OWL y preservación de triples desconocidas |
 
@@ -1834,6 +1871,10 @@ Los planes se ejecutan en orden. Cada task debe terminar con tests, documentaci�
 
 **Objetivo:** hacer que las reglas sean obligatorias en todo pull request.
 
+**Estado histórico:** P10 implementó la capacidad remota original. La enmienda
+de gobierno local y ADR 010A la reemplazan como gate vigente durante P12; las
+workflows dejan de estar activas y su historia permanece en Git.
+
 | Task | Trabajo | Aceptación |
 |---|---|---|
 | P10 T01 | Crear workflow de validación RDF | Falla por parseo, SHACL o lint error |
@@ -1866,14 +1907,22 @@ Los planes se ejecutan en orden. Cada task debe terminar con tests, documentaci�
 
 **Objetivo:** demostrar que la plataforma sirve para conocimiento organizacional, no solo para software.
 
+En este plan, Enterprise Ontology Workbench puede ocupar el tramo de
+“aplicación” que soporta un proceso, pero no constituye por sí mismo el dominio
+empresarial. Un piloto autorreferencial sobre la gobernanza del propio producto
+solo satisface el objetivo si el especialista confirma explícitamente que esa
+gobernanza es el dominio real que desea modelar. Si no lo confirma, debe
+seleccionarse una pregunta de un dominio independiente y repetir P12 desde la
+primera task afectada; esa selección puede realizarse en una sesión fresca.
+
 | Task | Trabajo | Aceptación |
 |---|---|---|
 | P12 T01 | Elegir una pregunta transversal real | Conecta un dominio empresarial con proceso y software |
 | P12 T02 | Relevar solo el contexto mínimo | Las fuentes y dudas quedan registradas |
 | P12 T03 | Hacer que Codex proponga el modelo | Usa search, context, skills y MCP |
-| P12 T04 | Hacer que Claude revise la propuesta | Detecta al menos un problema sembrado o justifica aprobación |
-| P12 T05 | Revisar con especialista de dominio | Confirma o corrige definiciones y relaciones |
-| P12 T06 | Publicar el primer módulo de dominio | Pasa todos los checks y queda visible en la app |
+| P12 T04 | Hacer que un segundo Codex revise la propuesta | Ejecuta una revisión independiente ligada al diff vigente y detecta al menos un problema sembrado o justifica aprobación |
+| P12 T05 | Revisar con especialista de dominio | Confirma o corrige definiciones y relaciones en un artifact firmado, ligado al snapshot y con rol/autoridad explícitos |
+| P12 T06 | Publicar el primer módulo de dominio | Pasa el gate local completo, recibe aprobación humana de publicación separada, una persona integra `main` y queda visible en la app |
 | P12 T07 | Ejecutar preguntas de competencia | La consulta transversal devuelve resultados correctos |
 | P12 T08 | Conectar aplicación, componente y repo | El recorrido se visualiza de extremo a extremo |
 | P12 T09 | Medir fricción del flujo | Se registran correcciones humanas y fallas de skills |
@@ -2026,3 +2075,777 @@ La arquitectura deja preparados estos caminos sin implementarlos todavía:
 
 > La base de conocimiento empresarial será un grafo RDF modular. Los LLM serán autores asistidos por reglas, skills, consultas y validaciones. Git será el flujo inicial de gobierno. La aplicación permitirá observar, editar, revisar y publicar ese conocimiento sin convertir documentos o RAG en la fuente canónica.
 
+---
+
+# 43. Evolución Codex-first: objetivo del producto
+
+Después de aceptar P12, el Workbench evolucionará hacia una experiencia en la
+que la persona trabaja con Codex en lenguaje natural y no necesita conocer RDF,
+OWL, SHACL, SPARQL, named graphs ni el protocolo Git subyacente.
+
+La persona podrá entregar uno o más de estos insumos dentro de un proyecto:
+
+1. Texto, Markdown, PDF, DOCX, XLSX o CSV.
+2. Un checkout Git local o un repositorio GitHub, incluido uno privado cuando
+   exista autenticación del host.
+3. Una conexión de solo lectura a una base de datos soportada.
+4. Decisiones, aclaraciones y conocimiento experto expresados durante la
+   conversación.
+
+Codex deberá extraer evidencia verificable, consultar el grafo vigente,
+detectar conocimiento reutilizable, duplicado o conflictivo, proponer una
+estructura modular y pedir únicamente las decisiones de dominio que no pueda
+justificar. Después de la confirmación humana, Codex preparará RDF, validación,
+diff, impacto, commit y un bundle local revisable; un pull request será
+opcional. Nunca publicará o fusionará directamente en `main`.
+
+La experiencia objetivo es:
+
+```text
+Proyecto y fuentes
+        ↓
+Extracción segura con locators estables
+        ↓
+Codex consulta la ontología vigente
+        ↓
+Reutiliza, extiende, propone o pregunta
+        ↓
+La persona confirma significado y ownership
+        ↓
+Codex crea una propuesta RDF gobernada
+        ↓
+SHACL + lint + diff + impacto + revisión
+        ↓
+Git publica una nueva versión canónica
+        ↓
+Codex y la web consultan el conocimiento publicado
+```
+
+Codex no se considerará poseedor de conocimiento empresarial persistente. En
+cada tarea recuperará el estado vigente mediante `ontology_core`, CLI o MCP. La
+ontología publicada será su memoria empresarial estructurada; los documentos y
+sistemas seguirán siendo evidencia o sistemas fuente.
+
+# 44. Fronteras del producto Codex-first
+
+## 44.1 Responsabilidades de Codex
+
+Codex será la interfaz primaria para:
+
+1. Crear y mantener proyectos de incorporación.
+2. Registrar y actualizar fuentes.
+3. Pedir extracción acotada de contenido.
+4. Descubrir conocimiento ya modelado.
+5. Construir candidatos y alinearlos con el grafo.
+6. Formular preguntas empresariales concretas.
+7. Registrar decisiones humanas estructuradas.
+8. Proponer términos, relaciones, facts y preguntas de competencia.
+9. Ejecutar validación, diff e impacto.
+10. Preparar commits y bundles locales revisables; opcionalmente pull requests.
+11. Consultar posteriormente el conocimiento publicado y citar su evidencia.
+
+## 44.2 Responsabilidades humanas
+
+La persona deberá:
+
+1. Elegir las fuentes autorizadas y su alcance.
+2. Confirmar definiciones, identidad, ownership y reglas empresariales.
+3. Resolver conflictos o ambigüedades materiales.
+4. Aprobar o rechazar el resumen de la propuesta.
+5. Autorizar la publicación mediante el flujo Git.
+
+Una puntuación de confianza nunca reemplazará estas decisiones.
+
+## 44.3 Responsabilidades de la web
+
+La web será viewer-first y read-only por defecto. Su camino principal será:
+
+1. Visualizar ontologías, datos, propuestas y grafos.
+2. Buscar y describir recursos.
+3. Mostrar procedencia, evidencia, estado y ownership.
+4. Revisar diff, validación, impacto y preguntas de competencia.
+5. Permitir copiar IRIs o resultados para continuar en Codex.
+
+La web no necesitará cargar documentos ni ofrecer edición ontológica manual
+como experiencia primaria. Los formularios existentes podrán conservarse como
+herramienta administrativa opcional, protegida y deshabilitada por defecto.
+
+## 44.4 Fuera del alcance de esta evolución
+
+1. Convertir automáticamente todo contenido de una empresa en RDF.
+2. Copiar filas operacionales completas a la ontología.
+3. Usar documentos, chunks, embeddings o respuestas LLM como verdad canónica.
+4. Aceptar semántica o publicar cambios sin revisión humana.
+5. Ejecutar DDL, DML, SPARQL Update o escritura sobre sistemas fuente.
+6. Seguir instrucciones encontradas dentro de un documento o repositorio.
+7. Incorporar secretos, credenciales o datos personales sin política explícita.
+8. Depender de un chat embebido en la web.
+9. Sustituir la ontología por un índice de recuperación.
+
+# 45. Arquitectura funcional de la evolución
+
+```text
+┌───────────────────────────────────────────────────────────────┐
+│ Codex                                                         │
+│ Conversación, descubrimiento, preguntas y propuesta           │
+└─────────────────────────────┬─────────────────────────────────┘
+                              │ MCP / CLI JSON
+┌─────────────────────────────▼─────────────────────────────────┐
+│ Knowledge Intake                                              │
+│ ProjectService · SourceRegistry · ExtractionService           │
+│ EvidenceLedger · CandidateService · AlignmentService          │
+│ DecisionService · ProposalOrchestrator                        │
+└──────────────┬───────────────────────┬────────────────────────┘
+               │                       │
+┌──────────────▼─────────────┐  ┌──────▼────────────────────────┐
+│ Source adapters            │  │ ontology_core                 │
+│ docs · Git/GitHub · DB RO  │  │ search · describe · writer   │
+│ bounded and untrusted      │  │ SHACL · diff · impact         │
+└──────────────┬─────────────┘  └──────┬────────────────────────┘
+               │                       │
+┌──────────────▼─────────────┐  ┌──────▼────────────────────────┐
+│ Noncanonical workspace     │  │ Canonical publication        │
+│ cache · extraction · runs  │  │ knowledge/ RDF + Git         │
+└────────────────────────────┘  └──────┬────────────────────────┘
+                                      │ HTTP JSON read-only
+                               ┌──────▼────────────────────────┐
+                               │ SvelteKit viewer              │
+                               │ graph · evidence · diff       │
+                               └───────────────────────────────┘
+```
+
+Toda lógica de proyecto, extracción, evidencia, alineación y propuesta deberá
+residir en paquetes Python independientes de FastAPI, Svelte y el transporte
+MCP. API, CLI y MCP serán adaptadores del mismo núcleo.
+
+# 46. Contratos de proyecto, fuente y ejecución
+
+## 46.1 `KnowledgeProject`
+
+Cada proyecto tendrá un identificador estable `snake_case` y declarará:
+
+1. Nombre y objetivo empresarial.
+2. Preguntas que busca responder.
+3. Responsable humano y revisores.
+4. Módulos ontológicos admitidos o candidatos.
+5. Fuentes registradas.
+6. Clasificación de sensibilidad.
+7. Rama de propuesta asociada.
+8. Políticas de extracción y retención.
+9. Estado y versión del contrato.
+
+El proyecto no será un nuevo repositorio canónico. Será el contexto gobernado
+para producir propuestas sobre `knowledge/`.
+
+## 46.2 `SourceRecord`
+
+Toda fuente tendrá:
+
+1. `source_id` estable.
+2. Tipo y media type.
+3. URI lógica sanitizada, sin credenciales.
+4. Versión, commit, ETag o fingerprint SHA-256.
+5. Momento de observación.
+6. Política de acceso, clasificación y retención.
+7. Adaptador y versión utilizados.
+8. Estado: `active`, `changed`, `unavailable`, `revoked` o `superseded`.
+
+Un `404` anónimo de GitHub no demostrará que un repositorio privado no existe.
+El adaptador deberá intentar primero `gh repo view`, `gh repo clone` o
+`git ls-remote` mediante las credenciales del host, sin imprimirlas.
+
+## 46.3 `EvidenceRecord`
+
+Cada evidencia deberá señalar una ubicación reproducible:
+
+1. PDF: página y, cuando exista, bounding box o ancla textual.
+2. DOCX: parte, párrafo, tabla y celda.
+3. XLSX: hoja y rango de celdas.
+4. CSV: encabezado y rango de filas estable del snapshot.
+5. Git: repositorio, commit, path y rango de líneas.
+6. Base de datos: conexión lógica, schema, tabla/columna o fingerprint de una
+   consulta de lectura y momento del snapshot.
+7. Texto: archivo, hash y rango de líneas o caracteres.
+
+El registro incluirá hash del fragmento, excerpt sanitizado opcional, idioma,
+clasificación y accesibilidad. Nunca almacenará passwords, tokens o connection
+strings.
+
+## 46.4 `IntakeRun`
+
+Cada ejecución será inmutable e identificará:
+
+1. Proyecto, run ID y timestamps.
+2. Snapshot de fuentes.
+3. Revisión y fingerprint de la ontología consultada.
+4. Digest del contrato de agentes.
+5. Herramientas y versiones.
+6. Límites aplicados.
+7. Evidencias, candidatos, decisiones y propuesta resultante.
+8. Checks, errores y resultado terminal.
+
+Los caches y bytes extraídos vivirán fuera de Git en un workspace configurable.
+Solo manifests, evidencia sanitizada, decisiones y artifacts necesarios para
+auditar una propuesta podrán versionarse.
+
+## 46.5 `KnowledgeCandidate`
+
+Un candidato representará una observación todavía no canónica e incluirá:
+
+1. Identidad determinista dentro del run.
+2. Tipo sugerido y alternativas.
+3. Etiqueta, definición tentativa y módulo candidato.
+4. Evidencias que lo respaldan.
+5. Matches ontológicos inspeccionados.
+6. Receipt de búsqueda global vigente.
+7. Relaciones sugeridas.
+8. Riesgos, contradicciones y preguntas pendientes.
+9. Disposición: `reuse`, `extend`, `create`, `ask`, `reject` o `defer`.
+
+## 46.6 `HumanDecision`
+
+Una decisión humana registrará candidato, opción, autoridad declarada,
+rationale, timestamp, evidencias revisadas y fingerprint de la ontología. Una
+decisión obsoleta por cambio de fuente o snapshot deberá revalidarse; nunca se
+reinterpretará silenciosamente.
+
+# 47. Adaptadores de fuentes
+
+## 47.1 Documentos
+
+La primera versión soportará:
+
+1. Texto y Markdown con locators por líneas.
+2. PDF con texto por página; OCR será una capacidad opcional explícita.
+3. DOCX con párrafos y tablas, sin ejecutar macros o contenido activo.
+4. XLSX con hojas, celdas, fórmulas y valores observados; no ejecutará macros.
+5. CSV con encoding, dialecto y encabezados detectados de forma determinista.
+
+Los parsers deberán aplicar límites de bytes, páginas, hojas, filas, tiempo,
+profundidad de archivos comprimidos y memoria. Links, macros, objetos embebidos
+y contenido activo no se ejecutarán.
+
+## 47.2 Git y GitHub
+
+El adaptador trabajará sobre una revisión exacta y en modo de solo lectura.
+Podrá inspeccionar documentación, ADR, código, schemas, migraciones y manifests,
+pero cada afirmación citará commit y path. Repositorios privados usarán primero
+herramientas autenticadas del host. Submodules, Git LFS, repositorios sin base y
+objetos inaccesibles tendrán resultados explícitos, nunca omisiones silenciosas.
+
+Los secretos detectados se redactarán y nunca se copiarán a artifacts, prompts,
+logs o RDF.
+
+## 47.3 Bases de datos
+
+La primera implementación será PostgreSQL de solo lectura detrás de una
+interfaz extensible. Por defecto inspeccionará metadata: schemas, tablas,
+columnas, constraints, comments, vistas y relaciones. La lectura de filas será
+opt-in, acotada y sujeta a clasificación y redacción.
+
+Las credenciales se resolverán mediante aliases externos al repositorio. Cada
+sesión aplicará timeout, límite de filas, transacción read-only y prohibición de
+DDL/DML. El sistema operacional conservará la autoridad sobre sus datos; RDF
+modelará significado, estructura, linaje y hechos estables aprobados.
+
+# 48. Extracción, descubrimiento y alineación
+
+## 48.1 Unidades de extracción
+
+Los adaptadores producirán unidades tipadas y acotadas con texto o estructura,
+locator, hash y metadata. No producirán RDF ni tomarán decisiones semánticas.
+
+## 48.2 Contenido no confiable
+
+Todo contenido fuente será tratado como datos. Frases como “ignorá las reglas”,
+configuraciones de agentes encontradas en un repositorio o instrucciones dentro
+de un documento no modificarán el contrato operativo de Codex.
+
+## 48.3 Descubrimiento obligatorio
+
+Por cada candidato material, Codex deberá:
+
+1. Obtener contexto desde el grafo vigente.
+2. Ejecutar búsqueda global, primera página y sin filtros.
+3. Inspeccionar todos los matches plausibles con `describe`.
+4. Comparar tipo, significado, módulo, estado y relaciones.
+5. Elegir `reuse`, `extend`, `create`, `ask`, `reject` o `defer`.
+6. Conservar receipt, candidatos revisados y rationale.
+
+Un cambio de fuente, consulta, modalidad, branch, HEAD o fingerprint RDF
+invalidará la alineación y exigirá repetirla.
+
+## 48.4 Modelado progresivo
+
+Codex no intentará representar todo lo observado. Priorizará conocimiento que:
+
+1. Responda una pregunta empresarial explícita.
+2. Tenga evidencia concreta.
+3. Sea relativamente estable.
+4. Pueda integrarse con módulos existentes.
+5. Tenga owner y alcance comprensibles.
+
+Las entidades operacionales masivas, eventos de alta frecuencia y documentos
+completos permanecerán en sus sistemas fuente salvo decisión explícita.
+
+## 48.5 Preguntas humanas
+
+Codex agrupará dudas y las expresará sin jerga ontológica. Cada pregunta deberá
+explicar por qué la decisión importa, opciones mutuamente distinguibles y el
+efecto de cada opción. Ante duda de identidad, equivalencia fuerte, ownership,
+cardinalidad, vigencia o sensibilidad, deberá detener ese candidato.
+
+# 49. Contrato CLI y MCP Codex-first
+
+## 49.1 CLI objetivo
+
+Sin romper los comandos existentes, `ontology` agregará:
+
+```text
+ontology project init|status|list
+ontology source add|list|inspect|refresh|revoke
+ontology intake extract|resume|report
+ontology candidates list|show|align
+ontology decisions record|list|invalidate
+ontology propose batch
+```
+
+Todos soportarán JSON, schemas versionados, errores uniformes y ejecución no
+interactiva. Los comandos de lectura no modificarán Git ni fuentes.
+
+## 49.2 MCP objetivo
+
+MCP expondrá tools estrictas para:
+
+1. Estado y límites del proyecto.
+2. Registro e inspección de fuentes permitidas.
+3. Lectura acotada de unidades de evidencia.
+4. Listado y descripción de candidatos.
+5. Alineación contra el grafo vigente.
+6. Registro de decisiones humanas.
+7. Preparación de propuestas por lote.
+8. Reporte, validación, diff e impacto.
+
+Ninguna tool aceptará paths arbitrarios, connection strings, shell o SQL libre
+de escritura. Las tools de mutación usarán locks, audit log, rama `proposal/*`,
+fingerprints y compare-and-swap.
+
+## 49.3 Skills
+
+El contrato canónico incorporará al menos:
+
+1. `knowledge_intake`: registrar fuentes y obtener evidencia segura.
+2. `knowledge_align`: comparar candidatos con conocimiento existente.
+3. `knowledge_decide`: recopilar y registrar decisiones humanas.
+4. `knowledge_publish`: convertir decisiones aprobadas en propuesta gobernada.
+
+Las skills existentes de discovery, authoring y review seguirán siendo la base
+semántica. Archivos específicos de clientes se generarán desde
+`agent_contract/`.
+
+# 50. Propuesta, publicación y consulta posterior
+
+## 50.1 Propuesta por lote
+
+El orquestador construirá un plan de escritura ordenado por dependencias. Una
+propuesta podrá involucrar varios archivos responsables, pero se preparará en
+staging y no publicará parcialmente si falla una validación. El resultado
+fallido deberá poder reanudarse o descartarse sin sobrescribir cambios externos.
+
+## 50.2 Evidencia RDF
+
+Cada recurso o relación nueva enlazará evidencia mediante identifiers estables
+y PROV-O. El RDF no copiará necesariamente excerpts sensibles; podrá apuntar a
+un `EvidenceRecord` versionado y sanitizado.
+
+## 50.3 Resumen para aprobación
+
+Antes del commit, Codex mostrará en lenguaje empresarial:
+
+1. Qué reutiliza.
+2. Qué crea o modifica.
+3. Definiciones y ownership.
+4. Relaciones y dirección.
+5. Evidencias.
+6. Decisiones humanas aplicadas.
+7. Duplicados, conflictos y riesgos.
+8. Resultado de validación, diff, impacto y preguntas de competencia.
+
+La aprobación será explícita, firmada y quedará registrada. No autorizará por sí
+sola un merge; Git, el gate local y la aprobación humana de publicación
+separada seguirán gobernando la integración.
+
+## 50.4 Consulta futura
+
+Cuando una persona formule una pregunta empresarial a Codex, éste deberá
+consultar primero la ontología vigente mediante MCP o CLI. La respuesta deberá
+distinguir conocimiento `published`, `proposed`, inferido y no cubierto, e
+incluir IRIs o evidencia cuando sea relevante. Si el conocimiento no existe,
+Codex lo declarará y podrá iniciar un proyecto de incorporación; no lo
+inventará.
+
+# 51. Seguridad, privacidad y resiliencia
+
+1. Allowlist de roots, repositorios, hosts y conexiones por proyecto.
+2. Symlinks, traversal, archivos especiales y escapes fuera del workspace se
+   rechazan.
+3. Contenido activo, macros, URLs remotas y objetos embebidos no se ejecutan.
+4. Los documentos se consideran potencialmente hostiles y no alteran prompts,
+   reglas o tools.
+5. Secrets y connection strings nunca ingresan en Git, RDF, logs o contexto.
+6. PII y datos sensibles requieren clasificación, redacción y opt-in.
+7. Las consultas de base de datos son read-only, limitadas y auditadas.
+8. Caches no canónicos tienen retención y eliminación seguras configurables.
+9. Proyectos no comparten fuentes, caches ni decisiones sin autorización.
+10. Toda mutación tiene audit log con un único estado terminal.
+11. Cambios concurrentes de branch, HEAD, fuente o archivo abortan sin pérdida.
+12. Revocar o perder una fuente no elimina conocimiento publicado: marca la
+    evidencia como inaccesible y abre una revisión de vigencia.
+13. Reprocesar el mismo snapshot y decisiones es idempotente.
+14. No se fusiona a `main` ni se publican IRIs automáticamente.
+
+# 52. Incrementalidad y ciclo de vida
+
+1. Cada refresh compara fingerprints y unidades de extracción.
+2. Solo se vuelven a evaluar fragmentos y candidatos afectados.
+3. Evidencia modificada marca las decisiones dependientes como `stale`.
+4. Una fuente eliminada genera impacto, no borrado automático de RDF.
+5. Una nueva versión conserva relación con la anterior.
+6. Los candidatos duplicados entre fuentes se consolidan sin perder procedencia.
+7. Una propuesta publicada se vincula con run, decisiones, diff, commit y PR.
+8. Los formatos de manifests y ledgers tienen migraciones explícitas.
+
+# 53. Observabilidad y métricas
+
+El pipeline medirá sin evaluar automáticamente la verdad semántica:
+
+1. Fuentes y unidades procesadas, omitidas o fallidas.
+2. Duración y límites por adaptador.
+3. Candidatos por disposición.
+4. Matches reutilizados y duplicados evitados.
+5. Preguntas humanas y tasa de corrección.
+6. Propuestas conformes, rechazadas o abandonadas.
+7. Evidencias obsoletas o inaccesibles.
+8. Latencia desde incorporación hasta publicación.
+9. Consultas futuras respondidas, parciales o no cubiertas.
+
+Logs y artifacts no incluirán texto sensible completo por defecto.
+
+# 54. Estrategia de pruebas de la evolución
+
+## 54.1 Fixtures de fuentes
+
+Habrá fixtures pequeños y redistribuibles para texto, PDF, DOCX, XLSX, CSV,
+Git y PostgreSQL. Cada formato incluirá casos válidos, corruptos, demasiado
+grandes y maliciosos.
+
+## 54.2 Pruebas adversariales obligatorias
+
+1. Prompt injection dentro de cada fuente textual.
+2. Path traversal, symlink y archivo comprimido expansivo.
+3. Macro, link u objeto embebido que nunca se ejecuta.
+4. Secret o PII que no aparece en artifacts ni logs.
+5. Repositorio GitHub privado que devuelve 404 sin autenticar y funciona con
+   `gh` autenticado.
+6. SQL de escritura, consulta sin límite y timeout.
+7. Receipt filtrado, desplazado, fabricado o stale.
+8. Dos candidatos equivalentes de fuentes distintas.
+9. Cambio de source snapshot, branch, HEAD o RDF durante la propuesta.
+10. Decisión humana stale o contradictoria.
+11. Fallo a mitad de una propuesta por lote sin publicación parcial.
+12. Reprocesamiento idéntico sin duplicar RDF.
+
+## 54.3 End to end
+
+El piloto post-MVP usará al menos un documento, un repositorio y una base de
+datos read-only. Deberá producir candidatos, reutilizar conocimiento existente,
+solicitar decisiones humanas, publicar mediante PR y responder después una
+pregunta empresarial consultando exclusivamente el RDF publicado y su evidencia.
+
+# 55. Criterios de aceptación de la evolución Codex-first
+
+La evolución se considera lista cuando:
+
+1. Codex puede crear un proyecto sin que la persona conozca RDF.
+2. Se registran y versionan fuentes PDF, DOCX, XLSX, CSV, Git/GitHub y
+   PostgreSQL read-only.
+3. Cada afirmación propuesta tiene evidencia con locator y fingerprint.
+4. El contenido fuente no puede modificar las instrucciones del agente.
+5. Codex consulta la ontología vigente antes de modelar cada candidato.
+6. Reutilización, extensión, creación, duda y rechazo quedan diferenciados.
+7. Duplicados entre fuentes y ontología se detectan antes de escribir RDF.
+8. Las decisiones humanas se registran y se invalidan al quedar stale.
+9. Una propuesta por lote preserva atomicidad lógica y cambios concurrentes.
+10. SHACL, lint, diff, impacto y preguntas de competencia se ejecutan antes del
+    commit.
+11. Git y RDF continúan siendo canónicos; fuentes y caches no los reemplazan.
+12. Ninguna tool escribe en fuentes, `main` o paths no permitidos.
+13. La web funciona como visor read-only de conocimiento, propuestas y
+    procedencia.
+14. Codex responde una pregunta empresarial futura consultando el grafo y
+    distingue conocimiento ausente o propuesto.
+15. Un refresh incremental procesa solo cambios y no duplica conocimiento.
+16. La revocación de una fuente produce revisión de impacto sin borrar RDF.
+17. El piloto mixto supera todas las pruebas adversariales de la sección 54.
+18. Una persona puede completar el flujo conversacional sin editar RDF, usar
+    SPARQL o entender la estructura de archivos.
+
+# 56. ADR adicionales requeridas
+
+| ADR | Decisión |
+|---|---|
+| ADR 014 | Codex como interfaz primaria de intake y web viewer-first |
+| ADR 015 | Separación entre fuentes, evidencia, propuesta y RDF canónico |
+| ADR 016 | Contratos versionados de proyecto, run, candidato y decisión |
+| ADR 017 | Adaptadores de fuentes no confiables y ejecución confinada |
+| ADR 018 | Bases de datos read-only y datos operacionales fuera del RDF masivo |
+| ADR 019 | Alineación obligatoria antes de proponer conocimiento |
+| ADR 020 | Publicación por lote mediante staging, validación y Git |
+
+# 57. Plan de implementación de la evolución Codex-first
+
+Todos los planes P13–P23 comienzan en `todo`, dependen de la aceptación de P12 y
+se ejecutan de a uno por iteración. Agregar estos planes no autoriza su
+implementación anticipada.
+
+## Plan 13. Contrato de producto y arquitectura de intake
+
+**Objetivo:** congelar fronteras, contratos y decisiones antes de incorporar fuentes.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P13 T01 | Confirmar experiencia Codex-first y web viewer-first | README y spec describen un único flujo primario sin requerir edición RDF manual |
+| P13 T02 | Crear ADR 014 y ADR 015 | Codex, web, fuentes, evidencia, RDF y Git tienen responsabilidades inequívocas |
+| P13 T03 | Crear ADR 016 y ADR 017 | Proyecto, run, candidato, decisión y seguridad de adaptadores quedan decididos |
+| P13 T04 | Crear ADR 018 a ADR 020 | DB read-only, alineación y publicación por lote quedan decididas |
+| P13 T05 | Definir schemas versionados | JSON Schema cerrado cubre Project, Source, Evidence, Run, Candidate y Decision |
+| P13 T06 | Definir compatibilidad y migraciones | Cada schema declara versión, upgrade soportado y error para versiones futuras |
+| P13 T07 | Crear ejemplos y contraejemplos | Incluyen proyecto, fuente, evidencia, candidato y decisión válidos e inválidos |
+| P13 T08 | Actualizar riesgos y threat model | Incluye prompt injection, secrets, PII, fuentes hostiles, concurrencia y stale evidence |
+| P13 T09 | Crear validación documental | CI comprueba referencias, schemas, planes, dependencias y sincronización del contrato |
+
+## Plan 14. Workspace de proyectos y ledger de evidencia
+
+**Objetivo:** disponer de un núcleo local, reproducible y no canónico para intake.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P14 T01 | Implementar `KnowledgeProjectService` | Crea, abre y valida proyectos sin depender de FastAPI o Svelte |
+| P14 T02 | Implementar `SourceRegistry` | Registra sources por ID, tipo, URI sanitizada, política y estado |
+| P14 T03 | Implementar fingerprint de fuentes | Bytes o revisión idénticos producen el mismo SHA-256; cambios producen nueva versión |
+| P14 T04 | Implementar `EvidenceLedger` | Registros append-only validan locators y nunca contienen credenciales |
+| P14 T05 | Implementar `IntakeRunStore` | Cada run fija fuentes, RDF snapshot, contrato, límites y resultado terminal |
+| P14 T06 | Implementar cache content-addressed | Vive fuera de Git, está confinado y tiene política de retención |
+| P14 T07 | Implementar ledgers de candidatos y decisiones | Escritura atómica, IDs deterministas y referencias existentes |
+| P14 T08 | Agregar locks y compare-and-swap | Dos procesos no pierden runs, evidence o decisions concurrentes |
+| P14 T09 | Agregar clasificación y redacción | Secrets y campos marcados no aparecen en artifacts o logs |
+| P14 T10 | Crear CLI project y source básico | Init, status, list, add y revoke funcionan en JSON y texto |
+| P14 T11 | Agregar audit log de intake | Cada mutación tiene invocation ID y un único resultado terminal |
+| P14 T12 | Crear suite adversarial de workspace | Cubre traversal, symlinks, corrupción, concurrencia, stale schema y recovery |
+
+## Plan 15. Adaptadores de documentos
+
+**Objetivo:** extraer unidades citables sin ejecutar contenido activo.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P15 T01 | Definir `SourceAdapter` y `ExtractionUnit` | La interfaz soporta capabilities, límites, locators y errores uniformes |
+| P15 T02 | Implementar texto y Markdown | Preserva encoding, líneas, idioma y hashes reproducibles |
+| P15 T03 | Implementar PDF textual | Extrae por página con locator estable y falla explícitamente ante corrupción |
+| P15 T04 | Implementar OCR opcional | Está deshabilitado por defecto, declara motor/idioma y conserva imagen/página origen |
+| P15 T05 | Implementar DOCX | Extrae párrafos y tablas sin ejecutar macros, links u objetos embebidos |
+| P15 T06 | Implementar XLSX | Extrae hojas, rangos, fórmulas y valores sin ejecutar macros |
+| P15 T07 | Implementar CSV | Detecta encoding/dialecto con límites y locators por filas |
+| P15 T08 | Normalizar unidades | Whitespace y metadata son deterministas sin alterar el texto citado |
+| P15 T09 | Aplicar límites de recursos | Bytes, páginas, sheets, rows, compresión, tiempo y memoria fallan cerrado |
+| P15 T10 | Neutralizar instrucciones embebidas | Fixtures de prompt injection se devuelven como datos y no cambian el contrato |
+| P15 T11 | Crear corpus de fixtures redistribuible | Cada formato tiene válido, corrupto, hostil, grande y multilingüe |
+| P15 T12 | Probar round trip de evidencia | Cada excerpt se resuelve nuevamente contra el mismo snapshot y hash |
+
+## Plan 16. Adaptador Git y GitHub
+
+**Objetivo:** incorporar evidencia de repositorios sobre revisiones exactas.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P16 T01 | Implementar checkout Git read-only | Inspecciona una revisión fija sin modificar branch, index o worktree fuente |
+| P16 T02 | Implementar GitHub autenticado | Usa `gh` o Git autenticado antes de concluir que un repo privado no existe |
+| P16 T03 | Confinar clones temporales | Paths, symlinks y ownership no escapan del workspace y se limpian según retención |
+| P16 T04 | Crear inventario de archivos | Clasifica docs, ADR, schemas, migrations, manifests, código y binarios |
+| P16 T05 | Crear locators Git | Toda evidencia fija repo lógico, commit, path y líneas |
+| P16 T06 | Detectar secrets y binarios | Se redactan secrets y no se envían binarios no soportados a Codex |
+| P16 T07 | Implementar refresh incremental | Un nuevo commit procesa solo paths cambiados y conserva provenance |
+| P16 T08 | Resolver submodules y LFS explícitamente | Estados no disponibles o no autorizados se reportan sin omisión |
+| P16 T09 | Extraer contexto de arquitectura | ADR, schemas y relaciones de componentes se vuelven candidatos con citas, no RDF directo |
+| P16 T10 | Crear pruebas públicas y privadas simuladas | Cubren 404 anónimo, auth válida, commit inexistente, force-push y secret leakage |
+
+## Plan 17. Adaptador PostgreSQL read-only
+
+**Objetivo:** describir estructura y significado de datos sin convertir la ontología en una réplica operacional.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P17 T01 | Definir interfaz de database source | Separa capabilities, introspección, consulta y dialecto |
+| P17 T02 | Resolver credenciales por alias | Secrets permanecen fuera de Git, artifacts, errores y logs |
+| P17 T03 | Forzar sesiones read-only | DDL, DML, múltiples statements y funciones peligrosas se rechazan |
+| P17 T04 | Implementar introspección PostgreSQL | Schemas, tablas, columnas, tipos, PK/FK, constraints, views y comments tienen locators |
+| P17 T05 | Implementar consultas acotadas | SELECT aplica timeout, límite de filas y presupuesto de bytes |
+| P17 T06 | Mantener sampling opt-in | Por defecto no lee filas; el proyecto registra autorización y propósito |
+| P17 T07 | Agregar clasificación y masking | PII y valores sensibles se detectan o redactan antes de artifacts/contexto |
+| P17 T08 | Crear fingerprints de schema y query | Incluyen conexión lógica, SQL normalizado, parámetros y snapshot observable |
+| P17 T09 | Implementar refresh de schema | Cambios generan delta y stale evidence sin borrar RDF |
+| P17 T10 | Documentar frontera operacional | RDF modela significado/linaje; la DB conserva autoridad sobre filas variables |
+| P17 T11 | Crear integración PostgreSQL efímera | Prueba metadata, SELECT, permisos, timeout, PII y rechazo de escritura |
+
+## Plan 18. Candidatos y alineación ontológica
+
+**Objetivo:** convertir evidencia en decisiones comparadas contra el grafo vigente.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P18 T01 | Implementar creación determinista de candidatos | Misma evidencia y contrato producen los mismos candidate IDs |
+| P18 T02 | Clasificar observaciones | Distingue concepto, clase, individuo, propiedad, relación, regla, CQ y no-modelable |
+| P18 T03 | Exigir suficiencia de evidencia | Candidatos sin locator o soporte concreto quedan `defer` o `reject` |
+| P18 T04 | Integrar contexto y búsqueda global | Cada candidato material obtiene snapshot y receipt válido de primera página |
+| P18 T05 | Inspeccionar matches plausibles | Describe y registra tipo, definición, módulo, estado y relaciones |
+| P18 T06 | Implementar disposiciones | `reuse`, `extend`, `create`, `ask`, `reject` y `defer` tienen reglas cerradas |
+| P18 T07 | Detectar duplicados entre fuentes | Consolida evidencia sin crear identidades múltiples |
+| P18 T08 | Detectar conflictos | Definiciones, tipos, cardinalidades y hechos contradictorios requieren decisión |
+| P18 T09 | Resolver módulo e imports candidatos | No redefine términos y pregunta antes de crear un módulo |
+| P18 T10 | Ordenar dependencias | Tipos y propiedades se deciden antes que individuos y relaciones dependientes |
+| P18 T11 | Invalidar alineación stale | Cambiar fuente, consulta, branch, HEAD o RDF exige reejecución |
+| P18 T12 | Crear evaluación reproducible | Fixtures positivos y adversariales verifican decisiones sin usar expected labels como oráculo |
+
+## Plan 19. Skills, CLI y MCP de incorporación
+
+**Objetivo:** permitir que Codex opere el pipeline completo mediante contratos estrictos.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P19 T01 | Agregar reglas canónicas de intake | Fuente no confiable, evidencia, límites y decisiones humanas están en `agent_contract/` |
+| P19 T02 | Crear skill `knowledge_intake` | Guía project, sources, extraction y evidencia |
+| P19 T03 | Crear skill `knowledge_align` | Guía búsqueda, matches, disposition y stale snapshots |
+| P19 T04 | Crear skill `knowledge_decide` | Formula preguntas y registra autoridad/rationale sin inventar aprobación |
+| P19 T05 | Crear skill `knowledge_publish` | Orquesta propuesta, validación, diff, impacto, commit y PR sin merge |
+| P19 T06 | Completar CLI de intake | Todos los comandos de la sección 49 funcionan en JSON y texto |
+| P19 T07 | Exponer tools MCP de lectura | Projects, sources, evidence, runs y candidates respetan budgets |
+| P19 T08 | Exponer tools MCP controladas | Decisions y batch proposal requieren branch, fingerprints y schemas cerrados |
+| P19 T09 | Agregar resume y report | Un run interrumpido continúa determinísticamente o termina explícitamente |
+| P19 T10 | Auditar toda mutación y rechazo | Incluye schema rejection, actor disponible, archivos y resultado terminal |
+| P19 T11 | Generar adaptadores de agentes | Codex descubre tools y skills; compatibilidades opcionales no divergen |
+| P19 T12 | Crear evaluación de agentes | Escenarios contradichos, injection y evidencia insuficiente fallan con diagnóstico |
+
+## Plan 20. Decisiones humanas y propuesta gobernada por lote
+
+**Objetivo:** convertir candidatos aprobados en RDF sin exponer complejidad ontológica a la persona.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P20 T01 | Generar resumen conversacional | Explica reuse/new/conflicts/evidence en lenguaje empresarial |
+| P20 T02 | Formular preguntas estructuradas | Cada duda tiene opciones, efecto, evidencia y candidato asociado |
+| P20 T03 | Registrar decisiones humanas | Actor declarado, rationale, snapshot y alcance quedan auditables |
+| P20 T04 | Bloquear decisiones stale o incompletas | No se escribe RDF con identidad, ownership o sensibilidad pendiente |
+| P20 T05 | Implementar `ProposalOrchestrator` | Construye plan ordenado fuera de FastAPI, Svelte y MCP |
+| P20 T06 | Implementar staging por lote | Una falla no publica parcialmente y deja recovery/retry inequívoco |
+| P20 T07 | Materializar evidencia y PROV | Cada término/relación enlaza EvidenceRecords sanitizados |
+| P20 T08 | Preservar ownership y proposal graphs | Archivos y named graphs reflejan módulo y rama real |
+| P20 T09 | Ejecutar gates completos | Search receipts, parser, SHACL, lint, diff, impacto y CQ son obligatorios |
+| P20 T10 | Generar aprobación plain-language | Resume exactamente el diff y decisiones; no oculta quads o warnings |
+| P20 T11 | Preparar commit y handoff local | Mensaje y artifacts enlazan project, run y decisiones; el PR es opcional y nunca mergea `main` |
+| P20 T12 | Crear regresiones transaccionales | Cubre fallo intermedio, concurrencia, retry, duplicate write y audit failure |
+
+## Plan 21. Incrementalidad, privacidad y resiliencia
+
+**Objetivo:** operar proyectos repetidamente sin pérdida, filtraciones ni duplicación.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P21 T01 | Implementar refresh multi-source | Detecta versiones nuevas y calcula unidades afectadas |
+| P21 T02 | Propagar stale evidence | Candidatos, decisiones y propuestas dependientes quedan marcados |
+| P21 T03 | Recalcular impacto incremental | Solo reevalúa recursos vinculados y explica el alcance |
+| P21 T04 | Manejar revocación y ausencia | No borra RDF; genera revisión de vigencia y evidencia inaccesible |
+| P21 T05 | Garantizar idempotencia | Replay idéntico no duplica candidates, decisions, RDF ni audit events |
+| P21 T06 | Aislar proyectos | No hay lectura de sources, cache o decisions de otro proyecto |
+| P21 T07 | Endurecer parsers y subprocesses | Sandboxing, deadlines, resource limits y cleanup fallan cerrado |
+| P21 T08 | Endurecer secrets y PII | Scanners, masking y tests impiden exposición en contexto, logs y artifacts |
+| P21 T09 | Resolver concurrencia y recovery | Preserva bytes externos, permisos, tiempos y estados desplazados |
+| P21 T10 | Agregar retención y borrado seguro | Cache no canónico cumple política sin tocar evidence/RDF versionados |
+| P21 T11 | Agregar métricas y logs | Operaciones, duración, disposition, stale y errores son observables sin contenido sensible |
+| P21 T12 | Ejecutar suite adversarial completa | Todos los casos de 54.2 pasan en Linux y tienen estrategia documentada multiplataforma |
+
+## Plan 22. Viewer y consulta empresarial
+
+**Objetivo:** observar el conocimiento y permitir que Codex lo consulte después de publicado.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P22 T01 | Establecer web read-only por defecto | Despliegue viewer no expone mutations ni formularios primarios |
+| P22 T02 | Mostrar projects y proposal overlays | Published y proposed se distinguen sin mezclar named graphs |
+| P22 T03 | Mostrar evidencia y locators | Recurso/relación enlaza fuente, versión, ubicación y accesibilidad |
+| P22 T04 | Mostrar decisiones y ownership | La UI distingue decisión humana, inferencia y extracción |
+| P22 T05 | Ampliar filtros del grafo | Filtra módulo, project, source, estado y propuesta sin aristas colgantes |
+| P22 T06 | Exponer consulta Codex read-only | MCP/CLI responde usando snapshot vigente y budgets, sin chat web |
+| P22 T07 | Generar respuestas trazables | Distingue published/proposed/unknown e incluye IRIs/evidencia relevante |
+| P22 T08 | Cubrir estados de fuente | Stale, revoked o unavailable se ven sin ocultar conocimiento publicado |
+| P22 T09 | Validar UX y accesibilidad | Responsive, teclado, detalle DOM y grafos grandes pasan pruebas visuales |
+
+## Plan 23. Piloto mixto y aceptación Codex-first
+
+**Objetivo:** demostrar crecimiento ordenado desde fuentes heterogéneas hasta consulta futura.
+
+| Task | Trabajo | Aceptación |
+|---|---|---|
+| P23 T01 | Elegir pregunta empresarial real | Tiene owner, alcance y respuesta verificable todavía no completamente modelada |
+| P23 T02 | Crear proyecto y source pack | Incluye documento, Git/GitHub y PostgreSQL read-only autorizados |
+| P23 T03 | Ejecutar extracción gobernada | Todas las unidades tienen hashes/locators y no hay secretos o instructions ejecutadas |
+| P23 T04 | Crear y alinear candidatos | Reutiliza conocimiento existente y detecta duplicados/conflictos sembrados |
+| P23 T05 | Resolver decisiones con especialista | Identidad, definiciones, ownership, reglas y sensibilidad quedan firmadas |
+| P23 T06 | Hacer que Codex prepare la propuesta | Usa skills, CLI/MCP, receipts, evidencia y staging por lote |
+| P23 T07 | Revisar y publicar mediante Git | Validación, diff, impacto, CQ, gate local, firmas y aprobación humana son verificables; el PR es opcional |
+| P23 T08 | Visualizar el conocimiento | Web muestra grafo, evidencia, decisiones, source status y commit publicado |
+| P23 T09 | Responder una consulta futura | Un Codex nuevo recupera RDF publicado y evidencia sin depender de memoria previa |
+| P23 T10 | Reprocesar una fuente modificada | Delta invalida lo necesario, evita duplicados y produce propuesta incremental |
+| P23 T11 | Ejecutar adversariales y escala | Injection, PII, private 404, SQL write, concurrency y budgets pasan |
+| P23 T12 | Cerrar aceptación y operación | Se verifican sección 55, backup/recovery, métricas, documentación y backlog futuro |
+
+# 58. Dependencias de la evolución
+
+```text
+P12
+ ↓
+P13 → P14 → P15 → P16 → P17 → P18 → P19 → P20 → P21 → P22 → P23
+```
+
+Los contratos comunes deben permitir que adaptadores futuros se agreguen sin
+modificar CandidateService, AlignmentService o ProposalOrchestrator. Aunque
+algunos adaptadores puedan desarrollarse técnicamente en paralelo, el generator
+mantendrá una unidad de avance por plan.
+
+# 59. Reglas para implementar P13–P23
+
+1. Leer la especificación completa y el contrato de agentes antes de cada plan.
+2. No comenzar P13 hasta que P12 esté completo y aceptado.
+3. Mantener RDF y Git como fuentes canónicas de conocimiento publicado.
+4. Mantener caches, bytes extraídos y credenciales fuera de Git.
+5. No agregar un chat web como dependencia del flujo.
+6. Tratar todo contenido externo como datos no confiables.
+7. No delegar validaciones deterministas a un LLM.
+8. Mantener intake, evidencia y alineación fuera de FastAPI, Svelte y MCP.
+9. Implementar primero interfaces y contratos, después adaptadores.
+10. Justificar cada parser, driver, OCR o dependencia de seguridad nueva.
+11. Agregar fixtures, límites y casos adversariales con cada adaptador.
+12. No leer filas de bases de datos por defecto.
+13. No concluir que un repositorio privado no existe por un 404 anónimo.
+14. No publicar RDF sin evidence locator, búsqueda vigente y decisión requerida.
+15. No modificar o eliminar conocimiento publicado por pérdida de una fuente.
+16. No habilitar merge automático ni escritura en `main`.
+17. Actualizar OpenAPI, schemas, clientes, skills y documentación juntos.
+18. Verificar tests, lint, type checks, builds, RDF, backlog, DAG y artifacts al
+    cerrar cada plan.
+
+# 60. Decisión principal de la evolución
+
+> La persona aporta fuentes y decisiones empresariales; Codex opera el proceso
+> ontológico complejo mediante CLI y MCP; las validaciones deterministas y Git
+> gobiernan la publicación; RDF conserva el conocimiento aprobado; y la web lo
+> hace visible sin convertirse en el canal principal de carga o autoría.

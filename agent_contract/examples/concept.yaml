@@ -1,0 +1,8 @@
+id: concept_criticality
+decision: skos_concept
+valid:
+  iri: https://knowledge.example.com/id/concept/application_criticality
+  rationale: Valor de un vocabulario controlado para clasificación.
+invalid:
+  rdf_type: http://www.w3.org/2002/07/owl#Class
+  defects: [controlled_value_is_not_automatically_an_owl_class]

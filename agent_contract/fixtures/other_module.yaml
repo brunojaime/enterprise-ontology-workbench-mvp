@@ -1,0 +1,12 @@
+id: detect_other_module_owner
+task: Usar una unidad organizativa desde el módulo software.
+facts:
+  existing_match_iri: https://knowledge.example.com/ontology/organization#OrganizationUnit
+  requested_module: software
+  task_signals: [módulo software]
+  query_signals: [unidad organizativa]
+query: unidad organizativa
+expected_decision: reuse
+expected_iri: https://knowledge.example.com/ontology/organization#OrganizationUnit
+expected_module: organization
+assertions: [owner_module_detected, import_instead_of_duplicate]

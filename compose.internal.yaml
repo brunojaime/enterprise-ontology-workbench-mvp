@@ -1,0 +1,66 @@
+name: enterprise-ontology-workbench-internal
+
+services:
+  api:
+    image: enterprise-ontology-workbench-api:${EOW_IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: apps/api/Containerfile
+    read_only: true
+    cap_drop: [ALL]
+    environment:
+      EOW_ENV: internal
+      EOW_REPOSITORY_ROOT: /repository
+      EOW_KNOWLEDGE_ROOT: /repository/knowledge
+      EOW_NAMESPACE_CONFIG: /repository/config/namespace.yaml
+      EOW_WRITE_ENABLED: ${EOW_WRITE_ENABLED:-false}
+      EOW_LOG_LEVEL: ${EOW_LOG_LEVEL:-INFO}
+      UV_CACHE_DIR: /tmp/uv-cache
+      GIT_CONFIG_COUNT: "1"
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: /repository
+    tmpfs:
+      - /tmp:mode=1777
+    volumes:
+      - type: bind
+        source: ${EOW_REPOSITORY_PATH:?Set EOW_REPOSITORY_PATH to the canonical Git checkout}
+        target: /repository
+        read_only: ${EOW_REPOSITORY_READ_ONLY:-true}
+    ports:
+      - "${EOW_BIND_ADDRESS:-127.0.0.1}:${API_PORT:-8000}:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://localhost:8000/ready', timeout=2)
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  web:
+    image: enterprise-ontology-workbench-web:${EOW_IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: apps/web/Containerfile
+    read_only: true
+    cap_drop: [ALL]
+    environment:
+      EOW_API_UPSTREAM_URL: http://api:8000
+      ORIGIN: ${EOW_WEB_ORIGIN:-http://localhost:3000}
+    tmpfs:
+      - /tmp:mode=1777
+    ports:
+      - "${EOW_BIND_ADDRESS:-127.0.0.1}:${WEB_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://127.0.0.1:3000/"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s

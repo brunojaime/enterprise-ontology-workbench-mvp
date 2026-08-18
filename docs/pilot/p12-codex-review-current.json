@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "evidence": "Leí `AGENTS.md`, `.agents/skills/ontology_review/SKILL.md`, `enterprise_ontology_workbench_mvp_spec.md`, `enterprise_ontology_workbench_mvp_backlog.yaml`, las cuatro reglas canónicas y `docs/pilot/p12-codex-review-output.schema.json`. El backlog actual mantiene `P12_T04=done`, `P12_T05=done` y `P12_T06=in_progress`, consistente con `docs/pilot/p12-pilot.md`.",
+      "id": "instructions_and_scope",
+      "status": "passed"
+    },
+    {
+      "evidence": "Ejecuté `./.venv/bin/ontology context --task \"Revisar independientemente la propuesta RDF del piloto P12\" --json`. El contexto cargó el módulo `knowledge_governance`, sus imports `core` y `software`, y la competency question `cq:governed_knowledge_traceability`.",
+      "id": "context_command",
+      "status": "passed"
+    },
+    {
+      "evidence": "Ejecuté `./.venv/bin/ontology search \"gobernanza del conocimiento\" --json`. La búsqueda global devolvió `offset=0`, `limit=50`, `total=2` y recuperó el módulo `https://knowledge.example.com/ontology/knowledge_governance` y `kg:EnterpriseKnowledgeGovernance` en la primera página.",
+      "id": "relevant_search_command",
+      "status": "passed"
+    },
+    {
+      "evidence": "Ejecuté `./.venv/bin/ontology validate --json`. Resultado actual: `conforms=true`, `error=0`, `warning=0`, `info=0`.",
+      "id": "validate_command",
+      "status": "passed"
+    },
+    {
+      "evidence": "Ejecuté `./.venv/bin/ontology diff --base main --json`. El diff vivo contra `main` reportó `added_quads=497`, `removed_quads=0`, `potentially_impacted_questions=4` y `head=proposal/p12-governed-knowledge-pilot`.",
+      "id": "diff_command",
+      "status": "passed"
+    },
+    {
+      "evidence": "Decodifiqué los 13 `search_id` históricos de `docs/pilot/p12-authoring-evidence.json`: todos son búsquedas globales de primera página con `offset=0`, `limit=50`, `modules=[]` y `rdf_types=[]`. En pre-write, 12 recursos tenían `result_count=0` y `ontology core` tenía `result_count=11` sin incluir al target. En `post_write_verification`, los 13 targets figuran como `target_found=true`. Además reejecuté las 13 consultas con `./.venv/bin/ontology search <texto> --json` y cada target volvió a aparecer en la primera página del snapshot actual.",
+      "id": "first_page_receipts_13",
+      "status": "passed"
+    },
+    {
+      "evidence": "`docs/pilot/p12-authoring-evidence.json` conserva `audit_count=23`, todos `result=success`, con 13 `ontology_propose_term` y 10 `ontology_propose_relation`. Los paths auditados coinciden con los 14 archivos RDF afectados por la propuesta.",
+      "id": "audit_23_writes",
+      "status": "passed"
+    },
+    {
+      "evidence": "El RDF actual mantiene ownership, imports y metadata coherentes: `knowledge/ontology/knowledge_governance/module.ttl` define el módulo una sola vez, importa `core` y `software`, y fija `dcterms:rightsHolder \"Bruno Jaime\"@es`, consistente con `docs/pilot/p12-domain-review.json`. Las cuatro definiciones nuevas en `knowledge_governance` y las cuatro en `software` aparecen una sola vez en sus archivos responsables; los individuos internos `ontology_change_publication`, `ontology_core`, `enterprise_ontology_workbench_mvp` y `governed_knowledge_traceability` usan IRIs snake_case, conservan evidencia, autoría, fecha y `eow:status \"proposed\"`.",
+      "id": "ownership_imports_metadata_and_iris",
+      "status": "passed"
+    },
+    {
+      "evidence": "Contrasté `docs/pilot/p12-semantic-diff.json` con el estado vivo. El artifact vigente declara `validation.conforms=true`, `ready_to_commit=true`, `diff.added_quads=497`, `diff.removed_quads=0` e `impact` de 61 grupos; los conteos de quads agregadas/eliminadas coinciden con el `ontology diff` actual.",
+      "id": "semantic_diff_artifact",
+      "status": "passed"
+    },
+    {
+      "evidence": "Ejecuté `./.venv/bin/ontology impact` sobre `kg:EnterpriseKnowledgeGovernance`, `kgid:ontology_change_publication`, `app:workbench`, `id/software/component/ontology_core` e `id/software/repository/enterprise_ontology_workbench_mvp`. La cadena semántica quedó visible en impacto y además ejecuté `./.venv/bin/ontology query knowledge/competency_questions/queries/governed_knowledge_traceability.rq --json`, que devolvió una fila completa: concepto `kg:EnterpriseKnowledgeGovernance` → proceso `kgid:ontology_change_publication` → aplicación `app:workbench` → componente `id/software/component/ontology_core` → repositorio `id/software/repository/enterprise_ontology_workbench_mvp`.",
+      "id": "impact_competency_question_and_chain",
+      "status": "passed"
+    },
+    {
+      "evidence": "Busqué patrones prohibidos con `rg -n \"owl:sameAs|mcp-stage|\\bSERVICE\\b|\\bINSERT\\b|\\bDELETE\\b|SPARQL Update\" knowledge docs/pilot/p12-authoring-evidence.json docs/pilot/p12-semantic-diff.json` y no hubo coincidencias. La relación nueva cuyo sujeto publicado es `app:workbench` vive en `knowledge/data/sources/fixture_inventory.trig` dentro del graph de propuesta `graph/proposal/p12-governed-knowledge-pilot/fixture_inventory`, con metadata `prov:wasDerivedFrom` hacia el graph publicado, sin contaminar el graph `published`.",
+      "id": "prohibited_patterns_and_state_separation",
+      "status": "passed"
+    }
+  ],
+  "findings": [],
+  "reviewer": "codex",
+  "summary": "Approve. La propuesta RDF P12, sus artifacts `docs/pilot/p12-pilot.md`, `docs/pilot/p12-authoring-evidence.json` y `docs/pilot/p12-semantic-diff.json`, y el RDF/Git actuales son consistentes entre sí en lo verificable. Los comandos reproducibles obligatorios ejecutados el 2026-08-15 devolvieron validación conforme y diff vivo de 497 quads agregadas y 0 eliminadas sobre `proposal/p12-governed-knowledge-pilot`; los 13 receipts históricos son búsquedas globales de primera página y los 13 targets reaparecen en la primera página del snapshot actual; la auditoría conserva 23 writes exitosos; no encontré duplicados definitorios, imports faltantes, ownership inconsistente, IRIs internas colgantes ni patrones prohibidos; y la competency question transversal resuelve correctamente el recorrido concepto → proceso → aplicación → componente → repositorio.",
+  "verdict": "approve"
+}

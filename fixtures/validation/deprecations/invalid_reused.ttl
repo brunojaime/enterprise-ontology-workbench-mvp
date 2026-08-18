@@ -1,0 +1,6 @@
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+ex:PublishedTerm a owl:Class ;
+    eow:status "active" .

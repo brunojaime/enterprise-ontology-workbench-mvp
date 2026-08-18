@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "evidence": "El 15 de agosto de 2026 verifiqué `docs/pilot/p12-codex-review-current.json`: el check `cli_validate` dice explícitamente que el estado conforme está en el miembro JSON `validation` de los dos artifacts y no cita archivos `.validation`.",
+      "id": "cli_validate_wording",
+      "status": "passed"
+    },
+    {
+      "evidence": "Reejecuté `./.venv/bin/ontology context --task 'Revisar independientemente la propuesta RDF del piloto P12' --json` y `./.venv/bin/ontology search 'gobernanza del conocimiento' --json`. Ambos comandos terminaron con salida válida; la búsqueda devolvió primera página (`offset=0`, `limit=50`) con 2 resultados, incluida `https://knowledge.example.com/ontology/knowledge_governance`.",
+      "id": "mandatory_context_and_search",
+      "status": "passed"
+    },
+    {
+      "evidence": "Recalculé todos los SHA-256 declarados en `docs/pilot/p12-codex-review-current-provenance.json`: los 12 artifacts listados coinciden exactamente, igual que los baselines del ZIP y la especificación fuente.",
+      "id": "manifest_hashes",
+      "status": "passed"
+    },
+    {
+      "evidence": "Validé `docs/pilot/p12-codex-review-current.json` contra `docs/pilot/p12-codex-review-output.schema.json` con `jsonschema`; la validación pasó y el artifact respeta campos requeridos y enums.",
+      "id": "review_schema",
+      "status": "passed"
+    },
+    {
+      "evidence": "La rama `proposal/p12-governed-knowledge-pilot`, HEAD `30e85558acfc32ae8487a71a5f0628291e6d5b8f` y fingerprint `78d5cdceb7863fd2d93c92b8dd13e1b56644018fec15f0a6e45327cf931c0ed9` coinciden con el manifest.",
+      "id": "reviewed_revision_fingerprint",
+      "status": "passed"
+    },
+    {
+      "evidence": "Reejecuté `./.venv/bin/ontology validate --json` y devolvió `conforms=true`, cero errores, cero warnings y cero infos; coincide con el miembro `validation` del diff y del ledger.",
+      "id": "live_validate",
+      "status": "passed"
+    },
+    {
+      "evidence": "Reejecuté `./.venv/bin/ontology diff --base main --json`; el diff vivo sigue en 496 quads agregadas, 0 removidas y 61 cambios.",
+      "id": "diff_counts_496_0_61",
+      "status": "passed"
+    },
+    {
+      "evidence": "El diff vivo normalizado y `jq -S '.diff' docs/pilot/p12-semantic-diff.json` coinciden semánticamente y por SHA-256 `563dc13b103e968d9be66e0cb6da9e33155cca82412c835c0e5de071e0a93fb6`.",
+      "id": "normalized_live_diff_vs_artifact",
+      "status": "passed"
+    }
+  ],
+  "findings": [],
+  "reviewer": "codex",
+  "summary": "El único hallazgo anterior quedó cerrado. La corrección de `cli_validate` es verificable, todos los hashes del manifest coinciden, el review actual valida contra su schema, la rama, HEAD y fingerprint siguen ligados al snapshot revisado, los conteos permanecen en 496/0/61, la validación sigue conforme y el diff vivo normalizado coincide con el artifact.",
+  "verdict": "approve"
+}

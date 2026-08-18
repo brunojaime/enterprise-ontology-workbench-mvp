@@ -1,0 +1,3 @@
+ASK {
+  <https://knowledge.example.com/id/fixture/intentionally_missing> ?predicate ?value .
+}

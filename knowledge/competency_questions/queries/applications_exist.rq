@@ -1,0 +1,5 @@
+PREFIX software: <https://knowledge.example.com/ontology/software#>
+
+ASK {
+  ?application a software:Application .
+}

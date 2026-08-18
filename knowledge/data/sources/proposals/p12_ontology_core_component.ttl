@@ -1,0 +1,24 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix software: <https://knowledge.example.com/ontology/software#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:eow:proposal-statement:763245564295ddbfb2fa10e1fd07dad0af9efa806d5476f074406ad19f2d9da7> a rdf:Statement ;
+    dcterms:source "packages/ontology_core/pyproject.toml y Git del checkout"@es ;
+    rdf:object <https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp> ;
+    rdf:predicate software:implementedByRepository ;
+    rdf:subject <https://knowledge.example.com/id/software/component/ontology_core> ;
+    eow:status "proposed" .
+
+<https://knowledge.example.com/id/software/component/ontology_core> a owl:NamedIndividual,
+        software:SoftwareComponent ;
+    dcterms:created "2026-08-14"^^xsd:date ;
+    dcterms:creator "Codex" ;
+    dcterms:source "packages/ontology_core/pyproject.toml"@es ;
+    skos:prefLabel "ontology_core"@es ;
+    eow:status "proposed" ;
+    software:implementedByRepository <https://knowledge.example.com/id/software/repository/enterprise_ontology_workbench_mvp> .
+

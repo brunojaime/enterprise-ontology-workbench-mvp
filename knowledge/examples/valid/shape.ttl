@@ -1,0 +1,7 @@
+@prefix ex: <https://knowledge.example.com/example/valid/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:ExampleShape a sh:NodeShape ;
+    sh:targetClass ex:ExampleClass ;
+    sh:name "Shape de ejemplo"@es ;
+    sh:description "Shape sintético para comprobar preservación; no se ejecuta en P02."@es .

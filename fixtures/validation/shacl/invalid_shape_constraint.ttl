@@ -1,0 +1,7 @@
+@prefix ex: <https://knowledge.example.com/shape/fixture/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:MissingPathShape a sh:NodeShape ;
+    sh:targetClass owl:Class ;
+    sh:property [ sh:minCount 1 ] .

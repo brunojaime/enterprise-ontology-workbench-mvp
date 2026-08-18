@@ -1,0 +1,16 @@
+@prefix cqv: <https://knowledge.example.com/ontology/competency#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cqv:CompetencyQuestion a owl:Class ;
+    skos:prefLabel "Pregunta de competencia"@es ;
+    skos:definition "Pregunta verificable que justifica y evalúa la utilidad de uno o más módulos del conocimiento."@es ;
+    dcterms:isPartOf module:competency ;
+    eow:status "active" ;
+    dcterms:source "Especificación canónica, secciones 11.4 y 23 FR 014"@es ;
+    dcterms:creator "Codex generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

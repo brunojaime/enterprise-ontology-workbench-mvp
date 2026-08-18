@@ -1,0 +1,62 @@
+{
+  "current_snapshot": {
+    "authoring_evidence": {
+      "path": "docs/pilot/p12-authoring-evidence.json",
+      "sha256": "37284ab5ce2eb4d86cd0ad79c94d1de697eb38dc796a88d4b677c2ce26fb7674"
+    },
+    "branch": "proposal/p12-governed-knowledge-pilot",
+    "corrections": [
+      "proposed relations from published subjects are isolated in a proposal named graph",
+      "the proposal named graph is derived from the real proposal branch instead of mcp-stage",
+      "the human domain authority approved SKOS modeling and assigned Bruno Jaime as module owner"
+    ],
+    "semantic_diff": {
+      "added_quads": 497,
+      "change_groups": 61,
+      "path": "docs/pilot/p12-semantic-diff.json",
+      "removed_quads": 0,
+      "sha256": "e1ea3ce1f9f141238e9875e0b47c5bee3ab74cb5aedfca12aeca0a430af126f3"
+    },
+    "status": "current"
+  },
+  "finding_disposition": [
+    {
+      "check_id": "proposal_state_separation",
+      "evidence": "tests/test_p12_pilot.py::test_p12_has_no_proposed_relation_materialized_in_a_published_graph",
+      "status": "resolved"
+    },
+    {
+      "check_id": "resource_type_review",
+      "evidence": "docs/pilot/p12-domain-review.json records the human approval of skos:Concept",
+      "status": "resolved"
+    },
+    {
+      "check_id": "ownership_and_imports",
+      "evidence": "docs/pilot/p12-domain-review.json assigns Bruno Jaime and the RDF contains the correction",
+      "status": "resolved"
+    }
+  ],
+  "historical_review": {
+    "artifact": {
+      "bytes_preserved": true,
+      "path": "docs/pilot/archive/p12-codex-review-ce2cefec.superseded.json",
+      "sha256": "ce2cefecfc9255e56118d98b22fdcbb03893621a835802075ffc121b449bc39b"
+    },
+    "exact_input_available": false,
+    "input_availability_note": "The reviewed semantic diff was overwritten by a later governed replay before an immutable copy was retained. It must not be reconstructed or inferred from the current diff.",
+    "reviewed_branch": "proposal/p12-governed-knowledge-pilot",
+    "reviewed_head": "30e85558acfc32ae8487a71a5f0628291e6d5b8f",
+    "reviewed_semantic_diff": {
+      "added_quads": 493,
+      "change_groups": 60,
+      "claimed_digest": "c57af17d9c90145d9450423abf0343d1ffce720f4a793b75f7c521459a5b1f64",
+      "digest_scope": "Digest stated by the superseded review output; the exact historical input is unavailable for independent verification.",
+      "removed_quads": 0
+    },
+    "reviewed_snapshot_fingerprint": null,
+    "reviewer": "codex",
+    "status": "superseded",
+    "verdict": "requires_changes"
+  },
+  "schema_version": "1.0"
+}

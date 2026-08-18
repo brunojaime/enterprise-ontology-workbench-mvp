@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eow: <https://knowledge.example.com/ontology/core#> .
+@prefix ex: <https://knowledge.example.com/ontology/fixture#> .
+@prefix module: <https://knowledge.example.com/id/module/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:missingPropertySemantics a owl:ObjectProperty ;
+    skos:prefLabel "Semántica de propiedad ausente"@es ;
+    skos:definition "Propiedad de prueba sin dominio, rango ni justificación."@es ;
+    skos:scopeNote "Se lee desde el sujeto hacia el objeto."@es ;
+    skos:example "ex:subject ex:missingPropertySemantics ex:object ." ;
+    dcterms:isPartOf module:fixture ;
+    eow:status "active" ;
+    dcterms:source "fixture P03 missing property semantics" ;
+    dcterms:creator "generator" ;
+    dcterms:created "2026-08-12"^^xsd:date .

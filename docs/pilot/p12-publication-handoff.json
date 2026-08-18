@@ -1,0 +1,38 @@
+{
+  "github_history": {
+    "actions_result": "blocked_before_runner_and_superseded_as_gate",
+    "observed_head": "8d614e17d14844630b528974f1c3c722d4c7c2f2",
+    "pull_request": {
+      "base": "main",
+      "draft": true,
+      "head": "proposal/p12-governed-knowledge-pilot",
+      "number": 1,
+      "reviews": 0,
+      "state": "OPEN",
+      "url": "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/pull/1"
+    },
+    "runs": [
+      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206287",
+      "https://github.com/brunojaime/enterprise-ontology-workbench-mvp/actions/runs/31953206293"
+    ]
+  },
+  "implementation_commit": "7515d6419e2b04f45156e8c51a8df4dd5c6741f3",
+  "local_governance": {
+    "adr": "docs/adr/010a-gates-locales-y-revision-firmada.md",
+    "command": "./scripts/local_gate.sh --include-smoke --record-git-note",
+    "git_note_ref": "refs/notes/eow-local-gates",
+    "human_domain_review_verified": false,
+    "human_domain_selected": false,
+    "human_publication_approval_verified": false,
+    "receipt_locator": "git notes --ref=eow-local-gates show HEAD",
+    "status": "technical_gate_passed_awaiting_domain_selection_and_human_signatures"
+  },
+  "publication": {
+    "human_approval_recorded": false,
+    "merged_to_main": false,
+    "published": false
+  },
+  "recorded_at": "2026-08-16",
+  "status": "in_progress",
+  "task": "P12_T06"
+}
